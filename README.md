@@ -27,6 +27,7 @@ Interactive plotter of the GPCR tree
   * Protein/mRNA expression data from Proteomics DB
     * Keep tissue selection in mind
   * GPCRdb - Sequence identity/similarity (7TM domain, full sequence)
+  * GPCRdb/DrugCentral/DrugBank/GtP/ChEMBL - overview # drugs/clinical candidates/clinical phase
   * ...
 * Sharing decorated GPCRomes via a unique link
 * Undo/Redo option
