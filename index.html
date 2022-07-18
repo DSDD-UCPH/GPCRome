@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>The GPCRome</title>
+
+      <meta charset="UTF-8">
+      <meta name="description" content="Interactive mapper of the GPCR tree">
+      <meta name="keywords" content="GPCR, GPCRs, GPCRome, GPCR tree, GPCR figure, GPCR mapper">
+      <meta name="author" content="Albert J. Kooistra">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="css/style.css" rel="stylesheet" type="text/css">
+      <script src="js/jquery-1.11.0.min.js"></script>
+      <script src="js/wExtensions.js"></script>
+      <script src="js/warna.min.js"></script>
+      <script src="js/gpcr_dictionary.js"></script>
+      <script src="js/gpcrome.js"></script>
+   </head>
+   <body>
+      <h2>The human GPCRome</h2>
+      <div class="contentwrapper">
+         <div id="usertags">
+            Provide a list of GPCR IDs to be mapped (one ID per line):<br/>
+            <textarea id="userInput" rows="10" cols="50"></textarea>
+            <br/>
+            <button type="submit" onClick="javascript:mapCustomIDs($('#userInput').val())">Map the GPCRome</button>
+            <button type="submit" onClick="javascript:mapMissingCustomIDs($('#userInput').val())">Map the inverse GPCRome</button>
+            <button type="submit" onClick="javascript:cleanGPCRome();">Clean the GPCRome</button><br/><br/>
+            <!--<button type="submit" onClick="javascript:saveGPCRome();">Save image</button>-->
+            <!--<a href="#" class="button" id="downloadGPCRome">Save image</a>-->
+            <!--<button class="submit" id="downloadGPCRome">Save image</button><br/><br/>-->
+            <!--<a id="downloadGPCRome" class="button" href="#">Save image (right click "save as")</a><br/><br/>-->
+            <button id="downloadGPCRome">Download image</button><br/><br/>
+            Predefined sets:<br/>
+            <button type="submit" onClick="javascript:fullMap();">All GPCRs</button><br/>
+            <button class="submit" onClick="javascript:showCrystallized()">GPCRs with experimental structures</button><br/>
+            <br/>
+            Shape
+            <select name="dotshape" id="dotshape">
+               <option value="circle" selected>circle</option>
+               <option value="triangle">triangle</option>
+               <option value="rectangle">rectangle</option>
+               <option value="rounded_rectangle">rounded rectangle</option>
+               <option value="diamond">diamond</option>
+               <option value="pentagon">pentagon</option>
+               <option value="hexagon">hexagon</option>
+               <option value="octagon">octagon</option>
+               <option value="star">star</option>
+            </select>
+            Dot size:
+            <select name="dotsize" id="dotsize">
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6" selected>6</option>
+               <option value="7">7</option>
+               <option value="8">8</option>
+               <option value="9">9</option>
+               <option value="10">10</option>
+               <option value="11">11</option>
+               <option value="12">12</option>
+               <option value="13">13</option>
+               <option value="14">14</option>
+               <option value="15">15</option>
+               <option value="20">20</option>
+               <option value="25">25</option>
+               <option value="30">30</option>
+               <option value="40">40</option>
+               <option value="50">50</option>
+            </select>
+            Dot color:
+            <select name="dotcolor" id="dotcolor">
+               <option value="red" selected>red</option>
+               <option value="green">green</option>
+               <option value="blue">blue</option>
+               <option value="orange">orange</option>
+               <option value="green">green</option>
+               <option value="cyan">cyan</option>
+               <option value="magenta">magenta</option>
+               <option value="purple">purple</option>
+               <option value="yellow">yellow</option>
+               <option value="white">white</option>
+               <option value="gray">gray</option>
+               <option value="dimgray">dimgray</option>
+               <option value="black">black</option>
+               <option value="crimson">crimson</option>
+               <option value="indianred">indianred</option>
+               <option value="firebrick">firebrick</option>
+               <option value="cornflowerblue">cornflowerblue</option>
+               <option value="royalblue">royalblue</option>
+               <option value="gold">gold</option>
+               <option value="goldenrod">goldenrod</option>
+            </select>
+            Dot transparency:
+            <select name="dottransparency" id="dottransparency">
+               <option value="0">100%</option>
+               <option value="0.1">90%</option>
+               <option value="0.2">80%</option>
+               <option value="0.3">70%</option>
+               <option value="0.4">60%</option>
+               <option value="0.5">50%</option>
+               <option value="0.6">40%</option>
+               <option value="0.7" selected>30%</option>
+               <option value="0.8">20%</option>
+               <option value="0.9">10%</option>
+               <option value="1.0">0%</option>
+            </select>
+            Value modifier:
+            <select name="valuemodifier" id="valuemodifier">
+               <option value="dotsize">dot size</option>
+               <option value="dotcolor">dot color</option>
+               <option value="both" selected>both</option>
+               <option value="none">none</option>
+            </select>
+            Color gradient:
+            <select name="gradient" id="gradient">
+               <option value="blue-green-yellow-red" selected>blue-green-yellow-red</option>
+               <option value="red-yellow-green-blue">red-yellow-green-blue</option>
+               <option value="red-yellow-green">red-yellow-green</option>
+               <option value="green-yellow-red">green-yellow-red</option>
+               <option value="red-green">red-green</option>
+               <option value="green-red">green-red</option>
+               <option value="blue-red">blue-red</option>
+               <option value="red-blue">red-blue</option>
+               <option value="yellow-green">yellow-green</option>
+               <option value="green-yellow">green-yellow</option>
+            </select>
+         </div>
+         <div id="container">
+            <canvas id="proteomeoverlay">
+               Your browser unfortunately does not support an HTML5 canvas.
+            </canvas>
+            <canvas id="proteome">
+               Your browser unfortunately does not support an HTML5 canvas.
+            </canvas>
+         </div>
+      </div>
+      <div id="footer">
+         This GPCR-tree mapper (GPCRome mapper) is developed by Albert J. Kooistra and Chris de Graaf.<br/>
+         The tree is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859">Stevens and Katritch et al.</a> and the original tree by <a href="http://molpharm.aspetjournals.org/content/63/6/1256">Fredriksson et al.</a>. It was updated using refined sequence alignments (using available structures of GPCRs) focusing mainly on the sequence of the 7TM bundle. GPCR names have been updated, references sequences were updated from the latest UniProt, new GPCRs were added, and obsoleted sequences were removed.<br/>
+         <br/>
+         The publication of GPCR Tree Mapper in preparation. When using the GPCR Tree Mapper please cite:<br/>
+         <b>Kooistra, AJ, de Graaf C. GPCR Tree Mapper. Accessed [date]</b><br/>
+      </div>
+      <!--
+        <div id="log">
+            Logging all changes:<br/>
+        </div>
+        <button type="submit" onClick="javascript:dumpGPCRome();">Copy full list to clipboard</button><br/>
+      -->
+      <script>
+         window.onload = function () {
+            initGPCRome(true);
+         }
+
+         // Setup download button event listener
+         document.querySelector('#downloadGPCRome').addEventListener('click', ()=> {
+           var canvas = document.querySelector("#proteome");
+           var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+           
+           var element = document.createElement('a');
+           var filename = 'gpcrome.png';
+           element.setAttribute('href', image);
+           element.setAttribute('download', filename);
+
+           element.click();
+         })
+      </script>
+   </body>
+</html>

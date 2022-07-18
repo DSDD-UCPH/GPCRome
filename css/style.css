@@ -1,0 +1,85 @@
+#proteomeDiv {
+    width: 42%;
+    float: left;
+    margin-top: 0%;
+    background-color: white;
+}
+
+#proteomeDivResults {
+    width: 50%;
+    background-color: white;
+    display: none;
+    position: relative;
+    /* Max-width of the proteome on wide screen */
+    max-width: 701px;
+}
+
+#proteomeDivResults div.close {
+    position: absolute;
+    z-index: 1;
+    top: 3px;
+    right: 3px;
+}
+
+div.close img {
+    height: 20px;
+    width: 20px;
+}
+
+div.contentwrapper {
+    height: 1600px;
+}
+
+#proteomeDiv:after,
+#proteomeDivResults:After {
+    content: '';
+    height: 1px;
+    display: block;
+    clear: both;
+    text-align: left;
+}
+
+#proteomeDiv img {
+    width: 100%;
+    height: auto;
+}
+
+img.proteomeBIG {
+    width: 100%;
+    height: auto;
+}
+
+#container {
+    position: relative;
+}
+
+canvas#proteome {
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: white;
+}
+
+canvas#proteomeoverlay {
+    z-index: 1;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+img#proteomeInteractive {
+    display: none;
+}
+
+.button {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}

@@ -1,19 +1,19 @@
 # GPCRome
-Interactive plotter of the GPCR tree
+Interactive mapper of the GPCR tree
 
 ---
 
 ## Need to haves:
 * Cleanup and documentation of code + stripping redundant code/libraries
 * Create proper interface/layout
-* Create complete dictionary (and updatable) of all receptors + synonyms using different naming conventions
+* Create a complete (and updatable) dictionary of all receptors + synonyms using different naming conventions
 * SVG drawing/download
-* GPCR receptor labeling with toggle
-* Toggling and coloring of individual classes
+* GPCR receptor labelling with toggle
+* Toggling and colouring of individual classes
 * Interactive edit mode in Excel like format (e.g. [Handsontable](https://jspreadsheets.com/handsontable.html))
 * CSV-type download and upload of settings
 * Simple inline scripting functionality
-* Download improvement in multiple outptus SVG/PNG/CSV
+* Download improvement in multiple outputs SVG/PNG/CSV
 * Improve drawing order (first tree, then shapes ordered by size and type, finally draw receptor labels)
 
 ---
