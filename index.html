@@ -1,171 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>The GPCRome</title>
-
-      <meta charset="UTF-8">
-      <meta name="description" content="Interactive mapper of the GPCR tree">
-      <meta name="keywords" content="GPCR, GPCRs, GPCRome, GPCR tree, GPCR figure, GPCR mapper">
-      <meta name="author" content="Albert J. Kooistra">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="css/style.css" rel="stylesheet" type="text/css">
-      <script src="js/jquery-1.11.0.min.js"></script>
-      <script src="js/wExtensions.js"></script>
-      <script src="js/warna.min.js"></script>
-      <script src="js/gpcr_dictionary.js"></script>
-      <script src="js/gpcrome.js"></script>
-   </head>
-   <body>
-      <h2>The human GPCRome</h2>
-      <div class="contentwrapper">
-         <div id="usertags">
-            Provide a list of GPCR IDs to be mapped (one ID per line):<br/>
-            <textarea id="userInput" rows="10" cols="50"></textarea>
-            <br/>
-            <button type="submit" onClick="javascript:mapCustomIDs($('#userInput').val())">Map the GPCRome</button>
-            <button type="submit" onClick="javascript:mapMissingCustomIDs($('#userInput').val())">Map the inverse GPCRome</button>
-            <button type="submit" onClick="javascript:cleanGPCRome();">Clean the GPCRome</button><br/><br/>
-            <!--<button type="submit" onClick="javascript:saveGPCRome();">Save image</button>-->
-            <!--<a href="#" class="button" id="downloadGPCRome">Save image</a>-->
-            <!--<button class="submit" id="downloadGPCRome">Save image</button><br/><br/>-->
-            <!--<a id="downloadGPCRome" class="button" href="#">Save image (right click "save as")</a><br/><br/>-->
-            <button id="downloadGPCRome">Download image</button><br/><br/>
-            Predefined sets:<br/>
-            <button type="submit" onClick="javascript:fullMap();">All GPCRs</button><br/>
-            <button class="submit" onClick="javascript:showCrystallized()">GPCRs with experimental structures</button><br/>
-            <br/>
-            Shape
-            <select name="dotshape" id="dotshape">
-               <option value="circle" selected>circle</option>
-               <option value="triangle">triangle</option>
-               <option value="rectangle">rectangle</option>
-               <option value="rounded_rectangle">rounded rectangle</option>
-               <option value="diamond">diamond</option>
-               <option value="pentagon">pentagon</option>
-               <option value="hexagon">hexagon</option>
-               <option value="octagon">octagon</option>
-               <option value="star">star</option>
-            </select>
-            Dot size:
-            <select name="dotsize" id="dotsize">
-               <option value="1">1</option>
-               <option value="2">2</option>
-               <option value="3">3</option>
-               <option value="4">4</option>
-               <option value="5">5</option>
-               <option value="6" selected>6</option>
-               <option value="7">7</option>
-               <option value="8">8</option>
-               <option value="9">9</option>
-               <option value="10">10</option>
-               <option value="11">11</option>
-               <option value="12">12</option>
-               <option value="13">13</option>
-               <option value="14">14</option>
-               <option value="15">15</option>
-               <option value="20">20</option>
-               <option value="25">25</option>
-               <option value="30">30</option>
-               <option value="40">40</option>
-               <option value="50">50</option>
-            </select>
-            Dot color:
-            <select name="dotcolor" id="dotcolor">
-               <option value="red" selected>red</option>
-               <option value="green">green</option>
-               <option value="blue">blue</option>
-               <option value="orange">orange</option>
-               <option value="green">green</option>
-               <option value="cyan">cyan</option>
-               <option value="magenta">magenta</option>
-               <option value="purple">purple</option>
-               <option value="yellow">yellow</option>
-               <option value="white">white</option>
-               <option value="gray">gray</option>
-               <option value="dimgray">dimgray</option>
-               <option value="black">black</option>
-               <option value="crimson">crimson</option>
-               <option value="indianred">indianred</option>
-               <option value="firebrick">firebrick</option>
-               <option value="cornflowerblue">cornflowerblue</option>
-               <option value="royalblue">royalblue</option>
-               <option value="gold">gold</option>
-               <option value="goldenrod">goldenrod</option>
-            </select>
-            Dot transparency:
-            <select name="dottransparency" id="dottransparency">
-               <option value="0">100%</option>
-               <option value="0.1">90%</option>
-               <option value="0.2">80%</option>
-               <option value="0.3">70%</option>
-               <option value="0.4">60%</option>
-               <option value="0.5">50%</option>
-               <option value="0.6">40%</option>
-               <option value="0.7" selected>30%</option>
-               <option value="0.8">20%</option>
-               <option value="0.9">10%</option>
-               <option value="1.0">0%</option>
-            </select>
-            Value modifier:
-            <select name="valuemodifier" id="valuemodifier">
-               <option value="dotsize">dot size</option>
-               <option value="dotcolor">dot color</option>
-               <option value="both" selected>both</option>
-               <option value="none">none</option>
-            </select>
-            Color gradient:
-            <select name="gradient" id="gradient">
-               <option value="blue-green-yellow-red" selected>blue-green-yellow-red</option>
-               <option value="red-yellow-green-blue">red-yellow-green-blue</option>
-               <option value="red-yellow-green">red-yellow-green</option>
-               <option value="green-yellow-red">green-yellow-red</option>
-               <option value="red-green">red-green</option>
-               <option value="green-red">green-red</option>
-               <option value="blue-red">blue-red</option>
-               <option value="red-blue">red-blue</option>
-               <option value="yellow-green">yellow-green</option>
-               <option value="green-yellow">green-yellow</option>
-            </select>
+<head>
+   <meta charset="UTF-8">
+   <title>GPCRome mapper</title>
+   <meta name="description" content="Interactive mapper of the human GPCR tree">
+   <meta name="keywords" content="GPCR, GPCRs, GPCRome, GPCR tree, GPCR figure, GPCR mapper">
+   <meta name="author" content="Albert J. Kooistra">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@14.6.1/dist/handsontable.full.min.css">
+   <link rel="stylesheet" href="css/style.css">
+   <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+   <header class="topbar">
+      <div class="brand">
+         <img class="brand-logo" src="images/gpcrome-logo.png" alt="" width="26" height="32">
+         <span class="brand-copy"><strong>GPCRome</strong><span>Interactive mapper of the human GPCR tree</span></span>
+      </div>
+      <div class="search">
+         <input id="search" type="search" autocomplete="off" placeholder="Find a receptor (ADRB2, P07550, adrb2_human, β2…)  ⌘K">
+         <ul id="search-results" hidden></ul>
+      </div>
+      <div class="actions">
+         <button id="undo" class="icon" title="Undo (Ctrl/⌘+Z)" disabled>↶</button>
+         <button id="redo" class="icon" title="Redo (Ctrl/⌘+Shift+Z)" disabled>↷</button>
+         <button id="share" title="Copy a link that restores this map">Share link</button>
+         <div class="menu">
+            <button id="download-btn" class="primary">Download ▾</button>
+            <div class="menu-items" hidden>
+               <button data-export="svg">Image – SVG (vector)</button>
+               <button data-export="png2">Image – PNG (2×)</button>
+               <button data-export="png4">Image – PNG (4×, print)</button>
+               <hr>
+               <button data-export="settings">Settings &amp; table – CSV</button>
+               <button data-export="mapped">Mapped receptors – CSV</button>
+            </div>
          </div>
-         <div id="container">
-            <canvas id="proteomeoverlay">
-               Your browser unfortunately does not support an HTML5 canvas.
-            </canvas>
-            <canvas id="proteome">
-               Your browser unfortunately does not support an HTML5 canvas.
-            </canvas>
+         <button id="help" class="icon" title="Quick start">?</button>
+      </div>
+   </header>
+
+   <main>
+      <aside id="sidebar">
+         <nav class="tabs">
+            <button data-tab="data" class="active">Data</button>
+            <button data-tab="style">Style</button>
+            <button data-tab="tree">Tree</button>
+         </nav>
+
+         <section class="panel" id="tab-data">
+            <h3>Paste receptors</h3>
+            <textarea id="quick-input" spellcheck="false" placeholder="One receptor per line, any identifier:&#10;ADRB2&#10;P08908, 7.2&#10;drd2_human 5.1&#10;ADRB* fill=red shape=star label&#10;class:secretin size=10"></textarea>
+            <div class="button-row">
+               <button id="apply-replace" class="primary" title="Replace the table with this input">Map</button>
+               <button id="apply-append" title="Append this input to the table">Add to table</button>
+               <label class="button file" title="CSV/TSV with a receptor column, optional value and style columns">
+                  Upload CSV <input id="upload" type="file" accept=".csv,.tsv,.txt,text/csv,text/plain">
+               </label>
+            </div>
+            <div id="input-messages" class="messages"></div>
+            <details class="help-box">
+               <summary>Input format</summary>
+               <p>Each line: a receptor, then optionally a value and style properties.</p>
+               <table class="syntax">
+                  <tr><td><code>ADRB2</code></td><td>gene, UniProt accession or entry name, HGNC/ChEMBL ID, synonym</td></tr>
+                  <tr><td><code>ADRB2 7.5</code></td><td>with a value (also <code>ADRB2,7.5</code> or tab separated)</td></tr>
+                  <tr><td><code>ADRB* GPR1??</code></td><td>wildcards</td></tr>
+                  <tr><td><code>all</code></td><td>every receptor</td></tr>
+                  <tr><td><code>class:B1</code></td><td>a class: A, B1, B2, C, F, T2, rogues, orphan</td></tr>
+                  <tr><td><code>family:adenosine</code></td><td>a GPCRdb receptor family</td></tr>
+                  <tr><td><code>ligand:peptide</code></td><td>a GPCRdb ligand type</td></tr>
+                  <tr><td><code>fill=red size=8</code></td><td>also <code>shape= stroke= opacity= label=yes text=</code></td></tr>
+                  <tr><td><code>red star label</code></td><td>bare colours, shapes and <code>label</code> work too</td></tr>
+                  <tr><td><code>set labels=all</code></td><td>change a global setting (see CSV export for all keys)</td></tr>
+               </table>
+               <p>Later lines override earlier ones, e.g. <code>all fill=#ccc</code> followed by <code>ADRB* fill=red</code>.</p>
+            </details>
+
+            <h3>…or start from</h3>
+            <div class="chips">
+               <button data-set="all">All receptors</button>
+               <button data-set="structures">Receptors with structures</button>
+            </div>
+            <select id="dataset">
+               <option value="">A built-in dataset (structures, ligands, drugs, expression…)</option>
+            </select>
+            <div id="dataset-options" class="dataset-options" hidden>
+               <p id="dataset-current" class="hint"></p>
+               <label id="dataset-ref-label">Reference receptor
+                  <select id="dataset-ref"></select>
+               </label>
+               <label id="dataset-tissue-label">Tissue
+                  <select id="dataset-tissue"></select>
+               </label>
+            </div>
+
+            <h3 class="with-tools">Table
+               <span class="tools">
+                  <label class="small" title="Also show the outline, opacity and label text columns"><input type="checkbox" id="all-columns"> All columns</label>
+                  <button class="small" data-set="invert" title="Replace the table by all receptors that are currently not mapped">Invert</button>
+                  <button class="small" data-set="clear" title="Remove all rows">Clear</button>
+               </span>
+            </h3>
+            <p class="hint">Edit like a spreadsheet. Later rows override earlier ones; right-click for row options.</p>
+            <div id="grid"></div>
+            <div id="unmatched" class="messages"></div>
+            <div class="next-step" data-when="hasRows">
+               <button data-goto="style">Next: style the markers →</button>
+            </div>
+         </section>
+
+         <section class="panel" id="tab-style" hidden>
+            <p class="hint">Defaults for all markers. Values set per row in the table (fill, size, shape…) always take precedence.</p>
+            <fieldset>
+               <legend>Markers</legend>
+               <label>Shape <select data-setting="shape" data-options="shapes"></select></label>
+
+               <div class="row">Colour
+                  <div class="segmented" data-choice="colorByValue">
+                     <button data-value="false">Single colour</button>
+                     <button data-value="true">Gradient by value</button>
+                  </div>
+               </div>
+               <div class="sub" data-when="singleColor">
+                  <label>Fill <input type="color" data-setting="fill"></label>
+               </div>
+               <div class="sub" data-when="gradient">
+                  <label>Palette <select data-setting="palette" data-options="palettes"></select></label>
+                  <div class="row"><span></span>
+                     <span class="palette-row">
+                        <span id="palette-preview" class="palette-preview"></span>
+                        <label class="check"><input type="checkbox" data-setting="reversePalette"> Reverse</label>
+                     </span>
+                  </div>
+                  <label data-when="missingValues" title="Colour of mapped receptors that have no numeric value">Without value <input type="color" data-setting="fill"></label>
+               </div>
+
+               <div class="row">Size
+                  <div class="segmented" data-choice="sizeByValue">
+                     <button data-value="false">Fixed size</button>
+                     <button data-value="true">Scale by value</button>
+                  </div>
+               </div>
+               <div class="sub" data-when="fixedSize">
+                  <label>Size <input type="number" data-setting="size" min="0.5" max="60" step="0.5"></label>
+               </div>
+               <div class="sub" data-when="sizeByValue">
+                  <label>From – to <span class="pair"><input type="number" data-setting="sizeMin" min="0.5" step="0.5"> – <input type="number" data-setting="sizeMax" min="0.5" step="0.5"></span></label>
+                  <label data-when="missingValues" title="Size of mapped receptors that have no numeric value">Without value <input type="number" data-setting="size" min="0.5" max="60" step="0.5"></label>
+               </div>
+
+               <p class="hint warn" data-when="noValues">None of the mapped receptors has a numeric value yet. Add values in the table's Value column or pick a dataset in the Data tab.</p>
+
+               <details class="advanced">
+                  <summary>Outline and opacity</summary>
+                  <label>Outline width <input type="range" data-setting="strokeWidth" min="0" max="3" step="0.1"><output></output></label>
+                  <label data-when="outline">Outline colour <input type="color" data-setting="stroke"></label>
+                  <label>Opacity <input type="range" data-setting="opacity" min="0.05" max="1" step="0.05"><output></output></label>
+               </details>
+            </fieldset>
+
+            <fieldset data-when="byValue">
+               <legend>Values</legend>
+               <label class="check"><input type="checkbox" data-setting="legend"> Show legend</label>
+               <label data-when="legend">Legend title <input type="text" data-setting="legendTitle"></label>
+               <details class="advanced">
+                  <summary>Value range and scale</summary>
+                  <label>Range <span class="pair"><input type="text" data-setting="valueMin" placeholder="auto"> – <input type="text" data-setting="valueMax" placeholder="auto"></span></label>
+                  <div class="row">Scale
+                     <div class="segmented" data-choice="valueScale">
+                        <button data-value="linear">Linear</button>
+                        <button data-value="log" title="Only positive values can be shown on a log scale">Logarithmic</button>
+                     </div>
+                  </div>
+                  <p class="hint">Leave the range empty to use the lowest and highest value. Values outside the range get the end colours and sizes.</p>
+               </details>
+            </fieldset>
+
+            <fieldset>
+               <legend>Labels</legend>
+               <div class="row">Label
+                  <div class="segmented" data-choice="labels">
+                     <button data-value="none">None</button>
+                     <button data-value="mapped">Mapped</button>
+                     <button data-value="all">All receptors</button>
+                  </div>
+               </div>
+               <p class="hint" data-when="labelsNone">Rows with <code>label = yes</code> in the table are always labelled.</p>
+               <div data-when="labelsShown">
+                  <label>Name
+                     <select data-setting="labelName">
+                        <option value="gene">Gene symbol (ADRB2)</option>
+                        <option value="entry">UniProt entry (adrb2_human)</option>
+                        <option value="gpcrdb">Receptor name (β2-adrenoceptor)</option>
+                     </select>
+                  </label>
+                  <details class="advanced">
+                     <summary>Font</summary>
+                     <label>Font size <input type="number" data-setting="labelSize" min="2" max="40" step="0.5"></label>
+                     <label>Colour <input type="color" data-setting="labelColor"></label>
+                  </details>
+                  <p class="hint">Drag a label on the map to move it; double-click it to reset.</p>
+               </div>
+            </fieldset>
+
+            <fieldset>
+               <legend>Map</legend>
+               <div class="row">Unmapped receptors
+                  <div class="segmented" data-choice="unmapped">
+                     <button data-value="hidden">Hidden</button>
+                     <button data-value="dots">Grey dots</button>
+                  </div>
+               </div>
+               <div class="row">Background
+                  <div class="segmented" data-choice="background">
+                     <button data-value="white">White</button>
+                     <button data-value="transparent">Transparent</button>
+                  </div>
+               </div>
+            </fieldset>
+            <button id="reset-style" class="small">Reset style to defaults</button>
+         </section>
+
+         <section class="panel" id="tab-tree" hidden>
+            <p class="hint">Toggle and recolour the branches of each GPCR class. Hidden classes also hide their receptors.</p>
+            <div id="class-list"></div>
+            <div class="button-row">
+               <button id="tree-show-all">Show all</button>
+               <button id="tree-grey" title="Draw the whole tree in grey so only the markers stand out">Grey tree</button>
+               <button id="tree-reset">Original colours</button>
+            </div>
+            <details class="advanced boxed">
+               <summary>Branch lines</summary>
+               <label>Line width <input type="range" data-setting="treeWidth" min="0.3" max="3" step="0.1"><output></output></label>
+               <label>Opacity <input type="range" data-setting="treeOpacity" min="0.1" max="1" step="0.05"><output></output></label>
+            </details>
+         </section>
+
+         <footer class="cite">
+            Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen.<br>
+            Tree based on <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a>
+            and <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>
+            · Annotation: <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a> (<span id="data-date"></span>)
+            · <a href="#" id="about-link">How to cite</a>
+         </footer>
+      </aside>
+
+      <section id="map-area">
+         <div id="map"></div>
+         <div class="zoom-controls">
+            <button id="zoom-in" title="Zoom in">+</button>
+            <button id="zoom-out" title="Zoom out">−</button>
+            <button id="zoom-fit" title="Fit to window">⤢</button>
+         </div>
+         <div id="empty-hint">
+            <p><b>Map your receptors on the GPCR tree.</b><br>Paste receptor names on the left, or start from an example:</p>
+            <div class="chips">
+               <button data-example="structures">Structures per receptor</button>
+               <button data-example="classes">Highlight classes</button>
+               <button data-example="list">Labelled receptor list</button>
+            </div>
+         </div>
+         <div id="tooltip" hidden></div>
+         <div id="info-card" hidden></div>
+      </section>
+   </main>
+
+   <div id="modal" hidden>
+      <div class="modal-box">
+         <button class="modal-close" title="Close">×</button>
+         <div class="modal-brand">
+            <img src="images/gpcrome-logo.png" alt="">
+            <div><strong>GPCRome</strong><span>Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen.</span></div>
+         </div>
+         <div id="modal-content"></div>
+         <div class="modal-nav">
+            <span id="modal-steps"></span>
+            <button id="modal-prev">Back</button>
+            <button id="modal-next" class="primary">Next</button>
          </div>
       </div>
-      <div id="footer">
-         This GPCR-tree mapper (GPCRome mapper) is developed by Albert J. Kooistra and Chris de Graaf.<br/>
-         The tree is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859">Stevens and Katritch et al.</a> and the original tree by <a href="http://molpharm.aspetjournals.org/content/63/6/1256">Fredriksson et al.</a>. It was updated using refined sequence alignments (using available structures of GPCRs) focusing mainly on the sequence of the 7TM bundle. GPCR names have been updated, references sequences were updated from the latest UniProt, new GPCRs were added, and obsoleted sequences were removed.<br/>
-         <br/>
-         The publication of GPCR Tree Mapper in preparation. When using the GPCR Tree Mapper please cite:<br/>
-         <b>Kooistra, AJ, de Graaf C. GPCR Tree Mapper. Accessed [date]</b><br/>
-      </div>
-      <!--
-        <div id="log">
-            Logging all changes:<br/>
-        </div>
-        <button type="submit" onClick="javascript:dumpGPCRome();">Copy full list to clipboard</button><br/>
-      -->
-      <script>
-         window.onload = function () {
-            initGPCRome(true);
-         }
+   </div>
+   <div id="toast" hidden></div>
 
-         // Setup download button event listener
-         document.querySelector('#downloadGPCRome').addEventListener('click', ()=> {
-           var canvas = document.querySelector("#proteome");
-           var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-           
-           var element = document.createElement('a');
-           var filename = 'gpcrome.png';
-           element.setAttribute('href', image);
-           element.setAttribute('download', filename);
-
-           element.click();
-         })
-      </script>
-   </body>
+   <script src="https://cdn.jsdelivr.net/npm/handsontable@14.6.1/dist/handsontable.full.min.js"></script>
+   <script src="js/data/tree.js"></script>
+   <script src="js/data/receptors.js"></script>
+   <script src="js/data/datasets.js"></script>
+   <script src="js/colors.js"></script>
+   <script src="js/shapes.js"></script>
+   <script src="js/registry.js"></script>
+   <script src="js/state.js"></script>
+   <script src="js/commands.js"></script>
+   <script src="js/render.js"></script>
+   <script src="js/export.js"></script>
+   <script src="js/ui.js"></script>
+</body>
 </html>
