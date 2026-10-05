@@ -8,6 +8,8 @@
  *   fill=red shape=star size=8     a style line applies to the receptors listed below it
  *   ADRB2                          (until the next style line; style clear ends the group)
  *   set palette=magma labels=all   change global settings
+ *   chemokine / family:aminergic   a whole receptor family, by name
+ *   set tree=olfactory             the olfactory tree instead of the non-olfactory tree (set tree=non-olfactory)
  *   # comment
  */
 window.GPCRome = window.GPCRome || {};
@@ -36,6 +38,7 @@ GPCRome.commands = (function () {
       labelName: () => ['gene', 'entry', 'gpcrdb'],
       unmapped: () => ['hidden', 'dots'],
       background: () => ['white', 'transparent'],
+      treeView: () => ['nonolfactory', 'olfactory'],
    };
 
    const TRUE = ['yes', 'y', 'true', 'on', '1', 'show'];
@@ -135,7 +138,7 @@ GPCRome.commands = (function () {
          }
          return null;
       }
-      const name = Object.keys(defaults).find(k => k.toLowerCase() === key.toLowerCase());
+      const name = Object.keys(defaults).find(k => k.toLowerCase() === (key.toLowerCase() === 'tree' ? 'treeview' : key.toLowerCase()));
       if (!name || name === 'tree') return `unknown setting "${key}"`;
       const def = defaults[name];
       if (typeof def === 'boolean') {
@@ -159,7 +162,7 @@ GPCRome.commands = (function () {
          if (!m) return 'labelLine must be enable, auto or disable';
          out[name] = m;
       } else if (ENUMS[name]) {
-         const val = name === 'shape' ? normShape(v) : v;
+         const val = name === 'shape' ? normShape(v) : name === 'treeView' ? v.toLowerCase().replace(/^(non[- _]?olfactory|gpcrs?|main|default)$/, 'nonolfactory').replace(/^(olfactory|or|ors)$/, 'olfactory') : v;
          const allowed = ENUMS[name]();
          const match = allowed.find(a => a.toLowerCase() === val.toLowerCase());
          if (!match) return `${name} must be one of: ${allowed.join(', ')}`;

@@ -94,7 +94,14 @@
       opt.textContent = id;
       refSelect.appendChild(opt);
    });
-   if (reg.byId.ADRB2) refSelect.value = 'ADRB2';
+   const defaultRef = ['ADRB2', 'OR51E2'].find(id => reg.byId[id]);        // a receptor with a structure
+   if (defaultRef) refSelect.value = defaultRef;
+   if (window.GPCROME_VIEW === 'olfactory') {          // examples of receptors that are on this tree
+      const swap = text => text.replace(/ADRB2/g, 'OR51E2').replace(/adrb2_human/g, 'o51e2_human').replace(/P07550/g, 'Q9H255')
+         .replace(/DRD2/g, 'OR1A1').replace(/HTR2A/g, 'OR2T2').replace(/β2-adrenoceptor/g, 'OR51E2').replace(', β2…', '…');
+      $$('[placeholder]').forEach(el => { el.placeholder = swap(el.placeholder); });
+      $$('[data-setting="labelName"] option').forEach(opt => { opt.textContent = swap(opt.textContent); });
+   }
 
    let activeDataset = null, muteDataset = false;
 
@@ -173,7 +180,9 @@
          'class:F fill=#9dc947 shape=triangle',
          'ADRB* fill=gold shape=star size=10 label',
       ].join('\n')),
-      list: () => applyText(['set labels=mapped', 'ADRB1', 'ADRB2', 'ADRB3', 'DRD2', 'HTR2A', 'OPRM1', 'CNR1', 'GLP1R', 'GCGR', 'SMO', 'GRM5', 'CASR'].join('\n')),
+      list: () => applyText((window.GPCROME_VIEW === 'olfactory'
+         ? ['set labels=mapped', 'OR51E2', 'OR51G1', 'OR1A1', 'OR2T2', 'OR1F1', 'OR5B21', 'OR6A2', 'OR4D5']
+         : ['set labels=mapped', 'ADRB1', 'ADRB2', 'ADRB3', 'DRD2', 'HTR2A', 'OPRM1', 'CNR1', 'GLP1R', 'GCGR', 'SMO', 'GRM5', 'CASR']).join('\n')),
    };
    $$('[data-example]').forEach(btn => btn.addEventListener('click', () => EXAMPLES[btn.dataset.example]()));
 
@@ -362,20 +371,21 @@
    /* ---------- tree classes ---------- */
    const counts = {};
    reg.receptors.forEach(r => { counts[r.cls] = (counts[r.cls] || 0) + 1; });
-   const CLASS_SELECTOR = { rhodopsin: 'class:rhodopsin', rogues: 'class:rogues', orphan: 'class:orphan', adhesion: 'class:B2', secretin: 'class:B1', glutamate: 'class:C', frizzled: 'class:F', tas2: 'class:T2' };
+   const CLASS_SELECTOR = { rhodopsin: 'class:rhodopsin', rogues: 'class:rogues', orphan: 'class:orphan', adhesion: 'class:B2', secretin: 'class:B1', glutamate: 'class:C', frizzled: 'class:F', tas2: 'class:T2', vomeronasal: 'class:V1', olfactory1: 'class:O1', olfactory2: 'class:O2' };
    $('#class-list').innerHTML = reg.classes.slice().reverse().map(c => `
       <div class="class-row" data-cls="${c.id}">
          <input type="checkbox" title="Show/hide">
          <input type="color" title="Branch colour">
          <span class="class-name">${esc(c.name)}</span>
-         <span class="count">${counts[c.id] || 0}</span>
-         <button class="small" data-map="${c.id}" title="Add ${CLASS_SELECTOR[c.id]} to the table">map</button>
+         <span class="count" ${counts[c.id] ? '' : 'title="Only the arrow to the part of the tree that is not drawn"'}>${counts[c.id] || '–'}</span>
+         ${counts[c.id] ? `<button class="small" data-map="${c.id}" title="Add ${CLASS_SELECTOR[c.id]} to the table">map</button>` : '<span></span>'}
       </div>`).join('');
    $$('.class-row').forEach(row => {
       const cls = row.dataset.cls;
       row.querySelector('input[type=checkbox]').addEventListener('change', e => state.setSettings({ tree: { [cls]: { visible: e.target.checked } } }));
       row.querySelector('input[type=color]').addEventListener('input', e => state.setSettings({ tree: { [cls]: { color: e.target.value } } }, { coalesce: 'tree:' + cls }));
-      row.querySelector('[data-map]').addEventListener('click', () => state.setRows(state.get().rows.concat([{ sel: CLASS_SELECTOR[cls] }])));
+      const map = row.querySelector('[data-map]');
+      if (map) map.addEventListener('click', () => state.setRows(state.get().rows.concat([{ sel: CLASS_SELECTOR[cls] }])));
    });
    function treePatch(fn) {
       const t = {};
@@ -639,7 +649,17 @@
    $('#data-date').textContent = reg.updated;
 
    /* ---------- state -> view ---------- */
+   /* The tree is chosen before the page loads (mode.js): changing it reloads the page with the session saved */
+   function switchTree() {
+      state.saveNow();
+      const url = new URL(location.href);
+      ['tree', 'data', 'ids'].forEach(k => url.searchParams.delete(k));
+      url.hash = '';
+      location.replace(url.toString());
+   }
+
    function update(s, source) {
+      if (s.settings.treeView !== window.GPCROME_VIEW) { switchTree(); return; }
       render.draw(s);
       matchInfo = render.last().rowMatches;
       if (source !== 'grid') {
@@ -658,11 +678,18 @@
       const none = missing.filter(([, m]) => m.kind !== 'offtree');
       let html = '';
       if (none.length) html += `<p class="bad">Not found (${none.length}): ${none.slice(0, 30).map(([r]) => esc(r.sel)).join(', ')}${none.length > 30 ? ', …' : ''}</p>`;
-      if (off.length) html += `<p class="warn">Not on the tree, mostly olfactory receptors (${off.length}): ${off.slice(0, 30).map(([r]) => esc(r.sel)).join(', ')}${off.length > 30 ? ', …' : ''}</p>`;
+      if (off.length) html += `<p class="warn">Not on this tree${window.GPCROME_VIEW === 'nonolfactory' ? ', mostly olfactory receptors (see the olfactory tree)' : ' (non-olfactory GPCRs: switch to the non-olfactory tree)'} (${off.length}): ${off.slice(0, 30).map(([r]) => esc(r.sel)).join(', ')}${off.length > 30 ? ', …' : ''}</p>`;
       $('#unmatched').innerHTML = html;
       if (selected) showInfo();
    }
    state.subscribe(update);
+
+   /* ---------- reset ---------- */
+   $('#reset-all').addEventListener('click', () => {
+      if (!confirm('Reset everything? The table, all settings, moved labels and the zoom are cleared, and the non-olfactory tree is shown.')) return;
+      state.clearStorage();
+      location.replace(location.pathname);
+   });
 
    /* ---------- start-up: share link, URL parameters, saved session ---------- */
    async function start() {

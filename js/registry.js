@@ -13,6 +13,8 @@ GPCRome.registry = (function () {
       b: ['secretin', 'adhesion'], b1: ['secretin'], secretin: ['secretin'], b2: ['adhesion'], adhesion: ['adhesion'],
       c: ['glutamate'], glutamate: ['glutamate'], f: ['frizzled'], frizzled: ['frizzled'],
       t: ['tas2'], t2: ['tas2'], tas2: ['tas2'], taste2: ['tas2'], orphan: ['orphan'], other: ['orphan'],
+      v: ['vomeronasal'], v1: ['vomeronasal'], vomeronasal: ['vomeronasal'],
+      o: ['olfactory1', 'olfactory2'], olfactory: ['olfactory1', 'olfactory2'], o1: ['olfactory1'], o2: ['olfactory2'],
    };
 
    const norm = s => String(s).trim().toUpperCase().replace(/\s+/g, ' ');
@@ -52,6 +54,32 @@ GPCRome.registry = (function () {
       return index.get(norm(id)) || null;
    }
 
+   /*
+    * Whole families by name: the GPCRdb receptor families (Chemokine receptors, Adenosine receptors, ...) and
+    * ligand types (Aminergic receptors, Peptide receptors, ...), each also without its trailing "receptors".
+    */
+   const groups = new Map();
+   receptors.forEach(r => {
+      if (!r.gpcrdb) return;
+      [r.gpcrdb.family, r.gpcrdb.ligand_type].forEach(name => {
+         const key = name.toLowerCase();
+         [key, key.replace(/ receptors?$/, '')].forEach(k => {
+            if (!groups.has(k)) groups.set(k, new Set());
+            groups.get(k).add(r);
+         });
+      });
+   });
+
+   /* Receptors of the groups named `term`: exactly, else those whose name starts with it (3 letters or more) */
+   function group(term) {
+      const t = term.toLowerCase().trim();
+      if (groups.has(t)) return [...groups.get(t)];
+      if (t.length < 3) return [];
+      const hits = new Set();
+      groups.forEach((set, k) => { if (k.startsWith(t)) set.forEach(r => hits.add(r)); });
+      return [...hits];
+   }
+
    function globToRegex(glob) {
       const escaped = norm(glob).replace(/[.+^${}()|[\]\\]/g, '\\$&');
       return new RegExp('^' + escaped.replace(/\*/g, '.*').replace(/\?/g, '.') + '$');
@@ -67,8 +95,9 @@ GPCRome.registry = (function () {
     *   ADRB* | GPR1??                                   wildcards on any identifier
     *   all | *                                          every receptor on the tree
     *   class:secretin | class:B1 | @secretin            GPCR class (branch)
-    *   family:adenosine                                 GPCRdb receptor family (substring)
+    *   family:adenosine                                 GPCRdb receptor family or ligand type (substring)
     *   ligand:peptide                                   GPCRdb ligand type (substring)
+    *   chemokine | aminergic | adenosine                a whole family or ligand type by name
     */
    function resolve(selector) {
       const sel = String(selector || '').trim();
@@ -84,10 +113,10 @@ GPCRome.registry = (function () {
                classes.filter(c => c.name.toLowerCase().includes(term)).map(c => c.id);
             return { kind: 'class', receptors: receptors.filter(r => ids.includes(r.cls)) };
          }
-         const field = type === 'family' ? 'family' : 'ligand_type';
+         const fields = type === 'family' ? ['family', 'ligand_type'] : ['ligand_type'];
          return {
             kind: type,
-            receptors: receptors.filter(r => r.gpcrdb && r.gpcrdb[field].toLowerCase().includes(term)),
+            receptors: receptors.filter(r => r.gpcrdb && fields.some(f => r.gpcrdb[f].toLowerCase().includes(term))),
          };
       }
 
@@ -102,6 +131,8 @@ GPCRome.registry = (function () {
       if (r) return { kind: 'id', receptors: [r] };
       const off = offTreeIndex.get(norm(sel));
       if (off) return { kind: 'offtree', receptors: [], offTree: off };
+      const family = group(sel);
+      if (family.length) return { kind: 'family', receptors: family };
       return { kind: 'none', receptors: [] };
    }
 

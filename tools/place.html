@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Place the class names</title>
+<style>
+   body { margin: 0; font: 14px/1.4 Helvetica, Arial, sans-serif; background: #fff; color: #222; }
+   header { position: sticky; top: 0; z-index: 2; display: flex; gap: 10px; align-items: center; padding: 8px 14px; background: #f3f4f6; border-bottom: 1px solid #ccc; }
+   button { font: inherit; padding: 4px 10px; border: 1px solid #999; border-radius: 4px; background: #fff; cursor: pointer; }
+   button.on { background: #3b5ba5; color: #fff; border-color: #3b5ba5; }
+   #status { margin-left: auto; color: #555; }
+   svg { display: block; margin: 8px auto; touch-action: none; }
+   text.name { cursor: grab; font-weight: bold; text-anchor: middle; }
+   text.name:hover { text-decoration: underline; }
+   #handle { cursor: grab; fill: rgba(255, 255, 255, .6); stroke: #000; stroke-dasharray: 3 2; }
+</style>
+<header>
+   <button data-view="gpcr">Non-olfactory tree</button>
+   <button data-view="olfactory">Olfactory tree</button>
+   <span>Drag a class name, or the ring at the head of the arrow. Every drop is saved.</span>
+   <button id="reset">Reset this tree</button>
+   <span id="status"></span>
+</header>
+<svg id="map"></svg>
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map'), status = document.getElementById('status');
+let view = 'gpcr', data, hub, labels, arrow;
+
+const el = (tag, attrs, parent) => {
+   const e = document.createElementNS(NS, tag);
+   Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, v));
+   parent && parent.appendChild(e);
+   return e;
+};
+const send = async placement => {
+   await fetch('/save', { method: 'POST', body: JSON.stringify({ view, placement }) });
+   status.textContent = 'saved ' + new Date().toLocaleTimeString();
+};
+const relative = p => [+(p[0] - hub[0]).toFixed(2), +(p[1] - hub[1]).toFixed(2)];
+// only what has been moved is saved; the rest stays automatic
+const placement = () => {
+   const out = { labels: Object.fromEntries(labels.filter(l => l.moved).map(l => [l.id, relative([l.x, l.y])])) };
+   if (arrow.moved) out.arrow = relative(arrow.tip);
+   return out;
+};
+
+async function load(next) {
+   view = next;
+   document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('on', b.dataset.view === view));
+   data = await (await fetch('/tree/' + view)).json();
+   const mine = (await (await fetch('/placement')).json())[view] || {};
+   hub = data.hub;
+   labels = data.labels.map(l => ({ ...l }));
+   arrow = { cls: data.arrow.cls, start: data.arrow.start, tip: data.arrow.tip };
+   for (const l of labels) if (mine.labels && mine.labels[l.id]) { l.x = hub[0] + mine.labels[l.id][0]; l.y = hub[1] + mine.labels[l.id][1]; l.moved = true; }
+   if (mine.arrow) { arrow.tip = [hub[0] + mine.arrow[0], hub[1] + mine.arrow[1]]; arrow.moved = true; }
+   draw();
+}
+
+function arrowShapes(g, color) {
+   const [x1, y1] = arrow.start, [x2, y2] = arrow.tip, len = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1) / len, uy = (y2 - y1) / len;
+   el('path', { d: `M${x1},${y1}L${x2},${y2}`, stroke: color, 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round' }, g);
+   el('path', { d: `M${x2 + ux * 7.5},${y2 + uy * 7.5}L${x2 - uy * 3.6},${y2 + ux * 3.6}L${x2 + uy * 3.6},${y2 - ux * 3.6}Z`, fill: color }, g);
+}
+
+function draw() {
+   svg.innerHTML = '';
+   const scale = Math.min(innerWidth / data.width, (innerHeight - 70) / data.height);       // the whole tree in the window
+   svg.setAttribute('width', data.width * scale); svg.setAttribute('height', data.height * scale);
+   svg.setAttribute('viewBox', `0 0 ${data.width} ${data.height}`);
+   const color = Object.fromEntries(data.classes.map(c => [c.id, c.color]));
+   const tree = el('g', { 'stroke-linecap': 'round', 'stroke-linejoin': 'round', fill: 'none' }, svg);
+   for (const [cls, paths] of Object.entries(data.paths)) {
+      if (cls === arrow.cls) continue;                       // only the arrow is in this class; it is drawn separately
+      for (const p of paths) {
+         el('path', p.mode === 'stroke'
+            ? { d: p.d, stroke: color[cls], 'stroke-width': p.width, 'stroke-opacity': p.opacity }
+            : { d: p.d, stroke: 'none', fill: color[cls], 'fill-opacity': p.opacity }, tree);
+      }
+   }
+   const arrowLayer = el('g', {}, svg);
+   arrowShapes(arrowLayer, color[arrow.cls]);
+   const handle = el('circle', { id: 'handle', cx: arrow.tip[0], cy: arrow.tip[1], r: 7 }, svg);
+   const names = labels.map(l => {
+      const t = el('text', { class: 'name', 'font-family': 'Helvetica, Arial, sans-serif', 'font-size': l.size, fill: color[l.cls] }, svg);
+      l.text.forEach((line, i) => {
+         const s = el('tspan', { x: 0, dy: i === 0 ? 0 : 1.15 * l.size }, t);
+         s.textContent = line;
+      });
+      const place = () => t.setAttribute('transform', `translate(${l.x},${l.y + 0.36 * l.size - (l.text.length - 1) * 0.575 * l.size})`);
+      place();
+      return { l, t, place };
+   });
+
+   const point = evt => { const m = svg.getScreenCTM().inverse(); const q = new DOMPoint(evt.clientX, evt.clientY).matrixTransform(m); return [q.x, q.y]; };
+   const drag = (node, get, set) => node.addEventListener('pointerdown', evt => {
+      evt.preventDefault();
+      node.setPointerCapture(evt.pointerId);
+      const from = point(evt), base = get();
+      const move = e => { const q = point(e); set([base[0] + q[0] - from[0], base[1] + q[1] - from[1]]); };
+      const up = () => { node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', up); send(placement()); };
+      node.addEventListener('pointermove', move);
+      node.addEventListener('pointerup', up);
+   });
+   names.forEach(({ l, t, place }) => drag(t, () => [l.x, l.y], p => { [l.x, l.y] = p; l.moved = true; place(); }));
+   drag(handle, () => arrow.tip, p => {
+      arrow.tip = p; arrow.moved = true;
+      handle.setAttribute('cx', p[0]); handle.setAttribute('cy', p[1]);
+      arrowLayer.innerHTML = ''; arrowShapes(arrowLayer, color[arrow.cls]);
+   });
+}
+
+document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => load(b.dataset.view)));
+document.getElementById('reset').addEventListener('click', async () => { await send(null); await load(view); status.textContent = 'reset: the next build places this tree automatically (the picture shows the last build)'; });
+load('gpcr');
+</script>

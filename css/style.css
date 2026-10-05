@@ -57,6 +57,8 @@ button:disabled { opacity: .45; cursor: default; }
 button:disabled:hover { background: var(--panel); border-color: var(--border); }
 button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 button.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+button.danger { background: #d92d27; border-color: #b4211c; color: #fff; font-weight: 600; }
+button.danger:hover { background: #b4211c; border-color: #8f1814; }
 button.icon { width: 30px; padding: 4.9px 0; font-size: 15px; line-height: 1; }
 button.small { font-size: 11px; padding: 2px 7px; }
 
@@ -206,6 +208,7 @@ fieldset .sub { margin: 0 0 4px 10px; padding-left: 10px; border-left: 2px solid
 .shape-picker button.active:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 
 /* two or three mutually exclusive options */
+.tree-toggle button { font-size: 13px; padding: 4px 12px; white-space: nowrap; }
 .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); padding: 2px; gap: 2px; }
 .segmented button { border: 0; background: none; color: var(--muted); padding: 3px 10px; font-size: 12px; border-radius: 4px; }
 .segmented button:hover { background: var(--panel); color: var(--ink); }
@@ -303,3 +306,6 @@ details.advanced.boxed { border: 1px solid var(--border); border-radius: var(--r
    .brand { width: auto; }
    #map-area { min-height: 60vh; }
 }
+
+/* class names on the tree can be dragged */
+.names text { cursor: grab; }

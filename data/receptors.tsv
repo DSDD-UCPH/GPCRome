@@ -1,407 +1,412 @@
 gene	name	class	uniprot	uniprot_entry	hgnc	chembl	x	y	angle
-ACKR1	atypical chemokine receptor 1 (Duffy blood group)	rhodopsin	Q16570	ACKR1_HUMAN	HGNC:4035	CHEMBL2321626	470.48	194.63	-50
-ACKR2	atypical chemokine receptor 2	rhodopsin	O00590	ACKR2_HUMAN	HGNC:1565		494.47	212.62	13
-ACKR3	atypical chemokine receptor 3	rhodopsin	P25106	ACKR3_HUMAN	HGNC:23692	CHEMBL2010631	469.73	218.37	-9
-ACKR4	atypical chemokine receptor 4	rhodopsin	Q9NPB9	ACKR4_HUMAN	HGNC:1611		491.97	153.66	-79
-ADCYAP1R1	ADCYAP receptor type I	secretin	P41586	PACR_HUMAN	HGNC:242	CHEMBL5399	109.94	93.94	-171
-ADGRA1	adhesion G protein-coupled receptor A1	adhesion	Q86SQ6	AGRA1_HUMAN	HGNC:13838		176.15	157.65	-146
-ADGRA2	adhesion G protein-coupled receptor A2	adhesion	Q96PE1	AGRA2_HUMAN	HGNC:17849		191.14	175.89	-169
-ADGRA3	adhesion G protein-coupled receptor A3	adhesion	Q8IWK6	AGRA3_HUMAN	HGNC:13839		169.65	161.15	-164
-ADGRB1	adhesion G protein-coupled receptor B1	adhesion	O14514	BAI1_HUMAN	HGNC:943		131.42	146.91	-155
-ADGRB2	adhesion G protein-coupled receptor B2	adhesion	O60241	AGRB2_HUMAN	HGNC:944		117.18	117.18	-134
-ADGRB3	adhesion G protein-coupled receptor B3	adhesion	O60242	AGRB3_HUMAN	HGNC:945		117.43	125.92	-148
-ADGRD1	adhesion G protein-coupled receptor D1	adhesion	Q6QNK2	AGRD1_HUMAN	HGNC:19893		111.69	142.41	-138
-ADGRD2	adhesion G protein-coupled receptor D2	adhesion	Q7Z7M1	AGRD2_HUMAN	HGNC:18651		114.43	133.42	-112
-ADGRE1	adhesion G protein-coupled receptor E1	adhesion	Q14246	AGRE1_HUMAN	HGNC:3336		33.73	152.41	177
-ADGRE2	adhesion G protein-coupled receptor E2	adhesion	Q9UHX3	AGRE2_HUMAN	HGNC:3337		23.49	115.93	-139
-ADGRE3	adhesion G protein-coupled receptor E3	adhesion	Q9BY15	AGRE3_HUMAN	HGNC:23647		9.99	130.67	-173
-ADGRE4P	adhesion G protein-coupled receptor E4, pseudogene	adhesion	Q86SQ3	AGRE4_HUMAN	HGNC:19240		21.49	141.41	-180
-ADGRE5	adhesion G protein-coupled receptor E5	adhesion	P48960	CD97_HUMAN	HGNC:1711		51.72	158.90	-166
-ADGRF1	adhesion G protein-coupled receptor F1	adhesion	Q5T601	AGRF1_HUMAN	HGNC:18990		74.96	188.89	155
-ADGRF2	adhesion G protein-coupled receptor F2	adhesion	Q8IZF7	AGRF2_HUMAN	HGNC:18991		34.73	171.90	-160
-ADGRF3	adhesion G protein-coupled receptor F3	adhesion	Q8IZF5	AGRF3_HUMAN	HGNC:18989		125.93	189.88	147
-ADGRF4	adhesion G protein-coupled receptor F4	adhesion	Q8IZF3	AGRF4_HUMAN	HGNC:19011		33.23	182.14	177
-ADGRF5	adhesion G protein-coupled receptor F5	adhesion	Q8IZF2	AGRF5_HUMAN	HGNC:19030		97.94	189.64	153
-ADGRG1	adhesion G protein-coupled receptor G1	adhesion	Q9Y653	AGRG1_HUMAN	HGNC:4512		83.95	213.37	-176
-ADGRG2	adhesion G protein-coupled receptor G2	adhesion	Q8IZP9	AGRG2_HUMAN	HGNC:4516		125.18	200.38	158
-ADGRG3	adhesion G protein-coupled receptor G3	adhesion	Q86Y34	AGRG3_HUMAN	HGNC:13728		145.42	210.37	110
-ADGRG4	adhesion G protein-coupled receptor G4	adhesion	Q8IZF6	AGRG4_HUMAN	HGNC:18992		107.94	197.38	176
-ADGRG5	adhesion G protein-coupled receptor G5	adhesion	Q8IZF4	AGRG5_HUMAN	HGNC:19010		84.95	224.11	162
-ADGRG6	adhesion G protein-coupled receptor G6	adhesion	Q86SQ4	AGRG6_HUMAN;GP126_HUMAN	HGNC:13841		142.42	198.63	157
-ADGRG7	adhesion G protein-coupled receptor G7	adhesion	Q96K78	AGRG7_HUMAN	HGNC:19241		134.92	214.62	110
-ADGRL1	adhesion G protein-coupled receptor L1	adhesion	O94910	AGRL1_HUMAN	HGNC:20973		38.60	107.68	-158
-ADGRL2	adhesion G protein-coupled receptor L2	adhesion	O95490	AGRL2_HUMAN	HGNC:18582		51.72	77.95	-111
-ADGRL3	adhesion G protein-coupled receptor L3	adhesion	Q9HAR2	AGRL3_HUMAN	HGNC:20974		36.98	90.69	-147
-ADGRL4	adhesion G protein-coupled receptor L4	adhesion	Q9HBW9	AGRL4_HUMAN	HGNC:20822		55.47	128.92	-140
-ADGRV1	adhesion G protein-coupled receptor V1	adhesion	Q8WXG9	GPR98_HUMAN	HGNC:17416		227.62	188.64	-127
-ADORA1	adenosine A1 receptor	rhodopsin	P30542	AA1R_HUMAN	HGNC:262	CHEMBL226	214.38	282.08	-97
-ADORA2A	adenosine A2a receptor	rhodopsin	P29274	AA2AR_HUMAN	HGNC:263	CHEMBL251	205.38	292.32	-93
-ADORA2B	adenosine A2b receptor	rhodopsin	P29275	AA2BR_HUMAN	HGNC:264	CHEMBL255	186.64	300.82	-159
-ADORA3	adenosine A3 receptor	rhodopsin	P0DMS8	AA3R_HUMAN	HGNC:268	CHEMBL256	225.87	285.58	-53
-ADRA1A	adrenoceptor alpha 1A	rhodopsin	P35348	ADA1A_HUMAN	HGNC:277	CHEMBL229	190.14	467.22	126
-ADRA1B	adrenoceptor alpha 1B	rhodopsin	P35368	ADA1B_HUMAN	HGNC:278	CHEMBL232	175.65	466.22	144
-ADRA1D	adrenoceptor alpha 1D	rhodopsin	P25100	ADA1D_HUMAN	HGNC:280	CHEMBL223	169.15	459.97	168
-ADRA2A	adrenoceptor alpha 2A	rhodopsin	P08913	ADA2A_HUMAN	HGNC:281	CHEMBL1867	218.37	500.70	111
-ADRA2B	adrenoceptor alpha 2B	rhodopsin	P18089	ADA2B_HUMAN	HGNC:282	CHEMBL1942	238.11	476.71	64
-ADRA2C	adrenoceptor alpha 2C	rhodopsin	P18825	ADA2C_HUMAN	HGNC:283	CHEMBL1916	231.37	510.44	77
-ADRB1	adrenoceptor beta 1	rhodopsin	P08588	ADRB1_HUMAN	HGNC:285	CHEMBL213	165.90	424.99	151
-ADRB2	adrenoceptor beta 2	rhodopsin	P07550	ADRB2_HUMAN	HGNC:286	CHEMBL210	173.65	434.49	109
-ADRB3	adrenoceptor beta 3	rhodopsin	P13945	ADRB3_HUMAN	HGNC:288	CHEMBL246	192.14	419.00	131
-AGTR1	angiotensin II receptor type 1	rhodopsin	P30556	AGTR1_HUMAN	HGNC:336	CHEMBL227	492.22	231.11	5
-AGTR2	angiotensin II receptor type 2	rhodopsin	P50052	AGTR2_HUMAN	HGNC:338	CHEMBL4607	507.96	238.86	14
-APLNR	apelin receptor	rhodopsin	P35414	APJ_HUMAN	HGNC:339	CHEMBL1628481	457.74	239.85	-10
-AVPR1A	arginine vasopressin receptor 1A	rhodopsin	P37288	V1AR_HUMAN	HGNC:895	CHEMBL1889	49.22	304.32	-179
-AVPR1B	arginine vasopressin receptor 1B	rhodopsin	P47901	V1BR_HUMAN	HGNC:896	CHEMBL1921	46.22	319.31	151
-AVPR2	arginine vasopressin receptor 2	rhodopsin	P30518	V2R_HUMAN	HGNC:897	CHEMBL1790	75.71	326.30	140
-BDKRB1	bradykinin receptor B1	rhodopsin	P46663	BKRB1_HUMAN	HGNC:1029	CHEMBL4308	515.45	258.09	41
-BDKRB2	bradykinin receptor B2	rhodopsin	P30411	BKRB2_HUMAN	HGNC:1030	CHEMBL3157	514.45	245.23	13
-BRS3	bombesin receptor subtype 3	rhodopsin	P32247	BRS3_HUMAN	HGNC:1113	CHEMBL4080	88.45	336.55	157
-C3AR1	complement C3a receptor 1	rhodopsin	Q16581	C3AR_HUMAN	HGNC:1319	CHEMBL4761	471.48	266.09	14
-C5AR1	complement C5a receptor 1	rhodopsin	P21730	C5AR1_HUMAN	HGNC:1338	CHEMBL2373	483.22	280.33	36
-C5AR2	complement component 5a receptor 2	rhodopsin	Q9P296	C5AR2_HUMAN	HGNC:4527		481.72	286.58	52
-CALCR	calcitonin receptor	secretin	P30988	CALCR_HUMAN	HGNC:1440	CHEMBL1832	221.87	116.93	-67
-CALCRL	calcitonin receptor like receptor	secretin	Q16602	CALRL_HUMAN	HGNC:16709	CHEMBL3798	205.38	108.18	-109
-CASR	calcium sensing receptor	glutamate	P41180	CASR_HUMAN	HGNC:1514	CHEMBL1878	265.35	94.94	-104
-CCKAR	cholecystokinin A receptor	rhodopsin	P32238	CCKAR_HUMAN	HGNC:1570	CHEMBL1901	158.41	266.84	94
-CCKBR	cholecystokinin B receptor	rhodopsin	P32239	GASR_HUMAN	HGNC:1571	CHEMBL298	147.42	265.59	141
-CCR1	C-C motif chemokine receptor 1	rhodopsin	P32246	CCR1_HUMAN	HGNC:1602	CHEMBL2413	550.43	207.87	-38
-CCR10	C-C motif chemokine receptor 10	rhodopsin	P46092	CCR10_HUMAN	HGNC:4474	CHEMBL2321628	457.49	157.90	-100
-CCR2	C-C motif chemokine receptor 2	rhodopsin	P41597	CCR2_HUMAN	HGNC:1603	CHEMBL4015	541.19	244.10	50
-CCR3	C-C motif chemokine receptor 3	rhodopsin	P51677	CCR3_HUMAN	HGNC:1604	CHEMBL3473	555.68	216.87	-1
-CCR4	C-C motif chemokine receptor 4	rhodopsin	P51679	CCR4_HUMAN	HGNC:1605	CHEMBL2414	533.19	203.38	-10
-CCR5	C-C motif chemokine receptor 5 (gene/pseudogene)	rhodopsin	P51681	CCR5_HUMAN	HGNC:1606	CHEMBL274	549.43	234.36	11
-CCR6	C-C motif chemokine receptor 6	rhodopsin	P51684	CCR6_HUMAN	HGNC:1607	CHEMBL4423	500.71	160.40	-34
-CCR7	C-C motif chemokine receptor 7	rhodopsin	P32248	CCR7_HUMAN	HGNC:1608	CHEMBL4594	525.20	182.39	1
-CCR8	C-C motif chemokine receptor 8	rhodopsin	P51685	CCR8_HUMAN	HGNC:1609	CHEMBL4596	497.21	191.88	-57
-CCR9	C-C motif chemokine receptor 9	rhodopsin	P51686	CCR9_HUMAN	HGNC:1610	CHEMBL5815	529.70	175.89	-13
-CCRL2	C-C motif chemokine receptor like 2	rhodopsin	O00421	CCRL2_HUMAN	HGNC:1612	CHEMBL2321627	530.44	195.38	-25
-CELSR1	cadherin EGF LAG seven-pass G-type receptor 1	adhesion	Q9NYQ6	CELR1_HUMAN	HGNC:1850		78.95	112.18	-140
-CELSR2	cadherin EGF LAG seven-pass G-type receptor 2	adhesion	Q9HCU4	CELR2_HUMAN	HGNC:3231		87.70	96.19	-112
-CELSR3	cadherin EGF LAG seven-pass G-type receptor 3	adhesion	Q9NYQ7	CELR3_HUMAN	HGNC:3230		88.70	133.17	-136
-CHRM1	cholinergic receptor muscarinic 1	rhodopsin	P11229	ACM1_HUMAN	HGNC:1950	CHEMBL216	261.60	491.70	50
-CHRM2	cholinergic receptor muscarinic 2	rhodopsin	P08172	ACM2_HUMAN	HGNC:1951	CHEMBL211	250.11	530.68	67
-CHRM3	cholinergic receptor muscarinic 3	rhodopsin	P20309	ACM3_HUMAN	HGNC:1952	CHEMBL245	263.10	517.94	69
-CHRM4	cholinergic receptor muscarinic 4	rhodopsin	P08173	ACM4_HUMAN	HGNC:1953	CHEMBL1821	235.36	527.18	115
-CHRM5	cholinergic receptor muscarinic 5	rhodopsin	P08912	ACM5_HUMAN	HGNC:1954	CHEMBL2035	270.84	503.44	14
-CMKLR1	chemerin chemokine-like receptor 1	rhodopsin	Q99788	CML1_HUMAN	HGNC:2121	CHEMBL3540	479.97	293.57	54
-CNR1	cannabinoid receptor 1	rhodopsin	P21554	CNR1_HUMAN	HGNC:2159	CHEMBL218	170.40	339.54	-174
-CNR2	cannabinoid receptor 2	rhodopsin	P34972	CNR2_HUMAN	HGNC:2160	CHEMBL253	158.16	327.30	-151
-CRHR1	corticotropin releasing hormone receptor 1	secretin	P34998	CRFR1_HUMAN	HGNC:2357	CHEMBL1800	185.89	112.93	-128
-CRHR2	corticotropin releasing hormone receptor 2	secretin	Q13324	CRFR2_HUMAN	HGNC:2358	CHEMBL4069	194.64	101.94	-99
-CX3CR1	C-X3-C motif chemokine receptor 1	rhodopsin	P49238	CX3C1_HUMAN	HGNC:2558	CHEMBL4843	504.46	195.63	-16
-CXCR1	C-X-C motif chemokine receptor 1	rhodopsin	P25024	CXCR1_HUMAN	HGNC:6026	CHEMBL4029	519.70	162.65	-18
-CXCR2	C-X-C motif chemokine receptor 2	rhodopsin	P25025	CXCR2_HUMAN	HGNC:6027	CHEMBL2434	519.20	154.91	-40
-CXCR3	C-X-C motif chemokine receptor 3	rhodopsin	P49682	CXCR3_HUMAN	HGNC:4540	CHEMBL4441	485.22	145.41	-53
-CXCR4	C-X-C motif chemokine receptor 4	rhodopsin	P61073	CXCR4_HUMAN	HGNC:2561	CHEMBL2107	473.98	172.15	-48
-CXCR5	C-X-C motif chemokine receptor 5	rhodopsin	P32302	CXCR5_HUMAN	HGNC:1060	CHEMBL1075315	472.48	151.41	-90
-CXCR6	C-X-C motif chemokine receptor 6	rhodopsin	O00574	CXCR6_HUMAN	HGNC:16647	CHEMBL5994	521.95	170.90	-13
-CYSLTR1	cysteinyl leukotriene receptor 1	rhodopsin	Q9Y271	CLTR1_HUMAN	HGNC:17451	CHEMBL1798	354.55	413.50	108
-CYSLTR2	cysteinyl leukotriene receptor 2	rhodopsin	Q9NS75	CLTR2_HUMAN	HGNC:18274	CHEMBL2094254	346.80	413.50	139
-DRD1	dopamine receptor D1	rhodopsin	P21728	DRD1_HUMAN	HGNC:3020	CHEMBL2056	205.88	410.25	121
-DRD2	dopamine receptor D2	rhodopsin	P14416	DRD2_HUMAN	HGNC:3023	CHEMBL217	277.34	477.71	57
-DRD3	dopamine receptor D3	rhodopsin	P35462	DRD3_HUMAN	HGNC:3024	CHEMBL234	282.84	460.97	1
-DRD4	dopamine receptor D4	rhodopsin	P21917	DRD4_HUMAN	HGNC:3025	CHEMBL219	275.09	447.48	2
-DRD5	dopamine receptor D5	rhodopsin	P21918	DRD5_HUMAN	HGNC:3026	CHEMBL1850	216.63	402.51	76
-EDNRA	endothelin receptor type A	rhodopsin	P25101	EDNRA_HUMAN	HGNC:3179	CHEMBL252	112.93	360.03	121
-EDNRB	endothelin receptor type B	rhodopsin	P24530	EDNRB_HUMAN	HGNC:3180	CHEMBL1785	121.93	370.03	81
-F2R	coagulation factor II thrombin receptor	rhodopsin	P25116	PAR1_HUMAN	HGNC:3537	CHEMBL3974	353.55	367.03	144
-F2RL1	F2R like trypsin receptor 1	rhodopsin	P55085	PAR2_HUMAN	HGNC:3538	CHEMBL5963	355.05	378.02	107
-F2RL2	coagulation factor II thrombin receptor like 2	rhodopsin	O00254	PAR3_HUMAN	HGNC:3539	CHEMBL5477	350.14	390.39	155
-F2RL3	F2R like thrombin or trypsin receptor 3	rhodopsin	Q96RI0	PAR4_HUMAN	HGNC:3540	CHEMBL4691	343.86	402.84	132
-FFAR1	free fatty acid receptor 1	rhodopsin	O14842	FFAR1_HUMAN	HGNC:4498	CHEMBL4422	346.34	353.30	161
-FFAR2	free fatty acid receptor 2	rhodopsin	O15552	FFAR2_HUMAN	HGNC:4501	CHEMBL5493	340.38	367.84	139
-FFAR3	free fatty acid receptor 3	rhodopsin	O14843	FFAR3_HUMAN	HGNC:4499	CHEMBL5201	336.67	379.27	136
-FFAR4	free fatty acid receptor 4	rhodopsin	O3FAR1;Q5NUL3	FFAR4_HUMAN	HGNC:19061	CHEMBL5339	351.34	345.06	161
-FPR1	formyl peptide receptor 1	rhodopsin	P21462	FPR1_HUMAN	HGNC:3826	CHEMBL3359	536.19	291.07	-0
-FPR2	formyl peptide receptor 2	rhodopsin	P25090	FPR2_HUMAN	HGNC:3827	CHEMBL4227	534.69	306.81	32
-FPR3	formyl peptide receptor 3	rhodopsin	P25089	FPR3_HUMAN	HGNC:3828		522.70	281.33	1
-FSHR	follicle stimulating hormone receptor	rhodopsin	P23945	FSHR_HUMAN	HGNC:3969	CHEMBL2024	492.97	318.56	-3
-FZD1	frizzled class receptor 1	frizzled	Q9UP38	FZD1_HUMAN	HGNC:4038	CHEMBL2346493	341.30	42.72	-99
-FZD10	frizzled class receptor 10	frizzled	Q9ULW2	FZD10_HUMAN	HGNC:4039		375.28	111.68	-31
-FZD2	frizzled class receptor 2	frizzled	Q14332	FZD2_HUMAN	HGNC:4040	CHEMBL3559686	366.29	32.73	-61
-FZD3	frizzled class receptor 3	frizzled	Q9NPG1	FZD3_HUMAN	HGNC:4041		377.28	58.21	-71
-FZD4	frizzled class receptor 4	frizzled	Q9ULV1	FZD4_HUMAN	HGNC:4042		327.56	119.93	-78
-FZD5	frizzled class receptor 5	frizzled	Q13467	FZD5_HUMAN	HGNC:4043	CHEMBL3559687	400.14	99.56	-2
-FZD6	frizzled class receptor 6	frizzled	O60353	FZD6_HUMAN	HGNC:4044		400.02	80.70	1
-FZD7	frizzled class receptor 7	frizzled	O75084	FZD7_HUMAN	HGNC:4045	CHEMBL3559688	354.05	25.73	-90
-FZD8	frizzled class receptor 8	frizzled	Q9H461	FZD8_HUMAN	HGNC:4046	CHEMBL3559689	391.03	93.44	-26
-FZD9	frizzled class receptor 9	frizzled	O00144	FZD9_HUMAN	HGNC:4047		371.54	122.68	-14
-GABBR1	gamma-aminobutyric acid type B receptor subunit 1	glutamate	Q9UBS5	GABR1_HUMAN	HGNC:4070		300.33	132.17	-46
-GABBR2	gamma-aminobutyric acid type B receptor subunit 2	glutamate	O75899	GABR2_HUMAN	HGNC:4507	CHEMBL2111463	301.33	109.18	-65
-GALR1	galanin receptor 1	rhodopsin	P47211	GALR1_HUMAN	HGNC:4132	CHEMBL4894	364.79	215.37	-19
-GALR2	galanin receptor 2	rhodopsin	O43603	GALR2_HUMAN	HGNC:4133	CHEMBL3176	385.78	216.62	-16
-GALR3	galanin receptor 3	rhodopsin	O60755	GALR3_HUMAN	HGNC:4134	CHEMBL2731	386.53	222.62	5
-GCGR	glucagon receptor	secretin	P47871	GLR_HUMAN	HGNC:4192	CHEMBL1985	159.66	58.71	-78
-GHRHR	growth hormone releasing hormone receptor	secretin	Q02643	GHRHR_HUMAN	HGNC:4266	CHEMBL2032	146.17	130.42	-160
-GHSR	growth hormone secretagogue receptor	rhodopsin	Q92847	GHSR_HUMAN	HGNC:4267	CHEMBL4616	200.13	216.87	-69
-GIPR	gastric inhibitory polypeptide receptor	secretin	P48546	GIPR_HUMAN	HGNC:4271	CHEMBL4383	152.16	59.71	-94
-GLP1R	glucagon like peptide 1 receptor	secretin	P43220	GLP1R_HUMAN	HGNC:4324	CHEMBL1784	143.17	56.22	-95
-GLP2R	glucagon like peptide 2 receptor	secretin	O95838	GLP2R_HUMAN	HGNC:4325	CHEMBL5844	125.43	50.72	-121
-GNRHR	gonadotropin releasing hormone receptor	rhodopsin	P30968	GNRHR_HUMAN	HGNC:4421	CHEMBL1855	81.20	288.82	-176
-GNRHR2	gonadotropin releasing hormone receptor 2 (pseudogene)	rhodopsin	Q96P88	GNRR2_HUMAN	HGNC:16341		90.45	282.08	-149
-GPBAR1	G protein-coupled bile acid receptor 1	rogues	Q8TDU6	GPBAR_HUMAN	HGNC:19680	CHEMBL5409	56.17	488.89	134
-GPER1	G protein-coupled estrogen receptor 1	rhodopsin	Q99527	GPER1_HUMAN	HGNC:4485	CHEMBL5872	466.23	212.12	-23
-GPR1	G protein-coupled receptor 1	rhodopsin	P46091	GPR1_HUMAN	HGNC:4463		462.73	283.58	91
-GPR101	G protein-coupled receptor 101	rhodopsin	Q96P66	GP101_HUMAN	HGNC:14963		389.78	303.32	45
-GPR107	G protein-coupled receptor 107	orphan	Q5VW38	GP107_HUMAN	HGNC:17830		221.12	225.61	-172
-GPR108	G protein-coupled receptor 108	orphan	Q9NPR9	GP108_HUMAN	HGNC:17829		217.38	233.61	149
-GPR119	G protein-coupled receptor 119	rhodopsin	Q8TDV5	GP119_HUMAN	HGNC:19060	CHEMBL5652	274.09	299.82	49
-GPR12	G protein-coupled receptor 12	rhodopsin	P47775	GPR12_HUMAN	HGNC:4466	CHEMBL5006	178.65	329.30	159
-GPR132	G protein-coupled receptor 132	rhodopsin	Q9UNW8	GP132_HUMAN	HGNC:17482	CHEMBL3085618	357.79	458.22	104
-GPR135	G protein-coupled receptor 135	rogues	Q8IZ08	GP135_HUMAN	HGNC:19991	CHEMBL3309102	97.94	442.61	-50
-GPR137	G protein-coupled receptor 137	orphan	Q96N19	G137A_HUMAN	HGNC:24300		253.85	250.60	98
-GPR139	G protein-coupled receptor 139	rogues	Q6DWJ6	GP139_HUMAN	HGNC:19995	CHEMBL3632455	68.96	419.50	-129
-GPR141	G protein-coupled receptor 141	rogues	Q7Z602	GP141_HUMAN	HGNC:19997		105.44	452.60	-24
-GPR142	G protein-coupled receptor 142	rogues	Q7Z601	GP142_HUMAN	HGNC:20088	CHEMBL2069161	84.20	419.50	-51
-GPR143	G protein-coupled receptor 143	orphan	P51810	GP143_HUMAN	HGNC:20145		260.62	222.73	-158
-GPR146	G protein-coupled receptor 146	rogues	Q96CH1	GP146_HUMAN	HGNC:21718		87.70	436.74	-70
-GPR148	G protein-coupled receptor 148	rogues	Q8TDV2	GP148_HUMAN	HGNC:23623		108.56	462.59	-5
-GPR149	G protein-coupled receptor 149	rogues	Q86SP6	GP149_HUMAN	HGNC:23627		107.94	472.59	14
-GPR15	G protein-coupled receptor 15	rhodopsin	P49685	GPR15_HUMAN	HGNC:4469		477.48	253.10	21
-GPR150	G protein-coupled receptor 150	rhodopsin	Q8NGU9	GP150_HUMAN	HGNC:23628		109.19	295.57	166
-GPR151	G protein-coupled receptor 151	rogues	Q8TDV0	GP151_HUMAN	HGNC:23624	CHEMBL3085617	97.70	489.62	50
-GPR152	G protein-coupled receptor 152	rogues	Q8TDT2	GP152_HUMAN	HGNC:23622		87.37	495.25	70
-GPR153	G protein-coupled receptor 153	rogues	Q6NV75	GP153_HUMAN	HGNC:23618		121.07	481.37	-9
-GPR156	G protein-coupled receptor 156	glutamate	Q8NFN8	GP156_HUMAN	HGNC:20844		288.08	159.90	-66
-GPR157	G protein-coupled receptor 157	orphan	Q5UAW9	GP157_HUMAN	HGNC:23687		263.70	238.03	100
-GPR158	G protein-coupled receptor 158	glutamate	Q5T848	GP158_HUMAN	HGNC:23689		258.35	177.14	-151
-GPR160	G protein-coupled receptor 160	rogues	Q9UJ42	GP160_HUMAN	HGNC:23693	CHEMBL1777664	76.46	496.32	90
-GPR161	G protein-coupled receptor 161	rhodopsin	Q8N6U8	GP161_HUMAN	HGNC:23694		391.52	296.07	14
-GPR162	G protein-coupled receptor 162	rogues	Q16538	GP162_HUMAN	HGNC:16693		113.82	494.51	69
-GPR17	G protein-coupled receptor 17	rhodopsin	Q13304	GPR17_HUMAN	HGNC:4471	CHEMBL1075162	361.79	412.50	95
-GPR171	G protein-coupled receptor 171	rhodopsin	O14626	GP171_HUMAN	HGNC:30057		332.56	348.28	149
-GPR173	G protein-coupled receptor 173	rhodopsin	Q9NS66	GP173_HUMAN	HGNC:18186		311.82	352.54	46
-GPR174	G protein-coupled receptor 174	rhodopsin	Q9BXC1	GP174_HUMAN	HGNC:30245	CHEMBL3562167	378.03	368.28	74
-GPR176	G protein-coupled receptor 176	rogues	Q14439	GP176_HUMAN	HGNC:32370		64.70	494.51	115
-GPR179	G protein-coupled receptor 179	glutamate	Q6PRD1	GP179_HUMAN	HGNC:31371		259.35	167.15	-116
-GPR18	G protein-coupled receptor 18	rhodopsin	Q14330	GPR18_HUMAN	HGNC:4472	CHEMBL2384898	369.04	312.81	56
-GPR180	G protein-coupled receptor 180	orphan	Q86V85	GP180_HUMAN			237.32	250.88	113
-GPR182	G protein-coupled receptor 182	rhodopsin	O15218	GP182_HUMAN	HGNC:13708	CHEMBL4356	477.73	224.86	12
-GPR183	G protein-coupled receptor 183	rhodopsin	P32249	GP183_HUMAN	HGNC:3128	CHEMBL3259470	376.78	301.32	30
-GPR19	G protein-coupled receptor 19	rogues	Q15760	GPR19_HUMAN	HGNC:4473		47.19	471.57	170
-GPR20	G protein-coupled receptor 20	rhodopsin	Q99678	GPR20_HUMAN	HGNC:4475		407.85	382.30	63
-GPR21	G protein-coupled receptor 21	rhodopsin	Q99679	GPR21_HUMAN	HGNC:4476		196.14	373.77	126
-GPR22	G protein-coupled receptor 22	rogues	Q99680	GPR22_HUMAN	HGNC:4477		46.96	459.32	-169
-GPR25	G protein-coupled receptor 25	rhodopsin	O00155	GPR25_HUMAN	HGNC:4480		473.48	247.35	4
-GPR26	G protein-coupled receptor 26	rhodopsin	Q8NDV2	GPR26_HUMAN	HGNC:4481		318.32	308.81	-31
-GPR27	G protein-coupled receptor 27	rhodopsin	Q9NS67	GPR27_HUMAN	HGNC:4482		308.82	335.05	9
-GPR3	G protein-coupled receptor 3	rhodopsin	P46089	GPR3_HUMAN	HGNC:4484		165.90	312.56	-145
-GPR31	G protein-coupled receptor 31	rhodopsin	O00270	GPR31_HUMAN	HGNC:4486		399.65	348.66	-42
-GPR32	G protein-coupled receptor 32	rhodopsin	O75388	GPR32_HUMAN	HGNC:4487		507.71	270.09	2
-GPR32P1	G protein-coupled receptor 32, pseudogene 1	rhodopsin	Q8NGA4	G32P1_HUMAN			501.96	263.84	-30
-GPR33	G protein-coupled receptor 33 (gene/pseudogene)	rhodopsin	Q49SQ1	GPR33_HUMAN	HGNC:4489		470.98	291.57	85
-GPR34	G protein-coupled receptor 34	rhodopsin	Q9UPC5	GPR34_HUMAN	HGNC:4490	CHEMBL3562165	340.21	334.42	169
-GPR35	G protein-coupled receptor 35	rhodopsin	Q9HC97	GPR35_HUMAN	HGNC:4492	CHEMBL1293267	421.63	383.02	63
-GPR37	G protein-coupled receptor 37	rhodopsin	O15354	GPR37_HUMAN	HGNC:4494		78.21	362.78	162
-GPR37L1	G protein-coupled receptor 37 like 1	rhodopsin	O60883	ETBR2_HUMAN	HGNC:14923	CHEMBL5892	84.95	374.27	136
-GPR39	G protein-coupled receptor 39	rhodopsin	O43194	GPR39_HUMAN	HGNC:4496	CHEMBL3091266	188.64	225.61	-62
-GPR4	G protein-coupled receptor 4	rhodopsin	P46093	GPR4_HUMAN	HGNC:4497	CHEMBL3638324	367.29	442.23	114
-GPR42	G protein-coupled receptor 42 (gene/pseudogene)	rhodopsin	O15529	GPR42_HUMAN	HGNC:4500		343.95	377.71	99
-GPR45	G protein-coupled receptor 45	rogues	Q9Y5Y3	GPR45_HUMAN	HGNC:4503		41.46	495.10	111
-GPR50	G protein-coupled receptor 50	rhodopsin	Q13585	MTR1L_HUMAN	HGNC:4506	CHEMBL3341577	224.12	337.55	119
-GPR52	G protein-coupled receptor 52	rhodopsin	Q9Y2T5	GPR52_HUMAN	HGNC:4508	CHEMBL3297639	192.89	367.03	155
-GPR55	G protein-coupled receptor 55	rhodopsin	Q9Y2T6	GPR55_HUMAN	HGNC:4511	CHEMBL1075322	422.51	371.27	27
-GPR6	G protein-coupled receptor 6	rhodopsin	P46095	GPR6_HUMAN	HGNC:4515	CHEMBL3714130	163.16	322.30	-180
-GPR61	G protein-coupled receptor 61	rhodopsin	Q9BZJ8	GPR61_HUMAN	HGNC:13300		321.07	328.30	9
-GPR62	G protein-coupled receptor 62	rhodopsin	Q9BZJ7	GPR62_HUMAN	HGNC:13301		326.06	323.05	-9
-GPR63	G protein-coupled receptor 63	rogues	Q9BZJ6	GPR63_HUMAN	HGNC:13302		33.98	482.15	-171
-GPR65	G protein-coupled receptor 65	rhodopsin	Q8IYL9	PSYR_HUMAN	HGNC:4517	CHEMBL3714081	351.30	457.97	124
-GPR68	G protein-coupled receptor 68	rhodopsin	Q15743	OGR1_HUMAN	HGNC:4519	CHEMBL3713916	372.79	449.98	90
-GPR75	G protein-coupled receptor 75	rogues	O95800	GPR75_HUMAN	HGNC:4526		52.07	447.84	-144
-GPR78	G protein-coupled receptor 78	rhodopsin	Q96P69	GPR78_HUMAN	HGNC:4528		310.07	293.32	-74
-GPR82	G protein-coupled receptor 82	rhodopsin	Q96P67	GPR82_HUMAN	HGNC:4533		377.03	310.56	44
-GPR83	G protein-coupled receptor 83	rhodopsin	Q9NYM4	GPR83_HUMAN	HGNC:4523		136.67	247.10	158
-GPR84	G protein-coupled receptor 84	rogues	Q9NQS5	GPR84_HUMAN	HGNC:4535	CHEMBL3714079	59.16	440.04	-125
-GPR85	G protein-coupled receptor 85	rhodopsin	P60893	GPR85_HUMAN	HGNC:4536		314.82	346.29	9
-GPR87	G protein-coupled receptor 87	rhodopsin	Q9BY21	GPR87_HUMAN	HGNC:4538		311.67	393.70	141
-GPR88	G protein-coupled receptor 88	rogues	Q9GZN0	GPR88_HUMAN	HGNC:4539	CHEMBL3399910	68.07	435.46	-106
-GPRC5A	G protein-coupled receptor class C group 5 member A	glutamate	Q8NFJ5	RAI3_HUMAN	HGNC:9836		247.86	162.90	155
-GPRC5B	G protein-coupled receptor class C group 5 member B	glutamate	Q9NZH0	GPC5B_HUMAN	HGNC:13308		258.10	136.67	-105
-GPRC5C	G protein-coupled receptor class C group 5 member C	glutamate	Q9NQ84	GPC5C_HUMAN	HGNC:13309		252.35	144.66	-134
-GPRC5D	G protein-coupled receptor class C group 5 member D	glutamate	Q9NZD1	GPC5D_HUMAN	HGNC:13310		247.11	154.41	-161
-GPRC6A	G protein-coupled receptor class C group 6 member A	glutamate	Q5T6X5	GPC6A_HUMAN	HGNC:18510		274.84	85.20	-81
-GRM1	glutamate metabotropic receptor 1	glutamate	Q13255	GRM1_HUMAN	HGNC:4593	CHEMBL3772	266.60	68.71	-57
-GRM2	glutamate metabotropic receptor 2	glutamate	Q14416	GRM2_HUMAN	HGNC:4594	CHEMBL5137	249.11	26.98	-75
-GRM3	glutamate metabotropic receptor 3	glutamate	Q14832	GRM3_HUMAN	HGNC:4595	CHEMBL2888	254.60	44.72	-47
-GRM4	glutamate metabotropic receptor 4	glutamate	Q14833	GRM4_HUMAN	HGNC:4596	CHEMBL2736	209.13	41.72	-119
-GRM5	glutamate metabotropic receptor 5	glutamate	P41594	GRM5_HUMAN	HGNC:4597	CHEMBL3227	259.35	62.21	-78
-GRM6	glutamate metabotropic receptor 6	glutamate	O15303	GRM6_HUMAN	HGNC:4598	CHEMBL4573	194.14	54.47	-142
-GRM7	glutamate metabotropic receptor 7	glutamate	Q14831	GRM7_HUMAN	HGNC:4599	CHEMBL3777	214.38	12.24	-113
-GRM8	glutamate metabotropic receptor 8	glutamate	O00222	GRM8_HUMAN	HGNC:4600	CHEMBL3228	238.86	13.49	-62
-GRPR	gastrin releasing peptide receptor	rhodopsin	P30550	GRPR_HUMAN	HGNC:4609	CHEMBL4959	96.19	349.79	118
-HCAR1	hydroxycarboxylic acid receptor 1	rhodopsin	Q9BXC0	HCAR1_HUMAN	HGNC:4532	CHEMBL1075101	422.01	352.29	-28
-HCAR2	hydroxycarboxylic acid receptor 2	rhodopsin	Q8TDS4	HCAR2_HUMAN	HGNC:24827	CHEMBL3785	432.63	356.91	-23
-HCAR3	hydroxycarboxylic acid receptor 3	rhodopsin	P49019	HCAR3_HUMAN	HGNC:16824	CHEMBL4421	431.38	366.28	22
-HCRTR1	hypocretin receptor 1	rhodopsin	O43613	OX1R_HUMAN	HGNC:4848	CHEMBL5113	127.93	277.08	114
-HCRTR2	hypocretin receptor 2	rhodopsin	O43614	OX2R_HUMAN	HGNC:4849	CHEMBL4792	123.18	266.59	153
-HRH1	histamine receptor H1	rhodopsin	P35367	HRH1_HUMAN	HGNC:5182	CHEMBL231	264.60	347.79	-41
-HRH2	histamine receptor H2	rhodopsin	P25021	HRH2_HUMAN	HGNC:5183	CHEMBL1941	264.10	357.78	12
-HRH3	histamine receptor H3	rhodopsin	Q9Y5N1	HRH3_HUMAN	HGNC:5184	CHEMBL264	255.10	372.27	119
-HRH4	histamine receptor H4	rhodopsin	Q9H3N8	HRH4_HUMAN	HGNC:17383	CHEMBL3759	272.59	376.52	39
-HTR1A	5-hydroxytryptamine receptor 1A	rhodopsin	P08908	5HT1A_HUMAN	HGNC:5286	CHEMBL214	220.62	467.72	109
-HTR1B	5-hydroxytryptamine receptor 1B	rhodopsin	P28222	5HT1B_HUMAN	HGNC:5287	CHEMBL1898	202.38	513.19	106
-HTR1D	5-hydroxytryptamine receptor 1D	rhodopsin	P28221	5HT1D_HUMAN	HGNC:5289	CHEMBL1983	194.39	507.69	131
-HTR1E	5-hydroxytryptamine receptor 1E	rhodopsin	P28566	5HT1E_HUMAN	HGNC:5291	CHEMBL2182	185.14	484.46	167
-HTR1F	5-hydroxytryptamine receptor 1F	rhodopsin	P30939	5HT1F_HUMAN	HGNC:5292	CHEMBL1805	186.89	497.20	132
-HTR2A	5-hydroxytryptamine receptor 2A	rhodopsin	P28223	5HT2A_HUMAN	HGNC:5293	CHEMBL224	184.64	448.98	90
-HTR2B	5-hydroxytryptamine receptor 2B	rhodopsin	P41595	5HT2B_HUMAN	HGNC:5294	CHEMBL1833	203.13	438.98	113
-HTR2C	5-hydroxytryptamine receptor 2C	rhodopsin	P28335	5HT2C_HUMAN	HGNC:5295	CHEMBL225	176.40	446.73	149
-HTR4	5-hydroxytryptamine receptor 4	rhodopsin	Q13639	5HT4R_HUMAN	HGNC:5299	CHEMBL1875	240.86	387.52	60
-HTR5A	5-hydroxytryptamine receptor 5A	rhodopsin	P47898	5HT5A_HUMAN	HGNC:5300	CHEMBL3426	214.38	449.23	88
-HTR6	5-hydroxytryptamine receptor 6	rhodopsin	P50406	5HT6R_HUMAN	HGNC:5301	CHEMBL3371	235.36	405.75	69
-HTR7	5-hydroxytryptamine receptor 7	rhodopsin	P34969	5HT7R_HUMAN	HGNC:5302	CHEMBL3155	203.13	458.22	122
-KISS1R	KISS1 receptor	rhodopsin	Q969F8	KISSR_HUMAN	HGNC:4510	CHEMBL5413	341.30	214.37	-25
-LGR4	leucine rich repeat containing G protein-coupled receptor 4	rhodopsin	Q9BXB1	LGR4_HUMAN	HGNC:13299		476.48	332.80	26
-LGR5	leucine rich repeat containing G protein-coupled receptor 5	rhodopsin	O75473	LGR5_HUMAN	HGNC:4504		482.22	359.78	48
-LGR6	leucine rich repeat containing G protein-coupled receptor 6	rhodopsin	Q9HBX8	LGR6_HUMAN	HGNC:19719		488.97	348.54	11
-LHCGR	luteinizing hormone/choriogonadotropin receptor	rhodopsin	P22888	LSHR_HUMAN	HGNC:6585	CHEMBL1854	507.96	328.30	0
-LPAR1	lysophosphatidic acid receptor 1	rhodopsin	Q92633	LPAR1_HUMAN	HGNC:3166	CHEMBL3819	143.17	368.53	174
-LPAR2	lysophosphatidic acid receptor 2	rhodopsin	Q9HBW0	LPAR2_HUMAN	HGNC:3168	CHEMBL3724	162.41	382.02	121
-LPAR3	lysophosphatidic acid receptor 3	rhodopsin	Q9UBY5	LPAR3_HUMAN	HGNC:14298	CHEMBL3250	142.17	379.02	136
-LPAR4	lysophosphatidic acid receptor 4	rhodopsin	Q99677	LPAR4_HUMAN	HGNC:4478	CHEMBL5968	422.62	408.20	41
-LPAR5	lysophosphatidic acid receptor 5	rhodopsin	Q9H1C0	LPAR5_HUMAN	HGNC:13307	CHEMBL5700	407.33	372.42	26
-LPAR6	lysophosphatidic acid receptor 6	rhodopsin	P43657	LPAR6_HUMAN	HGNC:15520	CHEMBL2331058	412.26	413.25	80
-LTB4R	leukotriene B4 receptor	rhodopsin	Q15722	LT4R1_HUMAN	HGNC:6713	CHEMBL3911	447.99	275.33	48
-LTB4R2	leukotriene B4 receptor 2	rhodopsin	Q9NPC1	LT4R2_HUMAN	HGNC:19260	CHEMBL2095160	439.25	274.83	66
-MAS1	MAS1 proto-oncogene, G protein-coupled receptor	rhodopsin	P04201	MAS_HUMAN	HGNC:6899	CHEMBL3559701	426.75	340.29	70
-MAS1L	MAS1 proto-oncogene like, G protein-coupled receptor	rhodopsin	P35410	MAS1L_HUMAN	HGNC:13961		419.01	339.54	116
-MC1R	melanocortin 1 receptor	rhodopsin	Q01726	MSHR_HUMAN	HGNC:6929	CHEMBL3795	190.14	316.81	168
-MC2R	melanocortin 2 receptor	rhodopsin	Q01718	ACTHR_HUMAN	HGNC:6930	CHEMBL1965	207.88	322.80	147
-MC3R	melanocortin 3 receptor	rhodopsin	P41968	MC3R_HUMAN	HGNC:6931	CHEMBL4644	172.65	285.08	-111
-MC4R	melanocortin 4 receptor	rhodopsin	P32245	MC4R_HUMAN	HGNC:6932	CHEMBL259	168.15	304.32	-163
-MC5R	melanocortin 5 receptor	rhodopsin	P33032	MC5R_HUMAN	HGNC:6933	CHEMBL4608	161.66	291.32	-160
-MCHR1	melanin concentrating hormone receptor 1	rhodopsin	Q99705	MCHR1_HUMAN	HGNC:4479	CHEMBL344	353.80	228.61	-1
-MCHR2	melanin concentrating hormone receptor 2	rhodopsin	Q969V1	MCHR2_HUMAN	HGNC:20867	CHEMBL5038	357.29	235.86	19
-MLNR	motilin receptor	rhodopsin	O43193	MTLR_HUMAN	HGNC:4495	CHEMBL2203	205.38	226.86	-23
-MRGPRD	MAS related GPR family member D	rhodopsin	Q8TDS7	MRGRD_HUMAN	HGNC:29626		451.37	327.93	18
-MRGPRE	MAS related GPR family member E	rhodopsin	Q86SM8	MRGRE_HUMAN	HGNC:30694		441.75	317.31	18
-MRGPRF	MAS related GPR family member F	rhodopsin	Q96AM1	MRGRF_HUMAN	HGNC:24828		435.00	335.55	58
-MRGPRG	MAS related GPR family member G	rhodopsin	Q86SM5	MRGRG_HUMAN	HGNC:24829		439.12	310.81	-31
-MRGPRX1	MAS related GPR family member X1	rhodopsin	Q96LB2	MRGX1_HUMAN	HGNC:17962	CHEMBL5850	460.73	368.28	47
-MRGPRX2	MAS related GPR family member X2	rhodopsin	Q96LB1	MRGX2_HUMAN	HGNC:17983	CHEMBL5849	454.99	341.04	43
-MRGPRX3	MAS related GPR family member X3	rhodopsin	Q96LB0	MRGX3_HUMAN	HGNC:17980		457.99	383.02	50
-MRGPRX4	MAS related GPR family member X4	rhodopsin	Q96LA9	MRGX4_HUMAN	HGNC:17617		450.99	390.51	77
-MTNR1A	melatonin receptor 1A	rhodopsin	P48039	MTR1A_HUMAN	HGNC:7463	CHEMBL1945	199.64	350.54	144
-MTNR1B	melatonin receptor 1B	rhodopsin	P49286	MTR1B_HUMAN	HGNC:7464	CHEMBL1946	214.38	345.04	102
-NMBR	neuromedin B receptor	rhodopsin	P28336	NMBR_HUMAN	HGNC:7843	CHEMBL3636	123.18	325.05	114
-NMUR1	neuromedin U receptor 1	rhodopsin	Q9HB89	NMUR1_HUMAN	HGNC:4518	CHEMBL1075178	168.40	216.62	-123
-NMUR2	neuromedin U receptor 2	rhodopsin	Q9GZQ4	NMUR2_HUMAN	HGNC:16454	CHEMBL1075144	156.66	224.11	-170
-NPBWR1	neuropeptides B and W receptor 1	rhodopsin	P48145	NPBW1_HUMAN	HGNC:4522	CHEMBL1293293	374.03	194.38	-4
-NPBWR2	neuropeptides B and W receptor 2	rhodopsin	P48146	NPBW2_HUMAN	HGNC:4530		357.04	188.39	-44
-NPFFR1	neuropeptide FF receptor 1	rhodopsin	Q9GZQ6	NPFF1_HUMAN	HGNC:17425	CHEMBL5951	95.20	257.59	-178
-NPFFR2	neuropeptide FF receptor 2	rhodopsin	Q9Y5X5	NPFF2_HUMAN	HGNC:4525	CHEMBL5952	80.20	271.34	164
-NPSR1	neuropeptide S receptor 1	rhodopsin	Q6W5P4	NPSR1_HUMAN	HGNC:23631	CHEMBL5162	97.19	319.31	140
-NPY1R	neuropeptide Y receptor Y1	rhodopsin	P25929	NPY1R_HUMAN	HGNC:7956	CHEMBL4777	128.43	223.36	-132
-NPY2R	neuropeptide Y receptor Y2	rhodopsin	P49146	NPY2R_HUMAN	HGNC:7957	CHEMBL4018	120.43	234.36	-178
-NPY4R	neuropeptide Y receptor Y4	rhodopsin	P50391	NPY4R_HUMAN	HGNC:9329	CHEMBL4877	142.04	223.99	-121
-NPY5R	neuropeptide Y receptor Y5	rhodopsin	Q15761	NPY5R_HUMAN	HGNC:7958	CHEMBL4561	156.41	231.11	-122
-NPY6R	neuropeptide Y receptor Y6 (pseudogene)	rhodopsin	Q99463	NPY6R_HUMAN	HGNC:7959		117.18	227.36	-170
-NTSR1	neurotensin receptor 1	rhodopsin	P30989	NTR1_HUMAN	HGNC:8039	CHEMBL4123	180.65	202.63	-94
-NTSR2	neurotensin receptor 2	rhodopsin	O95665	NTR2_HUMAN	HGNC:8040	CHEMBL2514	190.89	208.12	-62
-OPN1LW	opsin 1, long wave sensitive	rhodopsin	P04000	OPSR_HUMAN	HGNC:9936	CHEMBL1949482	149.91	410.50	150
-OPN1MW	opsin 1, medium wave sensitive	rhodopsin	P04001	OPSG_HUMAN	HGNC:4206		151.91	417.00	127
-OPN1SW	opsin 1, short wave sensitive	rhodopsin	P03999	OPSB_HUMAN	HGNC:1012		175.65	411.50	122
-OPN3	opsin 3	rhodopsin	Q9H1Y3	OPN3_HUMAN	HGNC:14007		194.64	398.26	113
-OPN4	opsin 4	rhodopsin	Q9UHM6	OPN4_HUMAN	HGNC:14449		216.88	380.77	112
-OPN5	opsin 5	rhodopsin	Q6U736	OPN5_HUMAN	HGNC:19992		209.88	379.52	110
-OPRD1	opioid receptor delta 1	rhodopsin	P41143	OPRD_HUMAN	HGNC:8153	CHEMBL236	409.76	214.12	16
-OPRK1	opioid receptor kappa 1	rhodopsin	P41145	OPRK_HUMAN	HGNC:8154	CHEMBL237	406.27	202.13	-25
-OPRL1	opioid related nociceptin receptor 1	rhodopsin	P41146	OPRX_HUMAN	HGNC:8155	CHEMBL2014	388.28	198.38	-25
-OPRM1	opioid receptor mu 1	rhodopsin	P35372	OPRM_HUMAN	HGNC:8156	CHEMBL233	422.76	207.62	-16
-OXER1	oxoeicosanoid receptor 1	rhodopsin	Q8TDS5	OXER1_HUMAN	HGNC:24884	CHEMBL1628461	411.01	350.29	-38
-OXGR1	oxoglutarate receptor 1	rhodopsin	P2RY15;Q96P68	OXGR1_HUMAN	HGNC:4531	CHEMBL2150840	401.78	419.01	56
-OXTR	oxytocin receptor	rhodopsin	P30559	OXYR_HUMAN	HGNC:8529	CHEMBL2049	56.34	327.05	145
-P2RY1	purinergic receptor P2Y1	rhodopsin	P47900	P2RY1_HUMAN	HGNC:8539	CHEMBL4315	390.73	393.48	38
-P2RY10	purinergic receptor P2Y10	rhodopsin	O00398;P2RY10	P2Y10_HUMAN	HGNC:19906	CHEMBL3562166	384.13	365.25	28
-P2RY11	purinergic receptor P2Y11	rhodopsin	P2RY11;Q96G91	P2Y11_HUMAN	HGNC:8540	CHEMBL4867	383.36	379.86	38
-P2RY12	purinergic receptor P2Y12	rhodopsin	P2RY12;Q9H244	P2Y12_HUMAN	HGNC:18124	CHEMBL2001	322.97	364.86	153
-P2RY13	purinergic receptor P2Y13	rhodopsin	P2RY13;Q9BPV8	P2Y13_HUMAN	HGNC:4537	CHEMBL3321651	322.29	373.86	127
-P2RY14	purinergic receptor P2Y14	rhodopsin	P2RY14;Q15391	P2Y14_HUMAN	HGNC:16442	CHEMBL4518	317.78	399.04	114
-P2RY2	purinergic receptor P2Y2	rhodopsin	P41231	P2RY2_HUMAN	HGNC:8541	CHEMBL4398	392.21	427.60	49
-P2RY4	pyrimidinergic receptor P2Y4	rhodopsin	P51582	P2RY4_HUMAN	HGNC:8542	CHEMBL2123	387.24	431.42	78
-P2RY6	pyrimidinergic receptor P2Y6	rhodopsin	Q15077	P2RY6_HUMAN	HGNC:8543	CHEMBL4714	388.94	414.20	60
-P2RY8	purinergic receptor P2Y8	rhodopsin	Q86VZ1	P2RY8_HUMAN	HGNC:15524		355.80	358.53	151
-PRLHR	prolactin releasing hormone receptor	rhodopsin	P49683	PRLHR_HUMAN	HGNC:4464	CHEMBL1681611	129.68	238.11	164
-PROKR1	prokineticin receptor 1	rhodopsin	Q8TCW9	PKR1_HUMAN	HGNC:4524	CHEMBL5649	174.90	263.84	135
-PROKR2	prokineticin receptor 2	rhodopsin	Q8NFJ6	PKR2_HUMAN	HGNC:15836	CHEMBL5548	183.52	261.84	94
-PTAFR	platelet activating factor receptor	rhodopsin	P25105	PTAFR_HUMAN	HGNC:9582	CHEMBL250	376.14	356.43	-2
-PTGDR	prostaglandin D2 receptor	rhodopsin	Q13258	PD2R_HUMAN	HGNC:9591	CHEMBL4427	304.08	364.53	-7
-PTGDR2	prostaglandin D2 receptor 2	rhodopsin	Q9Y5Y4	PD2R2_HUMAN	HGNC:4502	CHEMBL5071	479.72	260.09	22
-PTGER1	prostaglandin E receptor 1	rhodopsin	P34995	PE2R1_HUMAN	HGNC:9593	CHEMBL1811	294.58	396.76	53
-PTGER2	prostaglandin E receptor 2	rhodopsin	P43116	PE2R2_HUMAN	HGNC:9594	CHEMBL1881	308.32	379.27	48
-PTGER3	prostaglandin E receptor 3	rhodopsin	P43115	PE2R3_HUMAN	HGNC:9595	CHEMBL3710	284.09	360.78	52
-PTGER4	prostaglandin E receptor 4	rhodopsin	P35408	PE2R4_HUMAN	HGNC:9596	CHEMBL1836	282.59	335.05	40
-PTGFR	prostaglandin F receptor	rhodopsin	P43088	PF2R_HUMAN	HGNC:9600	CHEMBL1987	285.09	393.76	70
-PTGIR	prostaglandin I2 (prostacyclin) receptor (IP)	rhodopsin	P43119	PI2R_HUMAN	HGNC:9602	CHEMBL1995	303.08	354.78	4
-PTH1R	parathyroid hormone 1 receptor	secretin	Q03431	PTH1R_HUMAN	HGNC:9608	CHEMBL1793	173.40	70.46	-81
-PTH2R	parathyroid hormone 2 receptor	secretin	P49190	PTH2R_HUMAN	HGNC:9609		166.65	66.71	-97
-QRFPR	pyroglutamylated RFamide peptide receptor	rhodopsin	Q96P65	QRFPR_HUMAN	HGNC:15565	CHEMBL5852	363.79	318.81	69
-RGR	retinal G protein coupled receptor	rhodopsin	P47804	RGR_HUMAN	HGNC:9990		226.62	374.27	77
-RHO	rhodopsin	rhodopsin	P08100	OPSD_HUMAN	HGNC:10012		167.90	410.25	142
-RRH	retinal pigment epithelium-derived rhodopsin homolog	rhodopsin	O14718	OPSX_HUMAN	HGNC:10450		203.88	394.01	77
-RXFP1	relaxin/insulin like family peptide receptor 1	rhodopsin	Q9HBX9	RXFP1_HUMAN	HGNC:19718	CHEMBL1293316	466.48	311.31	21
-RXFP2	relaxin/insulin like family peptide receptor 2	rhodopsin	Q8WXD0	RXFP2_HUMAN	HGNC:17318	CHEMBL1628482	461.23	305.07	4
-RXFP3	relaxin/insulin like family peptide receptor 3	rhodopsin	Q9NSD7	RL3R1_HUMAN	HGNC:24883	CHEMBL1628472	539.69	259.59	18
-RXFP4	relaxin/insulin like family peptide receptor 4	rhodopsin	Q8TDU9	RL3R2_HUMAN	HGNC:14666	CHEMBL1628473	535.07	265.46	45
-S1PR1	sphingosine-1-phosphate receptor 1	rhodopsin	P21453	S1PR1_HUMAN	HGNC:3165	CHEMBL4333	144.92	342.54	174
-S1PR2	sphingosine-1-phosphate receptor 2	rhodopsin	O95136	S1PR2_HUMAN	HGNC:3169	CHEMBL2955	147.67	349.79	162
-S1PR3	sphingosine-1-phosphate receptor 3	rhodopsin	Q99500	S1PR3_HUMAN	HGNC:3167	CHEMBL3892	151.66	335.05	-121
-S1PR4	sphingosine-1-phosphate receptor 4	rhodopsin	O95977	S1PR4_HUMAN	HGNC:3170	CHEMBL3230	163.91	358.28	140
-S1PR5	sphingosine-1-phosphate receptor 5	rhodopsin	Q9H228	S1PR5_HUMAN	HGNC:14299	CHEMBL2274	152.66	356.53	151
-SCTR	secretin receptor	secretin	P47872	SCTR_HUMAN	HGNC:10608	CHEMBL1925	142.92	120.43	-164
-SMO	smoothened, frizzled class receptor	frizzled	Q99835	SMO_HUMAN	HGNC:11119	CHEMBL5971	310.82	146.66	-77
-SSTR1	somatostatin receptor 1	rhodopsin	P30872	SSR1_HUMAN	HGNC:11330	CHEMBL1917	401.52	178.39	-9
-SSTR2	somatostatin receptor 2	rhodopsin	P30874	SSR2_HUMAN	HGNC:11331	CHEMBL1804	391.52	161.40	-64
-SSTR3	somatostatin receptor 3	rhodopsin	P32745	SSR3_HUMAN	HGNC:11332	CHEMBL2028	412.26	159.15	-51
-SSTR4	somatostatin receptor 4	rhodopsin	P31391	SSR4_HUMAN	HGNC:11333	CHEMBL1853	409.26	185.89	11
-SSTR5	somatostatin receptor 5	rhodopsin	P35346	SSR5_HUMAN	HGNC:11334	CHEMBL1792	420.51	166.15	-14
-SUCNR1	succinate receptor 1	rhodopsin	Q9BXA5	SUCR1_HUMAN	HGNC:4542	CHEMBL2150838	402.52	408.00	27
-TAAR1	trace amine associated receptor 1	rhodopsin	Q96RJ0	TAAR1_HUMAN	HGNC:17734	CHEMBL5857	264.35	407.50	57
-TAAR2	trace amine associated receptor 2 (gene/pseudogene)	rhodopsin	Q9P1P5	TAAR2_HUMAN	HGNC:4514		261.85	421.99	42
-TAAR3P	trace amine associated receptor 3, pseudogene	rhodopsin	Q9P1P4	TAAR3_HUMAN	HGNC:4513		244.61	428.24	103
-TAAR5	trace amine associated receptor 5	rhodopsin	O14804	TAAR5_HUMAN	HGNC:30236	CHEMBL3714046	273.84	391.01	21
-TAAR6	trace amine associated receptor 6	rhodopsin	Q96RI8	TAAR6_HUMAN	HGNC:20978		284.59	433.99	68
-TAAR8	trace amine associated receptor 8	rhodopsin	Q969N4	TAAR8_HUMAN	HGNC:14964		292.58	427.74	27
-TAAR9	trace amine associated receptor 9 (gene/pseudogene)	rhodopsin	Q96RI9	TAAR9_HUMAN	HGNC:20977		284.84	414.75	46
-TACR1	tachykinin receptor 1	rhodopsin	P25103	NK1R_HUMAN	HGNC:11526	CHEMBL249	79.20	248.85	167
-TACR2	tachykinin receptor 2	rhodopsin	P21452	NK2R_HUMAN	HGNC:11527	CHEMBL2327	116.68	247.85	160
-TACR3	tachykinin receptor 3	rhodopsin	P29371	NK3R_HUMAN	HGNC:11528	CHEMBL4429	67.46	234.61	-171
-TAS1R1	taste 1 receptor member 1	glutamate	Q7RTX1	TS1R1_HUMAN	HGNC:14448		309.82	42.22	-74
-TAS1R2	taste 1 receptor member 2	glutamate	Q8TE23	TS1R2_HUMAN	HGNC:14905	CHEMBL3832642	284.34	60.21	-103
-TAS1R3	taste 1 receptor member 3	glutamate	Q7RTX0	TS1R3_HUMAN	HGNC:15661	CHEMBL3832641	295.08	32.48	-105
-TAS2R1	taste 2 receptor member 1	tas2	Q9NYW7	TA2R1_HUMAN	HGNC:14909		411.14	103.56	-61
-TAS2R10	taste 2 receptor member 10	tas2	Q9NYW0	T2R10_HUMAN	HGNC:14918		456.74	109.31	-13
-TAS2R13	taste 2 receptor member 13	tas2	Q9NYV9	T2R13_HUMAN	HGNC:14919		444.12	120.55	-68
-TAS2R14	taste 2 receptor member 14	tas2	Q9NYV8	T2R14_HUMAN	HGNC:14920	CHEMBL3309105	455.11	120.30	-42
-TAS2R16	taste 2 receptor member 16	tas2	Q9NYV7	T2R16_HUMAN	HGNC:14921	CHEMBL3309106	346.18	141.54	-84
-TAS2R19	taste 2 receptor member 19	tas2	P59542	T2R19_HUMAN	HGNC:19108		486.60	93.57	-59
-TAS2R20	taste 2 receptor member 20	tas2	P59543	T2R20_HUMAN	HGNC:19109		507.58	95.57	-32
-TAS2R3	taste 2 receptor member 3	tas2	Q9NYW6	TA2R3_HUMAN	HGNC:14910		425.38	114.31	-79
-TAS2R30	taste 2 receptor member 30	tas2	P59541	T2R30_HUMAN	HGNC:19112		508.08	113.81	-43
-TAS2R31	taste 2 receptor member 31	tas2	P59538	T2R31_HUMAN	HGNC:19113	CHEMBL2034804	521.33	125.80	-20
-TAS2R38	taste 2 receptor member 38	tas2	P59533	T2R38_HUMAN	HGNC:9584		392.02	116.68	-63
-TAS2R39	taste 2 receptor member 39	tas2	P59534	T2R39_HUMAN	HGNC:18886		439.75	96.57	-28
-TAS2R4	taste 2 receptor member 4	tas2	Q9NYW5	TA2R4_HUMAN	HGNC:14911	CHEMBL3309107	332.81	152.91	-69
-TAS2R40	taste 2 receptor member 40	tas2	P59535	T2R40_HUMAN	HGNC:18885		434.13	87.32	-59
-TAS2R41	taste 2 receptor member 41	tas2	P59536	T2R41_HUMAN	HGNC:18883	CHEMBL3309108	366.79	136.29	-28
-TAS2R42	taste 2 receptor member 42	tas2	Q7RTR8	T2R42_HUMAN	HGNC:18888		407.39	129.92	-90
-TAS2R43	taste 2 receptor member 43	tas2	P59537	T2R43_HUMAN	HGNC:18875		524.57	133.54	-5
-TAS2R45	taste 2 receptor member 45	tas2	P59539	T2R45_HUMAN	HGNC:18876		509.33	104.31	-34
-TAS2R46	taste 2 receptor member 46	tas2	P59540	T2R46_HUMAN	HGNC:18877		510.08	121.55	-25
-TAS2R5	taste 2 receptor member 5	tas2	Q9NYW4	TA2R5_HUMAN	HGNC:14912		366.41	143.91	-38
-TAS2R50	taste 2 receptor member 50	tas2	P59544	T2R50_HUMAN	HGNC:18882		469.36	103.94	-68
-TAS2R60	taste 2 receptor member 60	tas2	P59551	T2R60_HUMAN	HGNC:20639	CHEMBL3309109	358.17	132.92	-58
-TAS2R7	taste 2 receptor member 7	tas2	Q9NYW3	TA2R7_HUMAN	HGNC:14913		469.73	79.95	-74
-TAS2R8	taste 2 receptor member 8	tas2	Q9NYW2	TA2R8_HUMAN	HGNC:14915		455.36	82.33	-80
-TAS2R9	taste 2 receptor member 9	tas2	Q9NYW1	TA2R9_HUMAN	HGNC:14917	CHEMBL3309110	482.72	83.57	-25
-TBXA2R	thromboxane A2 receptor	rhodopsin	P21731	TA2R_HUMAN	HGNC:11608	CHEMBL2069	292.33	381.02	50
-TMEM145	transmembrane protein 145	orphan	Q8NBT3	TM145_HUMAN			226.28	250.73	152
-TMEM87A	transmembrane protein 87A	orphan	Q8NBN3	GPHCC_HUMAN			235.86	238.61	148
-TMEM87B	transmembrane protein 87B	orphan	Q96K49	TM87B_HUMAN			232.94	232.50	-171
-TPRA1	transmembrane protein adipocyte associated 1	orphan	Q86W33	TPRA1_HUMAN	HGNC:30413		246.61	248.60	147
-TRHR	thyrotropin releasing hormone receptor	rhodopsin	P34981	TRFR_HUMAN	HGNC:12299	CHEMBL1810	166.90	233.11	-173
-TSHR	thyroid stimulating hormone receptor	rhodopsin	P16473	TSHR_HUMAN	HGNC:12373	CHEMBL1963	494.22	334.55	34
-UTS2R	urotensin 2 receptor	rhodopsin	Q9UKP6	UR2R_HUMAN	HGNC:4468	CHEMBL3764	316.82	235.86	-16
-VIPR1	vasoactive intestinal peptide receptor 1	secretin	P32241	VIPR1_HUMAN	HGNC:12694	CHEMBL5144	124.93	106.44	-164
-VIPR2	vasoactive intestinal peptide receptor 2	secretin	P41587	VIPR2_HUMAN	HGNC:12695	CHEMBL4532	123.43	74.95	-124
-XCR1	X-C motif chemokine receptor 1	rhodopsin	P46094	XCR1_HUMAN	HGNC:1625		495.96	219.12	34
+ACKR1	atypical chemokine receptor 1 (Duffy blood group)	rhodopsin	Q16570	ACKR1_HUMAN	HGNC:4035	CHEMBL2321626	416.67	167.03	-83
+ACKR2	atypical chemokine receptor 2	rhodopsin	O00590	ACKR2_HUMAN	HGNC:1565		492.02	160.9	-30
+ACKR3	atypical chemokine receptor 3	rhodopsin	P25106	ACKR3_HUMAN	HGNC:23692	CHEMBL2010631	426.1	172.31	-35
+ACKR4	atypical chemokine receptor 4	rhodopsin	Q9NPB9	ACKR4_HUMAN	HGNC:1611		532.36	157.87	-51
+ADCYAP1R1	ADCYAP receptor type I	secretin	P41586	PACR_HUMAN	HGNC:242	CHEMBL5399	133.07	71.7	-116
+ADGRA1	adhesion G protein-coupled receptor A1	adhesion	Q86SQ6	AGRA1_HUMAN	HGNC:13838		126.74	143.57	171
+ADGRA2	adhesion G protein-coupled receptor A2	adhesion	Q96PE1	AGRA2_HUMAN	HGNC:17849		132.82	152.5	123
+ADGRA3	adhesion G protein-coupled receptor A3	adhesion	Q8IWK6	AGRA3_HUMAN	HGNC:13839		133.83	131.7	-161
+ADGRB1	adhesion G protein-coupled receptor B1	adhesion	O14514	BAI1_HUMAN	HGNC:943		58.92	139.12	-179
+ADGRB2	adhesion G protein-coupled receptor B2	adhesion	O60241	AGRB2_HUMAN	HGNC:944		55.89	152.62	153
+ADGRB3	adhesion G protein-coupled receptor B3	adhesion	O60242	AGRB3_HUMAN	HGNC:945		64.46	159.2	105
+ADGRD1	adhesion G protein-coupled receptor D1	adhesion	Q6QNK2	AGRD1_HUMAN	HGNC:19893		72.19	107.53	-76
+ADGRD2	adhesion G protein-coupled receptor D2	adhesion	Q7Z7M1	AGRD2_HUMAN	HGNC:18651		61.61	109.69	-124
+ADGRE1	adhesion G protein-coupled receptor E1	adhesion	Q14246	AGRE1_HUMAN	HGNC:3336		104.41	83.76	-115
+ADGRE2	adhesion G protein-coupled receptor E2	adhesion	Q9UHX3	AGRE2_HUMAN	HGNC:3337		96.7	78.35	-101
+ADGRE3	adhesion G protein-coupled receptor E3	adhesion	Q9BY15	AGRE3_HUMAN	HGNC:23647		90.71	98.31	-180
+ADGRE4P	adhesion G protein-coupled receptor E4, pseudogene	adhesion	Q86SQ3	AGRE4_HUMAN	HGNC:19240		115.21	83.85	-67
+ADGRE5	adhesion G protein-coupled receptor E5	adhesion	P48960	CD97_HUMAN	HGNC:1711		87.99	84.74	-149
+ADGRF1	adhesion G protein-coupled receptor F1	adhesion	Q5T601	AGRF1_HUMAN	HGNC:18990		58.65	96.34	-75
+ADGRF2	adhesion G protein-coupled receptor F2	adhesion	Q8IZF7	AGRF2_HUMAN	HGNC:18991		46.26	90.19	-103
+ADGRF3	adhesion G protein-coupled receptor F3	adhesion	Q8IZF5	AGRF3_HUMAN	HGNC:18989		51.59	122.52	-177
+ADGRF4	adhesion G protein-coupled receptor F4	adhesion	Q8IZF3	AGRF4_HUMAN	HGNC:19011		37.83	96.95	-151
+ADGRF5	adhesion G protein-coupled receptor F5	adhesion	Q8IZF2	AGRF5_HUMAN	HGNC:19030		46.0	115.0	-175
+ADGRG1	adhesion G protein-coupled receptor G1	adhesion	Q9Y653	AGRG1_HUMAN	HGNC:4512		144.52	159.78	139
+ADGRG2	adhesion G protein-coupled receptor G2	adhesion	Q8IZP9	AGRG2_HUMAN	HGNC:4516		155.78	172.15	135
+ADGRG3	adhesion G protein-coupled receptor G3	adhesion	Q86Y34	AGRG3_HUMAN	HGNC:13728		151.99	140.34	-143
+ADGRG4	adhesion G protein-coupled receptor G4	adhesion	Q8IZF6	AGRG4_HUMAN	HGNC:18992		164.48	175.8	93
+ADGRG5	adhesion G protein-coupled receptor G5	adhesion	Q8IZF4	AGRG5_HUMAN	HGNC:19010		141.53	149.4	-173
+ADGRG6	adhesion G protein-coupled receptor G6	adhesion	Q86SQ4	AGRG6_HUMAN;GP126_HUMAN	HGNC:13841		154.55	158.37	163
+ADGRG7	adhesion G protein-coupled receptor G7	adhesion	Q96K78	AGRG7_HUMAN	HGNC:19241		163.26	140.19	-173
+ADGRL1	adhesion G protein-coupled receptor L1	adhesion	O94910	AGRL1_HUMAN	HGNC:20973		79.25	125.58	145
+ADGRL2	adhesion G protein-coupled receptor L2	adhesion	O95490	AGRL2_HUMAN	HGNC:18582		77.5	114.92	-167
+ADGRL3	adhesion G protein-coupled receptor L3	adhesion	Q9HAR2	AGRL3_HUMAN	HGNC:20974		92.58	129.29	117
+ADGRL4	adhesion G protein-coupled receptor L4	adhesion	Q9HBW9	AGRL4_HUMAN	HGNC:20822		96.08	106.38	-140
+ADGRV1	adhesion G protein-coupled receptor V1	adhesion	Q8WXG9	GPR98_HUMAN	HGNC:17416		116.18	105.06	-115
+ADORA1	adenosine A1 receptor	rhodopsin	P30542	AA1R_HUMAN	HGNC:262	CHEMBL226	262.86	401.14	169
+ADORA2A	adenosine A2a receptor	rhodopsin	P29274	AA2AR_HUMAN	HGNC:263	CHEMBL251	257.43	393.89	165
+ADORA2B	adenosine A2b receptor	rhodopsin	P29275	AA2BR_HUMAN	HGNC:264	CHEMBL255	259.39	383.26	-147
+ADORA3	adenosine A3 receptor	rhodopsin	P0DMS8	AA3R_HUMAN	HGNC:268	CHEMBL256	269.26	409.85	121
+ADRA1A	adrenoceptor alpha 1A	rhodopsin	P35348	ADA1A_HUMAN	HGNC:277	CHEMBL229	281.58	528.82	115
+ADRA1B	adrenoceptor alpha 1B	rhodopsin	P35368	ADA1B_HUMAN	HGNC:278	CHEMBL232	294.98	525.41	88
+ADRA1D	adrenoceptor alpha 1D	rhodopsin	P25100	ADA1D_HUMAN	HGNC:280	CHEMBL223	274.75	520.44	164
+ADRA2A	adrenoceptor alpha 2A	rhodopsin	P08913	ADA2A_HUMAN	HGNC:281	CHEMBL1867	352.04	510.59	62
+ADRA2B	adrenoceptor alpha 2B	rhodopsin	P18089	ADA2B_HUMAN	HGNC:282	CHEMBL1942	358.47	501.91	14
+ADRA2C	adrenoceptor alpha 2C	rhodopsin	P18825	ADA2C_HUMAN	HGNC:283	CHEMBL1916	338.49	507.8	90
+ADRB1	adrenoceptor beta 1	rhodopsin	P08588	ADRB1_HUMAN	HGNC:285	CHEMBL213	333.99	469.89	68
+ADRB2	adrenoceptor beta 2	rhodopsin	P07550	ADRB2_HUMAN	HGNC:286	CHEMBL210	341.37	462.0	20
+ADRB3	adrenoceptor beta 3	rhodopsin	P13945	ADRB3_HUMAN	HGNC:288	CHEMBL246	320.85	465.58	96
+AGTR1	angiotensin II receptor type 1	rhodopsin	P30556	AGTR1_HUMAN	HGNC:336	CHEMBL227	509.19	217.1	-71
+AGTR2	angiotensin II receptor type 2	rhodopsin	P50052	AGTR2_HUMAN	HGNC:338	CHEMBL4607	516.98	224.6	-23
+APLNR	apelin receptor	rhodopsin	P35414	APJ_HUMAN	HGNC:339	CHEMBL1628481	446.85	196.64	4
+AVPR1A	arginine vasopressin receptor 1A	rhodopsin	P37288	V1AR_HUMAN	HGNC:895	CHEMBL1889	249.25	320.62	103
+AVPR1B	arginine vasopressin receptor 1B	rhodopsin	P47901	V1BR_HUMAN	HGNC:896	CHEMBL1921	240.81	313.86	151
+AVPR2	arginine vasopressin receptor 2	rhodopsin	P30518	V2R_HUMAN	HGNC:897	CHEMBL1790	249.35	297.98	166
+BDKRB1	bradykinin receptor B1	rhodopsin	P46663	BKRB1_HUMAN	HGNC:1029	CHEMBL4308	472.36	180.76	-49
+BDKRB2	bradykinin receptor B2	rhodopsin	P30411	BKRB2_HUMAN	HGNC:1030	CHEMBL3157	476.7	190.65	-1
+BRS3	bombesin receptor subtype 3	rhodopsin	P32247	BRS3_HUMAN	HGNC:1113	CHEMBL4080	264.22	256.21	83
+C3AR1	complement C3a receptor 1	rhodopsin	Q16581	C3AR_HUMAN	HGNC:1319	CHEMBL4761	605.39	166.74	-10
+C5AR1	complement C5a receptor 1	rhodopsin	P21730	C5AR1_HUMAN	HGNC:1338	CHEMBL2373	605.91	152.91	-38
+C5AR2	complement component 5a receptor 2	rhodopsin	Q9P296	C5AR2_HUMAN	HGNC:4527		596.28	148.0	-86
+CALCR	calcitonin receptor	secretin	P30988	CALCR_HUMAN	HGNC:1440	CHEMBL1832	157.07	124.27	161
+CALCRL	calcitonin receptor like receptor	secretin	Q16602	CALRL_HUMAN	HGNC:16709	CHEMBL3798	158.32	113.54	-151
+CASR	calcium sensing receptor	glutamate	P41180	CASR_HUMAN	HGNC:1514	CHEMBL1878	190.89	85.38	-126
+CCKAR	cholecystokinin A receptor	rhodopsin	P32238	CCKAR_HUMAN	HGNC:1570	CHEMBL1901	215.99	285.11	133
+CCKBR	cholecystokinin B receptor	rhodopsin	P32239	GASR_HUMAN	HGNC:1571	CHEMBL298	212.11	275.02	-178
+CCR1	C-C motif chemokine receptor 1	rhodopsin	P32246	CCR1_HUMAN	HGNC:1602	CHEMBL2413	515.03	132.13	-52
+CCR10	C-C motif chemokine receptor 10	rhodopsin	P46092	CCR10_HUMAN	HGNC:4474	CHEMBL2321628	518.52	158.02	-79
+CCR2	C-C motif chemokine receptor 2	rhodopsin	P41597	CCR2_HUMAN	HGNC:1603	CHEMBL4015	492.72	128.0	-98
+CCR3	C-C motif chemokine receptor 3	rhodopsin	P51677	CCR3_HUMAN	HGNC:1604	CHEMBL3473	519.82	141.82	-4
+CCR4	C-C motif chemokine receptor 4	rhodopsin	P51679	CCR4_HUMAN	HGNC:1605	CHEMBL2414	499.58	155.04	0
+CCR5	C-C motif chemokine receptor 5 (gene/pseudogene)	rhodopsin	P51681	CCR5_HUMAN	HGNC:1606	CHEMBL274	503.0	131.34	-49
+CCR6	C-C motif chemokine receptor 6	rhodopsin	P51684	CCR6_HUMAN	HGNC:1607	CHEMBL4423	512.23	184.62	35
+CCR7	C-C motif chemokine receptor 7	rhodopsin	P32248	CCR7_HUMAN	HGNC:1608	CHEMBL4594	530.18	177.57	-5
+CCR8	C-C motif chemokine receptor 8	rhodopsin	P51685	CCR8_HUMAN	HGNC:1609	CHEMBL4596	477.65	139.72	-93
+CCR9	C-C motif chemokine receptor 9	rhodopsin	P51686	CCR9_HUMAN	HGNC:1610	CHEMBL5815	526.45	187.71	43
+CCRL2	C-C motif chemokine receptor like 2	rhodopsin	O00421	CCRL2_HUMAN	HGNC:1612	CHEMBL2321627	511.14	152.6	27
+CELSR1	cadherin EGF LAG seven-pass G-type receptor 1	adhesion	Q9NYQ6	CELR1_HUMAN	HGNC:1850		73.93	154.79	156
+CELSR2	cadherin EGF LAG seven-pass G-type receptor 2	adhesion	Q9HCU4	CELR2_HUMAN	HGNC:3231		82.09	161.88	108
+CELSR3	cadherin EGF LAG seven-pass G-type receptor 3	adhesion	Q9NYQ7	CELR3_HUMAN	HGNC:3230		77.77	141.5	-176
+CHRM1	cholinergic receptor muscarinic 1	rhodopsin	P11229	ACM1_HUMAN	HGNC:1950	CHEMBL216	315.87	561.88	28
+CHRM2	cholinergic receptor muscarinic 2	rhodopsin	P08172	ACM2_HUMAN	HGNC:1951	CHEMBL211	285.15	561.03	152
+CHRM3	cholinergic receptor muscarinic 3	rhodopsin	P20309	ACM3_HUMAN	HGNC:1952	CHEMBL245	301.4	576.86	106
+CHRM4	cholinergic receptor muscarinic 4	rhodopsin	P08173	ACM4_HUMAN	HGNC:1953	CHEMBL1821	293.81	567.49	104
+CHRM5	cholinergic receptor muscarinic 5	rhodopsin	P08912	ACM5_HUMAN	HGNC:1954	CHEMBL2035	312.08	575.18	58
+CMKLR1	chemerin chemokine-like receptor 1	rhodopsin	Q99788	CML1_HUMAN	HGNC:2121	CHEMBL3540	609.71	203.19	97
+CNR1	cannabinoid receptor 1	rhodopsin	P21554	CNR1_HUMAN	HGNC:2159	CHEMBL218	274.27	469.08	57
+CNR2	cannabinoid receptor 2	rhodopsin	P34972	CNR2_HUMAN	HGNC:2160	CHEMBL253	279.9	459.86	9
+CRHR1	corticotropin releasing hormone receptor 1	secretin	P34998	CRFR1_HUMAN	HGNC:2357	CHEMBL1800	178.33	107.6	-122
+CRHR2	corticotropin releasing hormone receptor 2	secretin	Q13324	CRFR2_HUMAN	HGNC:2358	CHEMBL4069	189.06	106.31	-74
+CX3CR1	C-X3-C motif chemokine receptor 1	rhodopsin	P49238	CX3C1_HUMAN	HGNC:2558	CHEMBL4843	486.07	135.33	-67
+CXCR1	C-X-C motif chemokine receptor 1	rhodopsin	P25024	CXCR1_HUMAN	HGNC:6026	CHEMBL4029	493.24	206.97	72
+CXCR2	C-X-C motif chemokine receptor 2	rhodopsin	P25025	CXCR2_HUMAN	HGNC:6027	CHEMBL2434	482.53	205.52	120
+CXCR3	C-X-C motif chemokine receptor 3	rhodopsin	P49682	CXCR3_HUMAN	HGNC:4540	CHEMBL4441	500.2	213.3	86
+CXCR4	C-X-C motif chemokine receptor 4	rhodopsin	P61073	CXCR4_HUMAN	HGNC:2561	CHEMBL2107	508.66	194.27	8
+CXCR5	C-X-C motif chemokine receptor 5	rhodopsin	P32302	CXCR5_HUMAN	HGNC:1060	CHEMBL1075315	509.65	208.07	38
+CXCR6	C-X-C motif chemokine receptor 6	rhodopsin	O00574	CXCR6_HUMAN	HGNC:16647	CHEMBL5994	537.01	167.63	-3
+CYSLTR1	cysteinyl leukotriene receptor 1	rhodopsin	Q9Y271	CLTR1_HUMAN	HGNC:17451	CHEMBL1798	473.28	288.42	17
+CYSLTR2	cysteinyl leukotriene receptor 2	rhodopsin	Q9NS75	CLTR2_HUMAN	HGNC:18274	CHEMBL2094254	465.99	296.39	65
+DRD1	dopamine receptor D1	rhodopsin	P21728	DRD1_HUMAN	HGNC:3020	CHEMBL2056	287.0	470.55	169
+DRD2	dopamine receptor D2	rhodopsin	P14416	DRD2_HUMAN	HGNC:3023	CHEMBL217	319.41	515.18	114
+DRD3	dopamine receptor D3	rhodopsin	P35462	DRD3_HUMAN	HGNC:3024	CHEMBL234	330.21	515.02	66
+DRD4	dopamine receptor D4	rhodopsin	P21917	DRD4_HUMAN	HGNC:3025	CHEMBL219	313.4	502.72	142
+DRD5	dopamine receptor D5	rhodopsin	P21918	DRD5_HUMAN	HGNC:3026	CHEMBL1850	293.34	479.31	121
+EDNRA	endothelin receptor type A	rhodopsin	P25101	EDNRA_HUMAN	HGNC:3179	CHEMBL252	278.78	256.93	94
+EDNRB	endothelin receptor type B	rhodopsin	P24530	EDNRB_HUMAN	HGNC:3180	CHEMBL1785	288.84	252.98	46
+F2R	coagulation factor II thrombin receptor	rhodopsin	P25116	PAR1_HUMAN	HGNC:3537	CHEMBL3974	468.22	338.3	70
+F2RL1	F2R like trypsin receptor 1	rhodopsin	P55085	PAR2_HUMAN	HGNC:3538	CHEMBL5963	457.46	337.28	118
+F2RL2	coagulation factor II thrombin receptor like 2	rhodopsin	O00254	PAR3_HUMAN	HGNC:3539	CHEMBL5477	475.19	326.35	42
+F2RL3	F2R like thrombin or trypsin receptor 3	rhodopsin	Q96RI0	PAR4_HUMAN	HGNC:3540	CHEMBL4691	458.22	321.06	120
+FFAR1	free fatty acid receptor 1	rhodopsin	O14842	FFAR1_HUMAN	HGNC:4498	CHEMBL4422	491.47	302.93	-14
+FFAR2	free fatty acid receptor 2	rhodopsin	O15552	FFAR2_HUMAN	HGNC:4501	CHEMBL5493	496.09	314.62	6
+FFAR3	free fatty acid receptor 3	rhodopsin	O14843	FFAR3_HUMAN	HGNC:4499	CHEMBL5201	488.14	333.87	85
+FFAR4	free fatty acid receptor 4	rhodopsin	O3FAR1;Q5NUL3	FFAR4_HUMAN	HGNC:19061	CHEMBL5339	369.85	377.72	86
+FPR1	formyl peptide receptor 1	rhodopsin	P21462	FPR1_HUMAN	HGNC:3826	CHEMBL3359	641.84	194.05	44
+FPR2	formyl peptide receptor 2	rhodopsin	P25090	FPR2_HUMAN	HGNC:3827	CHEMBL4227	645.19	183.78	-5
+FPR3	formyl peptide receptor 3	rhodopsin	P25089	FPR3_HUMAN	HGNC:3828		628.1	195.68	71
+FSHR	follicle stimulating hormone receptor	rhodopsin	P23945	FSHR_HUMAN	HGNC:3969	CHEMBL2024	382.99	400.86	119
+FZD1	frizzled class receptor 1	frizzled	Q9UP38	FZD1_HUMAN	HGNC:4038	CHEMBL2346493	242.64	88.64	-74
+FZD10	frizzled class receptor 10	frizzled	Q9ULW2	FZD10_HUMAN	HGNC:4039		266.24	84.77	-75
+FZD2	frizzled class receptor 2	frizzled	Q14332	FZD2_HUMAN	HGNC:4040	CHEMBL3559686	250.45	100.06	-46
+FZD3	frizzled class receptor 3	frizzled	Q9NPG1	FZD3_HUMAN	HGNC:4041		256.75	119.39	-20
+FZD4	frizzled class receptor 4	frizzled	Q9ULV1	FZD4_HUMAN	HGNC:4042		253.64	90.49	-103
+FZD5	frizzled class receptor 5	frizzled	Q13467	FZD5_HUMAN	HGNC:4043	CHEMBL3559687	271.39	101.56	-35
+FZD6	frizzled class receptor 6	frizzled	O60353	FZD6_HUMAN	HGNC:4044		255.79	130.15	28
+FZD7	frizzled class receptor 7	frizzled	O75084	FZD7_HUMAN	HGNC:4045	CHEMBL3559688	231.98	90.42	-122
+FZD8	frizzled class receptor 8	frizzled	Q9H461	FZD8_HUMAN	HGNC:4046	CHEMBL3559689	273.2	112.21	13
+FZD9	frizzled class receptor 9	frizzled	O00144	FZD9_HUMAN	HGNC:4047		274.43	91.81	-27
+GABBR1	gamma-aminobutyric acid type B receptor subunit 1	glutamate	Q9UBS5	GABR1_HUMAN	HGNC:4070		206.82	37.19	-107
+GABBR2	gamma-aminobutyric acid type B receptor subunit 2	glutamate	O75899	GABR2_HUMAN	HGNC:4507	CHEMBL2111463	217.53	38.66	-59
+GALR1	galanin receptor 1	rhodopsin	P47211	GALR1_HUMAN	HGNC:4132	CHEMBL4894	342.42	241.94	11
+GALR2	galanin receptor 2	rhodopsin	O43603	GALR2_HUMAN	HGNC:4133	CHEMBL3176	336.79	267.6	88
+GALR3	galanin receptor 3	rhodopsin	O60755	GALR3_HUMAN	HGNC:4134	CHEMBL2731	346.41	262.68	40
+GCGR	glucagon receptor	secretin	P47871	GLR_HUMAN	HGNC:4192	CHEMBL1985	125.48	100.25	-154
+GHRHR	growth hormone releasing hormone receptor	secretin	Q02643	GHRHR_HUMAN	HGNC:4266	CHEMBL2032	153.84	81.05	-85
+GHSR	growth hormone secretagogue receptor	rhodopsin	Q92847	GHSR_HUMAN	HGNC:4267	CHEMBL4616	225.81	248.92	109
+GIPR	gastric inhibitory polypeptide receptor	secretin	P48546	GIPR_HUMAN	HGNC:4271	CHEMBL4383	124.86	111.04	158
+GLP1R	glucagon like peptide 1 receptor	secretin	P43220	GLP1R_HUMAN	HGNC:4324	CHEMBL1784	137.06	117.57	130
+GLP2R	glucagon like peptide 2 receptor	secretin	O95838	GLP2R_HUMAN	HGNC:4325	CHEMBL5844	145.48	95.97	-128
+GNRHR	gonadotropin releasing hormone receptor	rhodopsin	P30968	GNRHR_HUMAN	HGNC:4421	CHEMBL1855	276.72	307.84	94
+GNRHR2	gonadotropin releasing hormone receptor 2 (pseudogene)	rhodopsin	Q96P88	GNRR2_HUMAN	HGNC:16341		286.81	303.99	46
+GPBAR1	G protein-coupled bile acid receptor 1	rhodopsin	Q8TDU6	GPBAR_HUMAN	HGNC:19680	CHEMBL5409	323.75	445.06	49
+GPER1	G protein-coupled estrogen receptor 1	rhodopsin	Q99527	GPER1_HUMAN	HGNC:4485	CHEMBL5872	430.12	190.93	-4
+GPR1	G protein-coupled receptor 1	rhodopsin	P46091	GPR1_HUMAN	HGNC:4463		619.98	199.84	49
+GPR101	G protein-coupled receptor 101	rhodopsin	Q96P66	GP101_HUMAN	HGNC:14963		265.31	376.25	126
+GPR107	G protein-coupled receptor 107	orphan	Q5VW38	GP107_HUMAN	HGNC:17830		173.68	176.89	-174
+GPR108	G protein-coupled receptor 108	orphan	Q9NPR9	GP108_HUMAN	HGNC:17829		177.27	187.09	138
+GPR119	G protein-coupled receptor 119	rhodopsin	Q8TDV5	GP119_HUMAN	HGNC:19060	CHEMBL5652	278.49	422.1	96
+GPR12	G protein-coupled receptor 12	rhodopsin	P47775	GPR12_HUMAN	HGNC:4466	CHEMBL5006	253.19	459.84	55
+GPR132	G protein-coupled receptor 132	rhodopsin	Q9UNW8	GP132_HUMAN	HGNC:17482	CHEMBL3085618	429.31	281.02	14
+GPR135	G protein-coupled receptor 135	rogues	Q8IZ08	GP135_HUMAN	HGNC:19991	CHEMBL3309102	263.46	334.55	163
+GPR137	G protein-coupled receptor 137	orphan	Q96N19	G137A_HUMAN	HGNC:24300		190.75	166.26	-170
+GPR139	G protein-coupled receptor 139	rhodopsin	Q6DWJ6	GP139_HUMAN	HGNC:19995	CHEMBL3632455	233.54	213.44	66
+GPR141	G protein-coupled receptor 141	rhodopsin	Q7Z602	GP141_HUMAN	HGNC:19997		455.2	272.74	4
+GPR142	G protein-coupled receptor 142	rhodopsin	Q7Z601	GP142_HUMAN	HGNC:20088	CHEMBL2069161	222.74	213.16	114
+GPR143	G protein-coupled receptor 143	orphan	P51810	GP143_HUMAN	HGNC:20145		236.87	130.71	-12
+GPR146	G protein-coupled receptor 146	rhodopsin	Q96CH1	GP146_HUMAN	HGNC:21718		425.21	181.31	-53
+GPR148	G protein-coupled receptor 148	rhodopsin	Q8TDV2	GP148_HUMAN	HGNC:23623		356.6	491.54	14
+GPR149	G protein-coupled receptor 149	rhodopsin	Q86SP6	GP149_HUMAN	HGNC:23627		206.35	188.82	170
+GPR15	G protein-coupled receptor 15	rhodopsin	P49685	GPR15_HUMAN	HGNC:4469		450.65	183.34	-24
+GPR150	G protein-coupled receptor 150	rhodopsin	Q8NGU9	GP150_HUMAN	HGNC:23628		266.8	298.19	122
+GPR151	G protein-coupled receptor 151	rhodopsin	Q8TDV0	GP151_HUMAN	HGNC:23624	CHEMBL3085617	325.9	259.07	116
+GPR152	G protein-coupled receptor 152	rhodopsin	Q8TDT2	GP152_HUMAN	HGNC:23622		584.57	198.28	73
+GPR153	G protein-coupled receptor 153	rhodopsin	Q6NV75	GP153_HUMAN	HGNC:23618		205.87	202.65	142
+GPR156	G protein-coupled receptor 156	glutamate	Q8NFN8	GP156_HUMAN	HGNC:20844		199.35	48.83	-135
+GPR157	G protein-coupled receptor 157	orphan	Q5UAW9	GP157_HUMAN	HGNC:23687		204.23	150.57	-153
+GPR158	G protein-coupled receptor 158	glutamate	Q5T848	GP158_HUMAN	HGNC:23689		227.01	55.47	-23
+GPR160	G protein-coupled receptor 160	rhodopsin	Q9UJ42	GP160_HUMAN	HGNC:23693	CHEMBL1777664	327.86	335.15	25
+GPR161	G protein-coupled receptor 161	rhodopsin	Q8N6U8	GP161_HUMAN	HGNC:23694		275.95	378.11	77
+GPR162	G protein-coupled receptor 162	rhodopsin	Q16538	GP162_HUMAN	HGNC:16693		215.5	207.54	94
+GPR17	G protein-coupled receptor 17	rhodopsin	Q13304	GPR17_HUMAN	HGNC:4471	CHEMBL1075162	428.28	233.89	20
+GPR171	G protein-coupled receptor 171	rhodopsin	O14626	GP171_HUMAN	HGNC:30057		491.28	277.17	22
+GPR173	G protein-coupled receptor 173	rhodopsin	Q9NS66	GP173_HUMAN	HGNC:18186		298.0	346.73	107
+GPR174	G protein-coupled receptor 174	rhodopsin	Q9BXC1	GP174_HUMAN	HGNC:30245	CHEMBL3562167	387.08	281.51	137
+GPR176	G protein-coupled receptor 176	rhodopsin	Q14439	GP176_HUMAN	HGNC:32370		341.54	331.8	52
+GPR179	G protein-coupled receptor 179	glutamate	Q6PRD1	GP179_HUMAN	HGNC:31371		219.3	47.9	-71
+GPR18	G protein-coupled receptor 18	rhodopsin	Q14330	GPR18_HUMAN	HGNC:4472	CHEMBL2384898	416.38	240.95	48
+GPR180	G protein-coupled receptor 180	orphan	Q86V85	GP180_HUMAN			198.98	196.79	90
+GPR182	G protein-coupled receptor 182	rhodopsin	O15218	GP182_HUMAN	HGNC:13708	CHEMBL4356	402.93	176.61	-126
+GPR183	G protein-coupled receptor 183	rogues	P32249	GP183_HUMAN	HGNC:3128	CHEMBL3259470	401.81	265.41	134
+GPR19	G protein-coupled receptor 19	rhodopsin	Q15760	GPR19_HUMAN	HGNC:4473		262.41	268.78	-166
+GPR20	G protein-coupled receptor 20	rhodopsin	Q99678	GPR20_HUMAN	HGNC:4475		438.92	257.13	41
+GPR21	G protein-coupled receptor 21	rhodopsin	Q99679	GPR21_HUMAN	HGNC:4476		314.2	350.87	104
+GPR22	G protein-coupled receptor 22	rogues	Q99680	GPR22_HUMAN	HGNC:4477		381.41	366.86	45
+GPR25	G protein-coupled receptor 25	rhodopsin	O00155	GPR25_HUMAN	HGNC:4480		442.48	176.27	-72
+GPR26	G protein-coupled receptor 26	rhodopsin	Q8NDV2	GPR26_HUMAN	HGNC:4481		281.24	370.55	96
+GPR27	G protein-coupled receptor 27	rhodopsin	Q9NS67	GPR27_HUMAN	HGNC:4482		310.74	341.35	79
+GPR3	G protein-coupled receptor 3	rhodopsin	P46089	GPR3_HUMAN	HGNC:4484		243.73	469.94	83
+GPR31	G protein-coupled receptor 31	rhodopsin	O00270	GPR31_HUMAN	HGNC:4486		446.02	237.56	-46
+GPR32	G protein-coupled receptor 32	rhodopsin	O75388	GPR32_HUMAN	HGNC:4487		635.17	169.51	-17
+GPR32P1	G protein-coupled receptor 32, pseudogene 1	rhodopsin	Q8NGA4	G32P1_HUMAN			627.85	161.56	-65
+GPR33	G protein-coupled receptor 33 (gene/pseudogene)	rogues	Q49SQ1	GPR33_HUMAN	HGNC:4489		613.18	171.46	-30
+GPR34	G protein-coupled receptor 34	rhodopsin	Q9UPC5	GPR34_HUMAN	HGNC:4490	CHEMBL3562165	479.35	263.68	-53
+GPR35	G protein-coupled receptor 35	rhodopsin	Q9HC97	GPR35_HUMAN	HGNC:4492	CHEMBL1293267	397.74	310.83	78
+GPR37	G protein-coupled receptor 37	rhodopsin	O15354	GPR37_HUMAN	HGNC:4494		297.31	249.75	45
+GPR37L1	G protein-coupled receptor 37 like 1	rhodopsin	O60883	ETBR2_HUMAN	HGNC:14923	CHEMBL5892	301.32	239.72	-3
+GPR39	G protein-coupled receptor 39	rhodopsin	O43194	GPR39_HUMAN	HGNC:4496	CHEMBL3091266	245.78	248.17	45
+GPR4	G protein-coupled receptor 4	rhodopsin	P46093	GPR4_HUMAN	HGNC:4497	CHEMBL3638324	428.8	294.85	42
+GPR42	G protein-coupled receptor 42 (gene/pseudogene)	rhodopsin	O15529	GPR42_HUMAN	HGNC:4500		497.45	328.38	37
+GPR45	G protein-coupled receptor 45	rhodopsin	Q9Y5Y3	GPR45_HUMAN	HGNC:4503		259.04	353.98	113
+GPR50	G protein-coupled receptor 50	rhodopsin	Q13585	MTR1L_HUMAN	HGNC:4506	CHEMBL3341577	310.92	290.39	103
+GPR52	G protein-coupled receptor 52	rhodopsin	Q9Y2T5	GPR52_HUMAN	HGNC:4508	CHEMBL3297639	324.77	348.63	55
+GPR55	G protein-coupled receptor 55	rhodopsin	Q9Y2T6	GPR55_HUMAN	HGNC:4511	CHEMBL1075322	387.26	308.24	127
+GPR6	G protein-coupled receptor 6	rhodopsin	P46095	GPR6_HUMAN	HGNC:4515	CHEMBL3714130	233.47	466.55	131
+GPR61	G protein-coupled receptor 61	rhodopsin	Q9BZJ8	GPR61_HUMAN	HGNC:13300		250.43	365.73	172
+GPR62	G protein-coupled receptor 62	rhodopsin	Q9BZJ7	GPR62_HUMAN	HGNC:13301		256.36	374.77	124
+GPR63	G protein-coupled receptor 63	rhodopsin	Q9BZJ6	GPR63_HUMAN	HGNC:13302		251.85	345.91	161
+GPR65	G protein-coupled receptor 65	rhodopsin	Q8IYL9	PSYR_HUMAN	HGNC:4517	CHEMBL3714081	406.88	283.24	113
+GPR68	G protein-coupled receptor 68	rhodopsin	Q15743	OGR1_HUMAN	HGNC:4519	CHEMBL3713916	418.84	299.03	90
+GPR75	G protein-coupled receptor 75	rhodopsin	O95800	GPR75_HUMAN	HGNC:4526		392.99	359.3	17
+GPR78	G protein-coupled receptor 78	rhodopsin	Q96P69	GPR78_HUMAN	HGNC:4528		291.4	366.86	47
+GPR82	G protein-coupled receptor 82	rhodopsin	Q96P67	GPR82_HUMAN	HGNC:4533		427.19	223.14	-28
+GPR83	G protein-coupled receptor 83	rhodopsin	Q9NYM4	GPR83_HUMAN	HGNC:4523		201.24	280.7	128
+GPR84	G protein-coupled receptor 84	rhodopsin	Q9NQS5	GPR84_HUMAN	HGNC:4535	CHEMBL3714079	391.44	348.6	-31
+GPR85	G protein-coupled receptor 85	rhodopsin	P60893	GPR85_HUMAN	HGNC:4536		290.0	339.47	155
+GPR87	G protein-coupled receptor 87	rhodopsin	Q9BY21	GPR87_HUMAN	HGNC:4538		490.69	255.72	-69
+GPR88	G protein-coupled receptor 88	rhodopsin	Q9GZN0	GPR88_HUMAN	HGNC:4539	CHEMBL3399910	272.28	349.98	85
+GPRC5A	G protein-coupled receptor class C group 5 member A	glutamate	Q8NFJ5	RAI3_HUMAN	HGNC:9836		241.61	77.88	8
+GPRC5B	G protein-coupled receptor class C group 5 member B	glutamate	Q9NZH0	GPC5B_HUMAN	HGNC:13308		224.3	85.23	28
+GPRC5C	G protein-coupled receptor class C group 5 member C	glutamate	Q9NQ84	GPC5C_HUMAN	HGNC:13309		226.42	64.77	-62
+GPRC5D	G protein-coupled receptor class C group 5 member D	glutamate	Q9NZD1	GPC5D_HUMAN	HGNC:13310		239.7	68.63	-34
+GPRC6A	G protein-coupled receptor class C group 6 member A	glutamate	Q5T6X5	GPC6A_HUMAN	HGNC:18510		218.81	115.24	-10
+GRM1	glutamate metabotropic receptor 1	glutamate	Q13255	GRM1_HUMAN	HGNC:4593	CHEMBL3772	193.09	58.57	-104
+GRM2	glutamate metabotropic receptor 2	glutamate	Q14416	GRM2_HUMAN	HGNC:4594	CHEMBL5137	168.33	81.01	151
+GRM3	glutamate metabotropic receptor 3	glutamate	Q14832	GRM3_HUMAN	HGNC:4595	CHEMBL2888	167.61	70.23	-161
+GRM4	glutamate metabotropic receptor 4	glutamate	Q14833	GRM4_HUMAN	HGNC:4596	CHEMBL2736	164.29	61.1	179
+GRM5	glutamate metabotropic receptor 5	glutamate	P41594	GRM5_HUMAN	HGNC:4597	CHEMBL3227	203.68	60.72	-56
+GRM6	glutamate metabotropic receptor 6	glutamate	O15303	GRM6_HUMAN	HGNC:4598	CHEMBL4573	185.42	53.24	-82
+GRM7	glutamate metabotropic receptor 7	glutamate	Q14831	GRM7_HUMAN	HGNC:4599	CHEMBL3777	161.26	47.6	-153
+GRM8	glutamate metabotropic receptor 8	glutamate	O00222	GRM8_HUMAN	HGNC:4600	CHEMBL3228	169.83	41.02	-105
+GRPR	gastrin releasing peptide receptor	rhodopsin	P30550	GRPR_HUMAN	HGNC:4609	CHEMBL4959	253.93	252.89	131
+HCAR1	hydroxycarboxylic acid receptor 1	rhodopsin	Q9BXC0	HCAR1_HUMAN	HGNC:4532	CHEMBL1075101	460.47	235.76	-54
+HCAR2	hydroxycarboxylic acid receptor 2	rhodopsin	Q8TDS4	HCAR2_HUMAN	HGNC:24827	CHEMBL3785	473.11	241.38	-27
+HCAR3	hydroxycarboxylic acid receptor 3	rhodopsin	P49019	HCAR3_HUMAN	HGNC:16824	CHEMBL4421	473.28	252.18	22
+HCRTR1	hypocretin receptor 1	rhodopsin	O43613	OX1R_HUMAN	HGNC:4848	CHEMBL5113	233.62	308.04	66
+HCRTR2	hypocretin receptor 2	rhodopsin	O43614	OX2R_HUMAN	HGNC:4849	CHEMBL4792	222.81	307.8	114
+HRH1	histamine receptor H1	rhodopsin	P35367	HRH1_HUMAN	HGNC:5182	CHEMBL231	294.34	535.47	142
+HRH2	histamine receptor H2	rhodopsin	P25021	HRH2_HUMAN	HGNC:5183	CHEMBL1941	293.39	459.9	-169
+HRH3	histamine receptor H3	rhodopsin	Q9Y5N1	HRH3_HUMAN	HGNC:5184	CHEMBL264	282.94	543.03	174
+HRH4	histamine receptor H4	rhodopsin	Q9H3N8	HRH4_HUMAN	HGNC:17383	CHEMBL3759	288.62	552.22	126
+HTR1A	5-hydroxytryptamine receptor 1A	rhodopsin	P08908	5HT1A_HUMAN	HGNC:5286	CHEMBL214	326.78	523.35	5
+HTR1B	5-hydroxytryptamine receptor 1B	rhodopsin	P28222	5HT1B_HUMAN	HGNC:5287	CHEMBL1898	334.07	542.54	52
+HTR1D	5-hydroxytryptamine receptor 1D	rhodopsin	P28221	5HT1D_HUMAN	HGNC:5289	CHEMBL1983	339.0	532.92	4
+HTR1E	5-hydroxytryptamine receptor 1E	rhodopsin	P28566	5HT1E_HUMAN	HGNC:5291	CHEMBL2182	319.63	553.63	99
+HTR1F	5-hydroxytryptamine receptor 1F	rhodopsin	P30939	5HT1F_HUMAN	HGNC:5292	CHEMBL1805	330.01	550.64	51
+HTR2A	5-hydroxytryptamine receptor 2A	rhodopsin	P28223	5HT2A_HUMAN	HGNC:5293	CHEMBL224	285.16	447.28	118
+HTR2B	5-hydroxytryptamine receptor 2B	rhodopsin	P41595	5HT2B_HUMAN	HGNC:5294	CHEMBL1833	278.75	438.58	166
+HTR2C	5-hydroxytryptamine receptor 2C	rhodopsin	P28335	5HT2C_HUMAN	HGNC:5295	CHEMBL225	298.72	444.52	90
+HTR4	5-hydroxytryptamine receptor 4	rhodopsin	Q13639	5HT4R_HUMAN	HGNC:5299	CHEMBL1875	318.61	413.42	85
+HTR5A	5-hydroxytryptamine receptor 5A	rhodopsin	P47898	5HT5A_HUMAN	HGNC:5300	CHEMBL3426	353.24	482.81	-21
+HTR6	5-hydroxytryptamine receptor 6	rhodopsin	P50406	5HT6R_HUMAN	HGNC:5301	CHEMBL3371	291.28	423.24	-170
+HTR7	5-hydroxytryptamine receptor 7	rhodopsin	P34969	5HT7R_HUMAN	HGNC:5302	CHEMBL3155	286.85	509.6	166
+KISS1R	KISS1 receptor	rhodopsin	Q969F8	KISSR_HUMAN	HGNC:4510	CHEMBL5413	325.77	246.5	84
+LGR4	leucine rich repeat containing G protein-coupled receptor 4	rhodopsin	Q9BXB1	LGR4_HUMAN	HGNC:13299		406.26	376.54	-32
+LGR5	leucine rich repeat containing G protein-coupled receptor 5	rhodopsin	O75473	LGR5_HUMAN	HGNC:4504		415.81	386.55	-4
+LGR6	leucine rich repeat containing G protein-coupled receptor 6	rhodopsin	Q9HBX8	LGR6_HUMAN	HGNC:19719		411.86	396.61	44
+LHCGR	luteinizing hormone/choriogonadotropin receptor	rhodopsin	P22888	LSHR_HUMAN	HGNC:6585	CHEMBL1854	403.29	405.57	41
+LPAR1	lysophosphatidic acid receptor 1	rhodopsin	Q92633	LPAR1_HUMAN	HGNC:3166	CHEMBL3819	258.32	481.14	80
+LPAR2	lysophosphatidic acid receptor 2	rhodopsin	Q9HBW0	LPAR2_HUMAN	HGNC:3168	CHEMBL3724	245.49	486.33	107
+LPAR3	lysophosphatidic acid receptor 3	rhodopsin	Q9UBY5	LPAR3_HUMAN	HGNC:14298	CHEMBL3250	237.6	478.95	156
+LPAR4	lysophosphatidic acid receptor 4	rhodopsin	Q99677	LPAR4_HUMAN	HGNC:4478	CHEMBL5968	384.71	297.43	121
+LPAR5	lysophosphatidic acid receptor 5	rhodopsin	Q9H1C0	LPAR5_HUMAN	HGNC:13307	CHEMBL5700	406.41	300.05	51
+LPAR6	lysophosphatidic acid receptor 6	rhodopsin	P43657	LPAR6_HUMAN	HGNC:15520	CHEMBL2331058	379.11	289.84	163
+LTB4R	leukotriene B4 receptor	rhodopsin	Q15722	LT4R1_HUMAN	HGNC:6713	CHEMBL3911	598.34	196.92	45
+LTB4R2	leukotriene B4 receptor 2	rhodopsin	Q9NPC1	LT4R2_HUMAN	HGNC:19260	CHEMBL2095160	601.89	186.71	-3
+MAS1	MAS1 proto-oncogene, G protein-coupled receptor	rhodopsin	P04201	MAS_HUMAN	HGNC:6899	CHEMBL3559701	568.5	198.14	-80
+MAS1L	MAS1 proto-oncogene like, G protein-coupled receptor	rhodopsin	P35410	MAS1L_HUMAN	HGNC:13961		573.62	233.66	68
+MC1R	melanocortin 1 receptor	rhodopsin	Q01726	MSHR_HUMAN	HGNC:6929	CHEMBL3795	211.24	450.93	157
+MC2R	melanocortin 2 receptor	rhodopsin	Q01718	ACTHR_HUMAN	HGNC:6930	CHEMBL1965	211.16	440.13	-155
+MC3R	melanocortin 3 receptor	rhodopsin	P41968	MC3R_HUMAN	HGNC:6931	CHEMBL4644	210.55	466.86	121
+MC4R	melanocortin 4 receptor	rhodopsin	P32245	MC4R_HUMAN	HGNC:6932	CHEMBL259	224.2	464.64	93
+MC5R	melanocortin 5 receptor	rhodopsin	P33032	MC5R_HUMAN	HGNC:6933	CHEMBL4608	204.49	457.92	169
+MCHR1	melanin concentrating hormone receptor 1	rhodopsin	Q99705	MCHR1_HUMAN	HGNC:4479	CHEMBL344	323.06	177.31	-137
+MCHR2	melanin concentrating hormone receptor 2	rhodopsin	Q969V1	MCHR2_HUMAN	HGNC:20867	CHEMBL5038	335.99	173.62	-77
+MLNR	motilin receptor	rhodopsin	O43193	MTLR_HUMAN	HGNC:4495	CHEMBL2203	218.18	241.27	158
+MRGPRD	MAS related GPR family member D	rogues	Q8TDS7	MRGRD_HUMAN	HGNC:29626		559.19	209.01	-67
+MRGPRE	MAS related GPR family member E	rhodopsin	Q86SM8	MRGRE_HUMAN	HGNC:30694		587.25	231.29	41
+MRGPRF	MAS related GPR family member F	rogues	Q96AM1	MRGRF_HUMAN	HGNC:24828		577.31	204.39	-32
+MRGPRG	MAS related GPR family member G	rhodopsin	Q86SM5	MRGRG_HUMAN	HGNC:24829		590.06	220.86	-8
+MRGPRX1	MAS related GPR family member X1	rhodopsin	Q96LB2	MRGX1_HUMAN	HGNC:17962	CHEMBL5850	567.74	241.36	9
+MRGPRX2	MAS related GPR family member X2	rhodopsin	Q96LB1	MRGX2_HUMAN	HGNC:17983	CHEMBL5849	547.01	245.97	102
+MRGPRX3	MAS related GPR family member X3	rhodopsin	Q96LB0	MRGX3_HUMAN	HGNC:17980		568.47	255.17	37
+MRGPRX4	MAS related GPR family member X4	rhodopsin	Q96LA9	MRGX4_HUMAN	HGNC:17617		558.93	260.24	85
+MTNR1A	melatonin receptor 1A	rhodopsin	P48039	MTR1A_HUMAN	HGNC:7463	CHEMBL1945	323.5	296.15	75
+MTNR1B	melatonin receptor 1B	rhodopsin	P49286	MTR1B_HUMAN	HGNC:7464	CHEMBL1946	331.71	289.14	27
+NMBR	neuromedin B receptor	rhodopsin	P28336	NMBR_HUMAN	HGNC:7843	CHEMBL3636	273.61	246.06	55
+NMUR1	neuromedin U receptor 1	rhodopsin	Q9HB89	NMUR1_HUMAN	HGNC:4518	CHEMBL1075178	257.75	232.51	22
+NMUR2	neuromedin U receptor 2	rhodopsin	Q9GZQ4	NMUR2_HUMAN	HGNC:16454	CHEMBL1075144	249.78	239.81	70
+NPBWR1	neuropeptides B and W receptor 1	rhodopsin	P48145	NPBW1_HUMAN	HGNC:4522	CHEMBL1293293	372.2	210.83	77
+NPBWR2	neuropeptides B and W receptor 2	rhodopsin	P48146	NPBW2_HUMAN	HGNC:4530		380.58	204.01	28
+NPFFR1	neuropeptide FF receptor 1	rhodopsin	Q9GZQ6	NPFF1_HUMAN	HGNC:17425	CHEMBL5951	216.82	301.01	112
+NPFFR2	neuropeptide FF receptor 2	rhodopsin	Q9Y5X5	NPFF2_HUMAN	HGNC:4525	CHEMBL5952	209.6	292.97	161
+NPSR1	neuropeptide S receptor 1	rhodopsin	Q6W5P4	NPSR1_HUMAN	HGNC:23631	CHEMBL5162	254.58	290.22	162
+NPY1R	neuropeptide Y receptor Y1	rhodopsin	P25929	NPY1R_HUMAN	HGNC:7956	CHEMBL4777	154.93	269.91	166
+NPY2R	neuropeptide Y receptor Y2	rhodopsin	P49146	NPY2R_HUMAN	HGNC:7957	CHEMBL4018	192.69	284.19	122
+NPY4R	neuropeptide Y receptor Y4	rhodopsin	P50391	NPY4R_HUMAN	HGNC:9329	CHEMBL4877	166.04	278.15	138
+NPY5R	neuropeptide Y receptor Y5	rhodopsin	Q15761	NPY5R_HUMAN	HGNC:7958	CHEMBL4561	176.9	258.39	-122
+NPY6R	neuropeptide Y receptor Y6 (pseudogene)	rhodopsin	Q99463	NPY6R_HUMAN	HGNC:7959		157.12	259.32	-146
+NTSR1	neurotensin receptor 1	rhodopsin	P30989	NTR1_HUMAN	HGNC:8039	CHEMBL4123	238.2	259.74	73
+NTSR2	neurotensin receptor 2	rhodopsin	O95665	NTR2_HUMAN	HGNC:8040	CHEMBL2514	227.51	258.17	121
+OPN1LW	opsin 1, long wave sensitive	rhodopsin	P04000	OPSR_HUMAN	HGNC:9936	CHEMBL1949482	317.81	392.0	143
+OPN1MW	opsin 1, medium wave sensitive	rhodopsin	P04001	OPSG_HUMAN	HGNC:4206		327.19	397.38	94
+OPN1SW	opsin 1, short wave sensitive	rhodopsin	P03999	OPSB_HUMAN	HGNC:1012		335.83	394.66	99
+OPN3	opsin 3	rhodopsin	Q9H1Y3	OPN3_HUMAN	HGNC:14007		324.83	373.84	141
+OPN4	opsin 4	rhodopsin	Q9UHM6	OPN4_HUMAN	HGNC:14449		328.04	359.27	134
+OPN5	opsin 5	rhodopsin	Q6U736	OPN5_HUMAN	HGNC:19992		344.14	375.85	87
+OPRD1	opioid receptor delta 1	rhodopsin	P41143	OPRD_HUMAN	HGNC:8153	CHEMBL236	402.2	185.76	-24
+OPRK1	opioid receptor kappa 1	rhodopsin	P41145	OPRK_HUMAN	HGNC:8154	CHEMBL237	389.77	179.69	-52
+OPRL1	opioid related nociceptin receptor 1	rhodopsin	P41146	OPRX_HUMAN	HGNC:8155	CHEMBL2014	380.46	180.38	-48
+OPRM1	opioid receptor mu 1	rhodopsin	P35372	OPRM_HUMAN	HGNC:8156	CHEMBL233	401.98	196.57	24
+OXER1	oxoeicosanoid receptor 1	rhodopsin	Q8TDS5	OXER1_HUMAN	HGNC:24884	CHEMBL1628461	454.18	257.41	45
+OXGR1	oxoglutarate receptor 1	rhodopsin	P2RY15;Q96P68	OXGR1_HUMAN	HGNC:4531	CHEMBL2150840	403.49	246.55	45
+OXTR	oxytocin receptor	rhodopsin	P30559	OXYR_HUMAN	HGNC:8529	CHEMBL2049	261.64	314.47	75
+P2RY1	purinergic receptor P2Y1	rhodopsin	P47900	P2RY1_HUMAN	HGNC:8539	CHEMBL4315	436.08	311.73	111
+P2RY10	purinergic receptor P2Y10	rhodopsin	O00398;P2RY10	P2Y10_HUMAN	HGNC:19906	CHEMBL3562166	383.75	271.23	-175
+P2RY11	purinergic receptor P2Y11	rhodopsin	P2RY11;Q96G91	P2Y11_HUMAN	HGNC:8540	CHEMBL4867	428.59	303.95	159
+P2RY12	purinergic receptor P2Y12	rhodopsin	P2RY12;Q9H244	P2Y12_HUMAN	HGNC:18124	CHEMBL2001	514.49	262.71	2
+P2RY13	purinergic receptor P2Y13	rhodopsin	P2RY13;Q9BPV8	P2Y13_HUMAN	HGNC:4537	CHEMBL3321651	510.27	252.76	-46
+P2RY14	purinergic receptor P2Y14	rhodopsin	P2RY14;Q15391	P2Y14_HUMAN	HGNC:16442	CHEMBL4518	505.21	272.96	30
+P2RY2	purinergic receptor P2Y2	rhodopsin	P41231	P2RY2_HUMAN	HGNC:8541	CHEMBL4398	437.61	321.02	125
+P2RY4	pyrimidinergic receptor P2Y4	rhodopsin	P51582	P2RY4_HUMAN	HGNC:8542	CHEMBL2123	448.27	322.78	77
+P2RY6	pyrimidinergic receptor P2Y6	rhodopsin	Q15077	P2RY6_HUMAN	HGNC:8543	CHEMBL4714	456.06	311.34	46
+P2RY8	purinergic receptor P2Y8	rhodopsin	Q86VZ1	P2RY8_HUMAN	HGNC:15524		482.25	293.67	-37
+PRLHR	prolactin releasing hormone receptor	rhodopsin	P49683	PRLHR_HUMAN	HGNC:4464	CHEMBL1681611	181.4	280.72	141
+PROKR1	prokineticin receptor 1	rhodopsin	Q8TCW9	PKR1_HUMAN	HGNC:4524	CHEMBL5649	244.83	286.43	109
+PROKR2	prokineticin receptor 2	rhodopsin	Q8NFJ6	PKR2_HUMAN	HGNC:15836	CHEMBL5548	237.18	278.81	158
+PTAFR	platelet activating factor receptor	rhodopsin	P25105	PTAFR_HUMAN	HGNC:9582	CHEMBL250	470.38	265.29	-53
+PTGDR	prostaglandin D2 receptor	rhodopsin	Q13258	PD2R_HUMAN	HGNC:9591	CHEMBL4427	376.15	338.99	6
+PTGDR2	prostaglandin D2 receptor 2	rhodopsin	Q9Y5Y4	PD2R2_HUMAN	HGNC:4502	CHEMBL5071	586.77	166.44	-62
+PTGER1	prostaglandin E receptor 1	rhodopsin	P34995	PE2R1_HUMAN	HGNC:9593	CHEMBL1811	379.66	316.44	8
+PTGER2	prostaglandin E receptor 2	rhodopsin	P43116	PE2R2_HUMAN	HGNC:9594	CHEMBL1881	370.43	348.16	55
+PTGER3	prostaglandin E receptor 3	rhodopsin	P43115	PE2R3_HUMAN	HGNC:9595	CHEMBL3710	360.35	327.77	32
+PTGER4	prostaglandin E receptor 4	rhodopsin	P35408	PE2R4_HUMAN	HGNC:9596	CHEMBL1836	349.28	340.8	82
+PTGFR	prostaglandin F receptor	rhodopsin	P43088	PF2R_HUMAN	HGNC:9600	CHEMBL1987	377.27	307.3	-34
+PTGIR	prostaglandin I2 (prostacyclin) receptor (IP)	rhodopsin	P43119	PI2R_HUMAN	HGNC:9602	CHEMBL1995	356.7	346.46	85
+PTH1R	parathyroid hormone 1 receptor	secretin	Q03431	PTH1R_HUMAN	HGNC:9608	CHEMBL1793	164.66	96.52	-124
+PTH2R	parathyroid hormone 2 receptor	secretin	P49190	PTH2R_HUMAN	HGNC:9609		175.34	94.89	-76
+QRFPR	pyroglutamylated RFamide peptide receptor	rhodopsin	Q96P65	QRFPR_HUMAN	HGNC:15565	CHEMBL5852	257.81	281.65	82
+RGR	retinal G protein coupled receptor	rhodopsin	P47804	RGR_HUMAN	HGNC:9990		363.82	369.02	11
+RHO	rhodopsin	rhodopsin	P08100	OPSD_HUMAN	HGNC:10012		346.16	391.5	50
+RRH	retinal pigment epithelium-derived rhodopsin homolog	rhodopsin	O14718	OPSX_HUMAN	HGNC:10450		357.8	378.0	59
+RXFP1	relaxin/insulin like family peptide receptor 1	rhodopsin	Q9HBX9	RXFP1_HUMAN	HGNC:19718	CHEMBL1293316	370.03	391.64	117
+RXFP2	relaxin/insulin like family peptide receptor 2	rhodopsin	Q8WXD0	RXFP2_HUMAN	HGNC:17318	CHEMBL1628482	380.84	391.93	69
+RXFP3	relaxin/insulin like family peptide receptor 3	rhodopsin	Q9NSD7	RL3R1_HUMAN	HGNC:24883	CHEMBL1628472	528.07	213.12	-71
+RXFP4	relaxin/insulin like family peptide receptor 4	rhodopsin	Q8TDU9	RL3R2_HUMAN	HGNC:14666	CHEMBL1628473	535.71	220.75	-22
+S1PR1	sphingosine-1-phosphate receptor 1	rhodopsin	P21453	S1PR1_HUMAN	HGNC:3165	CHEMBL4333	275.96	479.25	31
+S1PR2	sphingosine-1-phosphate receptor 2	rhodopsin	O95136	S1PR2_HUMAN	HGNC:3169	CHEMBL2955	280.87	492.95	23
+S1PR3	sphingosine-1-phosphate receptor 3	rhodopsin	Q99500	S1PR3_HUMAN	HGNC:3167	CHEMBL3892	258.37	491.54	122
+S1PR4	sphingosine-1-phosphate receptor 4	rhodopsin	O95977	S1PR4_HUMAN	HGNC:3170	CHEMBL3230	278.15	506.52	51
+S1PR5	sphingosine-1-phosphate receptor 5	rhodopsin	Q9H228	S1PR5_HUMAN	HGNC:14299	CHEMBL2274	267.65	509.05	99
+SCTR	secretin receptor	secretin	P47872	SCTR_HUMAN	HGNC:10608	CHEMBL1925	161.05	87.36	-77
+SMO	smoothened, frizzled class receptor	frizzled	Q99835	SMO_HUMAN	HGNC:11119	CHEMBL5971	231.72	114.07	-79
+SSTR1	somatostatin receptor 1	rhodopsin	P30872	SSR1_HUMAN	HGNC:11330	CHEMBL1917	356.74	165.3	-55
+SSTR2	somatostatin receptor 2	rhodopsin	P30874	SSR2_HUMAN	HGNC:11331	CHEMBL1804	368.06	185.05	18
+SSTR3	somatostatin receptor 3	rhodopsin	P32745	SSR3_HUMAN	HGNC:11332	CHEMBL2028	368.75	164.23	-60
+SSTR4	somatostatin receptor 4	rhodopsin	P31391	SSR4_HUMAN	HGNC:11333	CHEMBL1853	346.07	163.58	-104
+SSTR5	somatostatin receptor 5	rhodopsin	P35346	SSR5_HUMAN	HGNC:11334	CHEMBL1792	374.97	173.07	-12
+SUCNR1	succinate receptor 1	rhodopsin	Q9BXA5	SUCR1_HUMAN	HGNC:4542	CHEMBL2150838	393.29	250.13	93
+TAAR1	trace amine associated receptor 1	rhodopsin	Q96RJ0	TAAR1_HUMAN	HGNC:17734	CHEMBL5857	336.41	419.9	67
+TAAR2	trace amine associated receptor 2 (gene/pseudogene)	rhodopsin	Q9P1P5	TAAR2_HUMAN	HGNC:4514		349.96	417.13	39
+TAAR3P	trace amine associated receptor 3, pseudogene	rhodopsin	Q9P1P4	TAAR3_HUMAN	HGNC:4513		352.46	406.62	-9
+TAAR5	trace amine associated receptor 5	rhodopsin	O14804	TAAR5_HUMAN	HGNC:30236	CHEMBL3714046	318.67	424.84	119
+TAAR6	trace amine associated receptor 6	rhodopsin	Q96RI8	TAAR6_HUMAN	HGNC:20978		344.21	435.22	35
+TAAR8	trace amine associated receptor 8	rhodopsin	Q969N4	TAAR8_HUMAN	HGNC:14964		334.8	440.54	83
+TAAR9	trace amine associated receptor 9 (gene/pseudogene)	rhodopsin	Q96RI9	TAAR9_HUMAN	HGNC:20977		323.55	432.49	114
+TACR1	tachykinin receptor 1	rhodopsin	P25103	NK1R_HUMAN	HGNC:11526	CHEMBL249	194.88	251.66	-171
+TACR2	tachykinin receptor 2	rhodopsin	P21452	NK2R_HUMAN	HGNC:11527	CHEMBL2327	198.99	260.86	-177
+TACR3	tachykinin receptor 3	rhodopsin	P29371	NK3R_HUMAN	HGNC:11528	CHEMBL4429	205.77	241.16	-101
+TAS1R1	taste 1 receptor member 1	glutamate	Q7RTX1	TS1R1_HUMAN	HGNC:14448		224.41	95.43	-63
+TAS1R2	taste 1 receptor member 2	glutamate	Q8TE23	TS1R2_HUMAN	HGNC:14905	CHEMBL3832642	231.03	103.98	-15
+TAS1R3	taste 1 receptor member 3	glutamate	Q7RTX0	TS1R3_HUMAN	HGNC:15661	CHEMBL3832641	210.92	98.52	-91
+TAS2R1	taste 2 receptor member 1	tas2	Q9NYW7	TA2R1_HUMAN	HGNC:14909		295.52	129.76	-18
+TAS2R10	taste 2 receptor member 10	tas2	Q9NYW0	T2R10_HUMAN	HGNC:14918		285.67	150.23	15
+TAS2R13	taste 2 receptor member 13	tas2	Q9NYV9	T2R13_HUMAN	HGNC:14919		298.67	146.41	-71
+TAS2R14	taste 2 receptor member 14	tas2	Q9NYV8	T2R14_HUMAN	HGNC:14920	CHEMBL3309105	306.36	154.0	-23
+TAS2R16	taste 2 receptor member 16	tas2	Q9NYV7	T2R16_HUMAN	HGNC:14921	CHEMBL3309106	299.35	101.44	-35
+TAS2R19	taste 2 receptor member 19	tas2	P59542	T2R19_HUMAN	HGNC:19108		316.53	166.09	17
+TAS2R20	taste 2 receptor member 20	tas2	P59543	T2R20_HUMAN	HGNC:19109		306.63	173.93	39
+TAS2R3	taste 2 receptor member 3	tas2	Q9NYW6	TA2R3_HUMAN	HGNC:14910		291.9	139.7	-5
+TAS2R30	taste 2 receptor member 30	tas2	P59541	T2R30_HUMAN	HGNC:19112		330.94	156.99	11
+TAS2R31	taste 2 receptor member 31	tas2	P59538	T2R31_HUMAN	HGNC:19113	CHEMBL2034804	344.43	128.72	-26
+TAS2R38	taste 2 receptor member 38	tas2	P59533	T2R38_HUMAN	HGNC:9584		306.69	127.66	17
+TAS2R39	taste 2 receptor member 39	tas2	P59534	T2R39_HUMAN	HGNC:18886		321.24	114.05	-33
+TAS2R4	taste 2 receptor member 4	tas2	Q9NYW5	TA2R4_HUMAN	HGNC:14911	CHEMBL3309107	308.03	109.94	-61
+TAS2R40	taste 2 receptor member 40	tas2	P59535	T2R40_HUMAN	HGNC:18885		322.67	124.76	15
+TAS2R41	taste 2 receptor member 41	tas2	P59536	T2R41_HUMAN	HGNC:18883	CHEMBL3309108	283.21	88.27	-113
+TAS2R42	taste 2 receptor member 42	tas2	Q7RTR8	T2R42_HUMAN	HGNC:18888		290.64	173.08	33
+TAS2R43	taste 2 receptor member 43	tas2	P59537	T2R43_HUMAN	HGNC:18875		335.92	122.05	-75
+TAS2R45	taste 2 receptor member 45	tas2	P59539	T2R45_HUMAN	HGNC:18876		341.27	142.19	1
+TAS2R46	taste 2 receptor member 46	tas2	P59540	T2R46_HUMAN	HGNC:18877		320.21	134.12	-98
+TAS2R5	taste 2 receptor member 5	tas2	Q9NYW4	TA2R5_HUMAN	HGNC:14912		298.12	110.69	-38
+TAS2R50	taste 2 receptor member 50	tas2	P59544	T2R50_HUMAN	HGNC:18882		316.01	145.69	-67
+TAS2R60	taste 2 receptor member 60	tas2	P59551	T2R60_HUMAN	HGNC:20639	CHEMBL3309109	294.01	88.68	-65
+TAS2R7	taste 2 receptor member 7	tas2	Q9NYW3	TA2R7_HUMAN	HGNC:14913		263.18	144.16	-42
+TAS2R8	taste 2 receptor member 8	tas2	Q9NYW2	TA2R8_HUMAN	HGNC:14915		244.02	144.62	-56
+TAS2R9	taste 2 receptor member 9	tas2	Q9NYW1	TA2R9_HUMAN	HGNC:14917	CHEMBL3309110	254.03	144.83	-45
+TBXA2R	thromboxane A2 receptor	rhodopsin	P21731	TA2R_HUMAN	HGNC:11608	CHEMBL2069	369.47	325.79	36
+TMEM145	transmembrane protein 145	orphan	Q8NBT3	TM145_HUMAN			189.24	192.1	138
+TMEM87A	transmembrane protein 87A	orphan	Q8NBN3	GPHCC_HUMAN			170.59	168.37	-178
+TMEM87B	transmembrane protein 87B	orphan	Q96K49	TM87B_HUMAN			175.57	158.78	-130
+TPRA1	transmembrane protein adipocyte associated 1	orphan	Q86W33	TPRA1_HUMAN	HGNC:30413		196.95	157.41	-122
+TRHR	thyrotropin releasing hormone receptor	rhodopsin	P34981	TRFR_HUMAN	HGNC:12299	CHEMBL1810	232.97	224.61	122
+TSHR	thyroid stimulating hormone receptor	rhodopsin	P16473	TSHR_HUMAN	HGNC:12373	CHEMBL1963	393.41	409.96	89
+UTS2R	urotensin 2 receptor	rhodopsin	Q9UKP6	UR2R_HUMAN	HGNC:4468	CHEMBL3764	344.22	197.75	-32
+VIPR1	vasoactive intestinal peptide receptor 1	secretin	P32241	VIPR1_HUMAN	HGNC:12694	CHEMBL5144	146.48	75.11	-88
+VIPR2	vasoactive intestinal peptide receptor 2	secretin	P41587	VIPR2_HUMAN	HGNC:12695	CHEMBL4532	126.25	80.08	-164
+VN1R1	vomeronasal 1 receptor 1	vomeronasal	Q9GZP7	VN1R1_HUMAN	HGNC:13548		240.66	176.39	65
+VN1R2	vomeronasal 1 receptor 2	vomeronasal	Q8NFZ6	VN1R2_HUMAN	HGNC:19872		265.4	185.12	52
+VN1R3	vomeronasal 1 receptor 3	vomeronasal	Q9BXE9	VN1R3_HUMAN	HGNC:19867		252.99	184.42	74
+VN1R4	vomeronasal 1 receptor 4	vomeronasal	Q7Z5H5	VN1R4_HUMAN	HGNC:19871		270.2	175.43	4
+VN1R5	vomeronasal 1 receptor 5 (gene/pseudogene)	vomeronasal	Q7Z5H4	VN1R5_HUMAN	HGNC:19870		255.19	162.51	-20
+XCR1	X-C motif chemokine receptor 1	rhodopsin	P46094	XCR1_HUMAN	HGNC:1625		492.86	171.67	18

@@ -21,6 +21,8 @@ Usage:
   python tools/update_datasets.py
   python tools/update_datasets.py --only sequence,drugs
   python tools/update_datasets.py --refresh
+  python tools/update_datasets.py --set olfactory      # the olfactory tree -> data/datasets_olfactory.json
+  (needs data/olfactory.tsv from tools/build_tree.py)
 Then run tools/build_data.py.
 """
 import argparse
@@ -57,7 +59,13 @@ DRUGCENTRAL = 'https://unmtid-dbs.net/download/drug.target.interaction.tsv.gz'
 PROTEOMICS = 'https://www.proteomicsdb.org/proteomicsdb/logic'
 HEADERS = {'User-Agent': 'GPCRome-data/1.0', 'Accept': 'application/json'}
 CACHE_VERSION = 1
-ANCHOR = 'adrb2_human'
+# The receptors the datasets are collected for: the non-olfactory tree and, separately, the olfactory tree.
+# The alignments are merged on an anchor receptor and checked against the identity GPCRdb publishes for a pair.
+SETS = {
+    'nonolfactory': {'table': 'receptors.tsv', 'out': 'datasets.json', 'anchor': 'adrb2_human', 'pair': 'adrb1_human'},
+    'olfactory': {'table': 'olfactory.tsv', 'out': 'datasets_olfactory.json', 'anchor': 'o51e2_human', 'pair': 'o51g1_human'},
+}
+ENSEMBL_SYMBOL = 'https://rest.ensembl.org/xrefs/symbol/homo_sapiens/{}?content-type=application/json;object_type=gene'
 TM_SUFFIX = '/TM1,TM2,TM3,TM4,TM5,TM6,TM7/'
 FULL_SUFFIX = '/'
 
@@ -96,7 +104,7 @@ def split(value):
     return [v for v in (value or '').split(';') if v]
 
 
-def load_tree():
+def load_tree(table):
     gpcrdb = json.loads((DATA / 'gpcrdb.json').read_text())
     by_acc = {g['accession']: g for g in gpcrdb['receptors']}
     by_gene = {}
@@ -104,7 +112,7 @@ def load_tree():
         for gene in g['genes']:
             by_gene.setdefault(gene.upper(), g)
     rows = []
-    with open(DATA / 'receptors.tsv', newline='') as handle:
+    with open(DATA / table, newline='') as handle:
         for r in csv.DictReader(handle, delimiter='\t'):
             accs = split(r['uniprot'])
             g = next((by_acc[a] for a in accs if a in by_acc), None) or by_gene.get(r['gene'].upper())
@@ -276,33 +284,34 @@ def pack_u16(values):
     return base64.b64encode(b''.join(parts)).decode('ascii')
 
 
-def check_against_api(aligned, entry_to_gene, blosum):
+def check_against_api(aligned, entry_to_gene, blosum, anchor, other):
     """The merged 7TM alignment has to reproduce GPCRdb's published identity and similarity."""
-    remote = fetch_json(f'{GPCRDB}/alignment/similarity/adrb2_human,adrb1_human/TM1,TM2,TM3,TM4,TM5,TM6,TM7/')
-    got_i, got_s = pair_scores(aligned['adrb2_human'], aligned['adrb1_human'], blosum)
-    expect_i = int(round(remote['adrb1_human']['identity'] * 10))
-    expect_s = int(round(remote['adrb1_human']['similarity'] * 10))
+    remote = fetch_json(f'{GPCRDB}/alignment/similarity/{anchor},{other}/TM1,TM2,TM3,TM4,TM5,TM6,TM7/')
+    got_i, got_s = pair_scores(aligned[anchor], aligned[other], blosum)
+    expect_i = int(round(remote[other]['identity'] * 10))
+    expect_s = int(round(remote[other]['similarity'] * 10))
     if abs(got_i - expect_i) > 1 or abs(got_s - expect_s) > 1:
         raise RuntimeError(f'7TM scores {got_i / 10}, {got_s / 10} != GPCRdb {expect_i / 10}, {expect_s / 10}')
-    gene_a, gene_b = entry_to_gene['adrb2_human'], entry_to_gene['adrb1_human']
+    gene_a, gene_b = entry_to_gene[anchor], entry_to_gene[other]
     print(f'  7TM {gene_b} vs {gene_a}: identity {got_i / 10}%, similarity {got_s / 10}% (matches GPCRdb)')
 
 
-def build_sequence(tree):
+def build_sequence(tree, anchor, other):
     blosum = load_blosum()
     entry_to_gene = {r['entry']: r['gene'] for r in tree if r['entry']}
-    if ANCHOR not in entry_to_gene:
-        raise RuntimeError(f'{ANCHOR} is not on the tree')
+    for entry in (anchor, other):
+        if entry not in entry_to_gene:
+            raise RuntimeError(f'{entry} is not on the tree')
     entries = sorted(entry_to_gene)
     print(f'  aligning {len(entries)} receptors')
-    tm = fetch_alignment_group(entries, TM_SUFFIX, ANCHOR)
-    full = fetch_alignment_group(entries, FULL_SUFFIX, ANCHOR)
+    tm = fetch_alignment_group(entries, TM_SUFFIX, anchor)
+    full = fetch_alignment_group(entries, FULL_SUFFIX, anchor)
     for label, seqs in (('7TM', tm), ('full sequence', full)):
         lengths = {len(seq) for seq in seqs.values()}
         if len(lengths) != 1:
             raise RuntimeError(f'{label} alignment columns are inconsistent ({sorted(lengths)[:4]}…)')
         print(f'  {label}: {len(seqs)} sequences, {lengths.pop()} columns')
-    check_against_api(tm, entry_to_gene, blosum)
+    check_against_api(tm, entry_to_gene, blosum, anchor, other)
     covered = [e for e in entries if e in tm and e in full]
     gene_of = {e: entry_to_gene[e] for e in covered}
     genes = sorted(set(gene_of.values()))
@@ -490,7 +499,31 @@ def build_gtopdb(tree):
     return counts, ligand_sets
 
 
-def build_ensembl(tree):
+def ensembl_gene(symbol, refresh):
+    """The Ensembl gene id of a gene symbol, from Ensembl's REST service (cached); None if there is none."""
+    path = CACHE / 'ensembl' / f'{symbol}.json'
+    cached = None if refresh else load_cached(path)
+    if cached is not None:
+        return cached['id']
+    for attempt in range(4):
+        try:
+            rows = fetch_json(ENSEMBL_SYMBOL.format(urllib.parse.quote(symbol)), timeout=60)
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code in (400, 404):
+                rows = []
+                break
+            time.sleep(2 * (attempt + 1))
+        except (OSError, ValueError):               # dropped connection (Ensembl limits the rate): wait and retry
+            time.sleep(2 * (attempt + 1))
+    else:
+        return None                                  # not cached, so a later run asks again
+    found = next((r['id'] for r in rows if str(r.get('id', '')).startswith('ENSG')), None)
+    write_json(path, {'v': CACHE_VERSION, 'id': found})
+    return found
+
+
+def build_ensembl(tree, refresh=False, workers=2):
     genes = {r['gene'].upper(): r['gene'] for r in tree}
     rows = gtp_reader(GTP_TARGETS)
     found = {}
@@ -509,6 +542,12 @@ def build_ensembl(tree):
                 ids.append(token)
         if ids:
             found[gene] = ids[0]
+    # symbols that Guide to Pharmacology does not list (most olfactory receptors): ask Ensembl
+    missing = sorted(g for g in genes.values() if g not in found)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for gene, ens in zip(missing, pool.map(lambda g: ensembl_gene(g, refresh), missing)):
+            if ens:
+                found[gene] = ens
     print(f'  Ensembl ids for {len(found)}/{len(tree)} receptors')
     return found
 
@@ -750,19 +789,22 @@ def main():
     parser = argparse.ArgumentParser(description='Download optional GPCRome datasets')
     parser.add_argument('--only', default='sequence,drugs,expression,ligands',
                         help='comma-separated: sequence, drugs, expression, ligands')
+    parser.add_argument('--set', default='nonolfactory', choices=sorted(SETS),
+                        help='the receptors to collect for: the non-olfactory tree or the olfactory tree')
     parser.add_argument('--refresh', action='store_true', help='ignore cached responses')
     parser.add_argument('--workers', type=int, default=6)
     args = parser.parse_args()
     only = {part.strip() for part in args.only.split(',') if part.strip()}
-    tree = load_tree()
-    path = DATA / 'datasets.json'
+    spec = SETS[args.set]
+    tree = load_tree(spec['table'])
+    path = DATA / spec['out']
     doc = json.loads(path.read_text()) if path.exists() else {}
     doc['date'] = datetime.date.today().isoformat()
     failed = []
 
     if 'sequence' in only:
         print('sequence')
-        doc['sequence'] = build_sequence(tree)
+        doc['sequence'] = build_sequence(tree, spec['anchor'], spec['pair'])
         write_json(path, doc)
     if 'drugs' in only:
         print('drugs')
@@ -772,12 +814,12 @@ def main():
         dc_counts = build_drugcentral(tree)
         doc['counts'] = merge_counts(doc.get('counts', {}), gpcrdb_counts, chembl_counts, gtp_counts, dc_counts)
         doc.setdefault('ligands', {})['gtp'] = gtp_ligands
-        doc['ensembl'] = build_ensembl(tree)
+        doc['ensembl'] = build_ensembl(tree, args.refresh)
         write_json(path, doc)
     if 'expression' in only:
         print('expression')
         if 'ensembl' not in doc:
-            doc['ensembl'] = build_ensembl(tree)
+            doc['ensembl'] = build_ensembl(tree, args.refresh)
         expression, expr_failed = build_expression(tree, doc['ensembl'], args.refresh, args.workers)
         doc['expression'] = expression
         failed.extend(expr_failed)
@@ -797,7 +839,7 @@ def main():
         'expression': 'Protein values are ProteomicsDB normalized intensities for tissues and fluids. mRNA is Human Protein Atlas RNA-seq (TPM) hosted by ProteomicsDB.',
     }
     write_json(path, doc)
-    print(f'DONE datasets -> data/datasets.json ({len(failed)} failures)')
+    print(f'DONE datasets -> data/{spec["out"]} ({len(failed)} failures)')
     if failed:
         for name, err in failed[:20]:
             print(f'  {name}: {err}')

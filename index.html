@@ -17,6 +17,10 @@
          <img class="brand-logo" src="images/gpcrome-logo.png" alt="" width="26" height="32">
          <span class="brand-copy"><strong>GPCRome</strong><span>Interactive mapper of the human GPCR tree</span></span>
       </div>
+      <div class="segmented tree-toggle" data-choice="treeView" role="group" aria-label="Tree">
+         <button type="button" data-value="nonolfactory" title="Classes A, B, C, F, taste 2 and vomeronasal, with an arrow where the olfactory receptors join class A">Non-olfactory GPCRs</button>
+         <button type="button" data-value="olfactory" title="The olfactory and extra-nasal receptors, with an arrow where class A joins them">Olfactory GPCRs</button>
+      </div>
       <div class="search">
          <input id="search" type="search" autocomplete="off" placeholder="Find a receptor (ADRB2, P07550, adrb2_human, β2…)  ⌘K">
          <ul id="search-results" hidden></ul>
@@ -36,6 +40,7 @@
                <button data-export="mapped">Mapped receptors – CSV</button>
             </div>
          </div>
+         <button id="reset-all" class="danger" title="Reset the map, the table, all settings and the tree to the defaults">Reset</button>
          <button id="help" class="icon" title="Quick start">?</button>
       </div>
    </header>
@@ -67,13 +72,15 @@
                   <tr><td><code>ADRB2 7.5</code></td><td>with a value (also <code>ADRB2,7.5</code> or tab separated)</td></tr>
                   <tr><td><code>ADRB* GPR1??</code></td><td>wildcards</td></tr>
                   <tr><td><code>all</code></td><td>every receptor</td></tr>
-                  <tr><td><code>class:B1</code></td><td>a class: A, B1, B2, C, F, T2, rogues, orphan</td></tr>
-                  <tr><td><code>family:adenosine</code></td><td>a GPCRdb receptor family</td></tr>
-                  <tr><td><code>ligand:peptide</code></td><td>a GPCRdb ligand type</td></tr>
+                  <tr><td><code>class:B1</code></td><td>a class: A, B1, B2, C, F, T2, V1, rogues, orphan (olfactory tree: O1, O2)</td></tr>
+                  <tr><td><code>chemokine</code></td><td>a whole receptor family by name: <code>aminergic</code>, <code>adenosine</code>, <code>peptide</code>, <code>lipid</code>, <code>opioid</code>… (GPCRdb families and ligand types, the start of a name is enough)</td></tr>
+                  <tr><td><code>family:chemokine</code></td><td>the same, explicitly: a GPCRdb receptor family or ligand type (<code>ligand:peptide</code> only ligand types)</td></tr>
                   <tr><td><code>fill=red size=8</code></td><td>also <code>shape= stroke= opacity= transparency= label=yes text=</code></td></tr>
                   <tr><td><code>red star label</code></td><td>bare colours, shapes and <code>label</code> work too</td></tr>
                   <tr><td><code>fill=red star<br>ADRB2<br>DRD2</code></td><td>style line, then the receptors it applies to. The next style line starts a new group. <code>style clear</code> ends it. A property on a receptor line overrides the group.</td></tr>
                   <tr><td><code>set labels=all</code></td><td>change a global setting (see CSV export for all keys)</td></tr>
+                  <tr><td><code>set classLabels=off</code></td><td>hide the names of the classes on the tree</td></tr>
+                  <tr><td><code>set tree=olfactory</code></td><td>draw the olfactory tree instead of the non-olfactory tree (<code>set tree=non-olfactory</code> to go back)</td></tr>
                </table>
                <p>Later lines override earlier ones, e.g. <code>all fill=#ccc</code> followed by <code>ADRB* fill=red</code>.</p>
             </details>
@@ -239,8 +246,10 @@
          </section>
 
          <section class="panel" id="tab-tree" hidden>
-            <p class="hint">Toggle and recolour the branches of each GPCR class. Hidden classes also hide their receptors.</p>
+            <p class="hint">Toggle and recolour the branches of each class of the tree shown (switch between the non-olfactory and the olfactory tree at the top). Hidden classes also hide their receptors.</p>
             <div id="class-list"></div>
+            <label class="check"><input type="checkbox" data-setting="classLabels"> Class names on the tree</label>
+            <p class="hint">Drag a class name to move it; double-click it to put it back.</p>
             <div class="button-row">
                <button id="tree-show-all">Show all</button>
                <button id="tree-grey" title="Draw the whole tree in grey so only the markers stand out">Grey tree</button>
@@ -255,7 +264,8 @@
 
          <footer class="cite">
             Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).<br>
-            Tree based on <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a>
+            Tree: maximum-likelihood phylogeny of the GPCRdb structure-based 7TM alignment (<a href="https://iqtree.github.io/" target="_blank" rel="noopener">IQ-TREE</a>), with full-length trees for classes B1, B2, C and F;
+            layout after <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a>
             and <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>
             · Annotation: <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>,
             <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>,
@@ -310,11 +320,13 @@
    <script src="js/data/tree.js"></script>
    <script src="js/data/receptors.js"></script>
    <script src="js/data/datasets.js"></script>
+   <script src="js/mode.js"></script>
    <script src="js/colors.js"></script>
    <script src="js/shapes.js"></script>
    <script src="js/registry.js"></script>
    <script src="js/state.js"></script>
    <script src="js/commands.js"></script>
+   <script src="js/labels.js"></script>
    <script src="js/render.js"></script>
    <script src="js/export.js"></script>
    <script src="js/ui.js"></script>

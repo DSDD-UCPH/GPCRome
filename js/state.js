@@ -37,6 +37,8 @@ GPCRome.state = (function () {
          treeWidth: 1,
          treeOpacity: 1,
          background: 'white',
+         classLabels: true,
+         treeView: 'nonolfactory',
          tree,
       };
    }
@@ -71,6 +73,7 @@ GPCRome.state = (function () {
             Object.keys(stored.tree || {}).forEach(c => { if (s.tree[c]) Object.assign(s.tree[c], stored.tree[c]); });
          } else if (k in s) s[k] = stored[k];
       });
+      if (s.treeView !== 'olfactory') s.treeView = 'nonolfactory';
       return s;
    }
 
@@ -141,12 +144,22 @@ GPCRome.state = (function () {
    const undo = () => step(undoStack, redoStack);
    const redo = () => step(redoStack, undoStack);
 
-   let saveTimer = null;
+   let saveTimer = null, cleared = false;
+   function saveNow() {
+      clearTimeout(saveTimer);
+      if (cleared) return;
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(current)); } catch (e) { /* storage unavailable */ }
+   }
    function save() {
       clearTimeout(saveTimer);
-      saveTimer = setTimeout(() => {
-         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(current)); } catch (e) { /* storage unavailable */ }
-      }, 300);
+      saveTimer = setTimeout(saveNow, 300);
+   }
+
+   /* Forget the saved session for good (the page is about to reload) */
+   function clearStorage() {
+      cleared = true;
+      clearTimeout(saveTimer);
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* storage unavailable */ }
    }
 
    function restore() {
@@ -193,7 +206,8 @@ GPCRome.state = (function () {
       let bin = '';
       packed.forEach(b => { bin += String.fromCharCode(b); });
       const b64 = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-      return location.href.split('#')[0].split('?')[0] + '#s=' + b64;
+      const view = current.settings.treeView !== 'nonolfactory' ? '?tree=' + current.settings.treeView : '';
+      return location.href.split('#')[0].split('?')[0] + view + '#s=' + b64;
    }
 
    async function fromShareHash(hash) {
@@ -210,7 +224,7 @@ GPCRome.state = (function () {
       ROW_FIELDS, defaultSettings,
       get: () => current,
       subscribe: fn => listeners.push(fn),
-      setRows, setSettings, setOffset, load, reset, undo, redo, restore,
+      setRows, setSettings, setOffset, load, reset, undo, redo, restore, saveNow, clearStorage,
       canUndo: () => undoStack.length > 0,
       canRedo: () => redoStack.length > 0,
       shareLink, fromShareHash,
