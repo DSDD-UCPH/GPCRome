@@ -1,3 +1,5 @@
 .DS_Store
 __pycache__/
 data/cache/
+# Local phylogeny outputs; a committed symlink breaks the GitHub Pages Jekyll build.
+results
