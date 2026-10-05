@@ -265,7 +265,11 @@
    });
 
    /* ---------- style controls ---------- */
-   $$('[data-options="shapes"]').forEach(sel => GPCRome.shapes.names.forEach(n => sel.insertAdjacentHTML('beforeend', `<option value="${n}">${n}</option>`)));
+   const shapePicker = $('#shape-picker');
+   shapePicker.innerHTML = GPCRome.shapes.names.map(n => {
+      const d = GPCRome.shapes.path(n, 7);
+      return `<button type="button" data-value="${esc(n)}" title="${esc(n)}" aria-label="${esc(n)}"><svg viewBox="-12 -12 24 24" aria-hidden="true"><path d="${d}"/></svg></button>`;
+   }).join('');
    $$('[data-options="palettes"]').forEach(sel => Object.keys(GPCRome.colors.palettes).forEach(n => sel.insertAdjacentHTML('beforeend', `<option value="${n}">${n}</option>`)));
 
    const defaults = state.defaultSettings();
@@ -417,17 +421,24 @@
       });
    }
 
+   function textOrLink(text, url, title) {
+      const safe = esc(text);
+      if (!url) return safe;
+      const tip = title ? ` title="${esc(title)}"` : '';
+      return `<a href="${esc(url)}" target="_blank" rel="noopener"${tip}>${safe}</a>`;
+   }
+
    function drugLine(data, label, pairs) {
       const present = pairs.filter(([, key]) => data[key] != null);
       if (!present.some(([, key]) => data[key] > 0)) return null;
-      return [label, present.map(([name, key]) => `${name} ${data[key]}`).join(' · ')];
+      return [label, present.map(([name, key, url, title]) => `${textOrLink(name, url, title)} ${esc(data[key])}`).join(' · ')];
    }
 
-   function expressionLine(r, kind, label) {
+   function expressionLine(r, kind, label, url, title) {
       const peak = reg.expressionPeak(r.id, kind);
       if (!peak) return null;
       const unit = kind === 'mrna' ? ' TPM' : '';
-      return [label, `${render.fmt(peak.value)}${unit} · highest in ${peak.tissue}`];
+      return [label, textOrLink(`${render.fmt(peak.value)}${unit} · highest in ${peak.tissue}`, url, title)];
    }
 
    function showInfo() {
@@ -437,28 +448,43 @@
       const m = render.last().marks.get(r.id);
       const g = r.gpcrdb;
       const rows = exactRows(r);
+      const gpcrdbUrl = g ? `https://gpcrdb.org/protein/${g.entry_name}/` : '';
+      const uniprotUrl = r.uniprot[0] ? `https://www.uniprot.org/uniprotkb/${r.uniprot[0]}/entry` : '';
+      const chemblUrl = r.chembl[0] ? `https://www.ebi.ac.uk/chembl/explore/target/${r.chembl[0]}` : '';
+      const gtopUrl = `https://www.guidetopharmacology.org/GRAC/DatabaseSearchForward?searchString=${encodeURIComponent(r.id)}&searchCategories=all&species=Human&type=all&comments=includeComments&order=rank&submit=Search+Database`;
+      const hgncUrl = r.hgnc[0] ? `https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/${r.hgnc[0]}` : '';
+      const proteinUrl = r.uniprot[0] ? `https://www.proteomicsdb.org/proteomicsdb/#protein/proteinDetails/${r.uniprot[0]}/summary` : '';
+      const hpaUrl = `https://www.proteinatlas.org/search/${encodeURIComponent(r.id)}`;
+      const drugcentralUrl = r.uniprot[0] ? `https://drugcentral.org/target/${r.uniprot[0]}` : '';
       const links = [
-         g && ['GPCRdb', `https://gpcrdb.org/protein/${g.entry_name}/`],
-         r.uniprot[0] && ['UniProt', `https://www.uniprot.org/uniprotkb/${r.uniprot[0]}/entry`],
-         ['GtoPdb', `https://www.guidetopharmacology.org/GRAC/DatabaseSearchForward?searchString=${encodeURIComponent(r.id)}&searchCategories=all&species=all&type=all&comments=includeComments&order=rank&submit=Search+Database`],
-         r.chembl[0] && ['ChEMBL', `https://www.ebi.ac.uk/chembl/explore/target/${r.chembl[0]}`],
-         r.hgnc[0] && ['HGNC', `https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/${r.hgnc[0]}`],
+         gpcrdbUrl && ['GPCRdb', gpcrdbUrl],
+         uniprotUrl && ['UniProt', uniprotUrl],
+         ['GtoPdb', gtopUrl],
+         chemblUrl && ['ChEMBL', chemblUrl],
+         hgncUrl && ['HGNC', hgncUrl],
       ].filter(Boolean);
       const dl = [
-         ['Class', reg.classById[r.cls].name],
-         g && ['Family', g.family],
-         g && ['Ligand type', g.ligand_type],
-         ['UniProt', [r.uniprot[0], r.entry[0]].filter(Boolean).join(' · ')],
-         r.data && r.data.structures != null && ['Structures', `${r.data.structures} (human ${r.data.structures_human})`],
-         r.data && r.data.structure_ligands != null && ['Ligands in structures', r.data.structure_ligands],
-         r.data && r.data.chembl_ligands > 0 && ['ChEMBL ligands', `${r.data.chembl_ligands} (${r.data.chembl_datapoints} datapoints)`],
-         r.data && r.data.gtopdb_ligands > 0 && ['GtP ligands', String(r.data.gtopdb_ligands)],
-         r.data && drugLine(r.data, 'Approved drugs', [['GPCRdb', 'gpcrdb_approved'], ['ChEMBL', 'chembl_approved'], ['GtP', 'gtopdb_approved']]),
-         r.data && drugLine(r.data, 'Clinical candidates', [['GPCRdb', 'gpcrdb_clinical'], ['ChEMBL', 'chembl_clinical']]),
-         r.data && r.data.gpcrdb_max_phase > 0 && ['Highest phase (GPCRdb)', String(r.data.gpcrdb_max_phase)],
-         r.data && r.data.drugcentral_drugs > 0 && ['DrugCentral', `${r.data.drugcentral_drugs} drugs (${r.data.drugcentral_moa} with a mechanism)`],
-         expressionLine(r, 'protein', 'Protein expression'),
-         expressionLine(r, 'mrna', 'mRNA expression'),
+         ['Class', esc(reg.classById[r.cls].name)],
+         g && ['Family', textOrLink(g.family, gpcrdbUrl, 'Open family in GPCRdb')],
+         g && ['Ligand type', textOrLink(g.ligand_type, gpcrdbUrl, 'Open ligand type in GPCRdb')],
+         ['UniProt', textOrLink([r.uniprot[0], r.entry[0]].filter(Boolean).join(' · '), uniprotUrl, 'Open in UniProt')],
+         r.data && r.data.structures != null && ['Structures', textOrLink(`${r.data.structures} (human ${r.data.structures_human})`, gpcrdbUrl, 'Open structures in GPCRdb')],
+         r.data && r.data.structure_ligands != null && ['Ligands in structures', textOrLink(String(r.data.structure_ligands), gpcrdbUrl, 'Open in GPCRdb')],
+         r.data && r.data.chembl_ligands > 0 && ['ChEMBL ligands', textOrLink(`${r.data.chembl_ligands} (${r.data.chembl_datapoints} datapoints)`, chemblUrl, 'Open in ChEMBL')],
+         r.data && r.data.gtopdb_ligands > 0 && ['GtP ligands', textOrLink(String(r.data.gtopdb_ligands), gtopUrl, 'Open in Guide to Pharmacology')],
+         r.data && drugLine(r.data, 'Approved drugs', [
+            ['GPCRdb', 'gpcrdb_approved', gpcrdbUrl, 'Open in GPCRdb'],
+            ['ChEMBL', 'chembl_approved', chemblUrl, 'Open in ChEMBL'],
+            ['GtP', 'gtopdb_approved', gtopUrl, 'Open in Guide to Pharmacology'],
+         ]),
+         r.data && drugLine(r.data, 'Clinical candidates', [
+            ['GPCRdb', 'gpcrdb_clinical', gpcrdbUrl, 'Open in GPCRdb'],
+            ['ChEMBL', 'chembl_clinical', chemblUrl, 'Open in ChEMBL'],
+         ]),
+         r.data && r.data.gpcrdb_max_phase > 0 && ['Highest phase (GPCRdb)', textOrLink(String(r.data.gpcrdb_max_phase), gpcrdbUrl, 'Open in GPCRdb')],
+         r.data && r.data.drugcentral_drugs > 0 && ['DrugCentral', textOrLink(`${r.data.drugcentral_drugs} drugs (${r.data.drugcentral_moa} with a mechanism)`, drugcentralUrl, 'Open in DrugCentral')],
+         expressionLine(r, 'protein', 'Protein expression', proteinUrl, 'Open in ProteomicsDB'),
+         expressionLine(r, 'mrna', 'mRNA expression', hpaUrl, 'Open in the Human Protein Atlas'),
       ].filter(Boolean);
       let mapped = '<p class="muted">Not in your map.</p>';
       if (m) {
@@ -471,7 +497,7 @@
          <button class="close" title="Close">×</button>
          <h4>${esc(r.id)}</h4>
          <div class="subtitle">${esc(g ? g.name : '')}${g ? ' · ' : ''}${esc(r.name)}</div>
-         <dl>${dl.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>
+         <dl>${dl.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('')}</dl>
          ${mapped}
          <div class="links">${links.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${n}</a>`).join('')}</div>
          <div class="button-row">
@@ -576,6 +602,7 @@
          <p>Everything runs in your browser – your data never leaves your computer.</p>`],
       ['1 · Add receptors', `<p>Paste receptors in the <b>Data</b> tab and press <b>Map</b>. Any identifier works: gene symbols, UniProt accessions or entry names, HGNC and ChEMBL IDs, old names and synonyms.</p>
          <p>Add a number to colour and size the markers by value: <code>ADRB2 7.5</code>, or upload a CSV/TSV file. Wildcards (<code>ADRB*</code>) and selectors (<code>class:B1</code>, <code>family:opioid</code>) select groups.</p>
+         <p>To style several receptors at once, put the appearance on its own line and list them underneath, for example <code>fill=red shape=star size=8 opacity=0.6</code>. The next style line starts a new group.</p>
          <p>The dataset menu maps built-in counts: structures, ChEMBL and Guide to Pharmacology ligands, drugs and clinical phase, ProteomicsDB expression for a chosen tissue, and sequence identity to a reference receptor.</p>`],
       ['2 · Fine-tune in the table', `<p>The table works like a spreadsheet: edit cells, paste from Excel, reorder or delete rows (right-click).</p>
          <p>Per row you can set fill, size, shape, label and more. Later rows override earlier ones, so <code>all</code> grey followed by a few highlighted receptors is easy.</p>`],
@@ -584,10 +611,11 @@
       ['4 · Save and share', `<p><b>Download</b> the map as SVG (vector) or PNG, and your table plus settings as CSV – upload that CSV later to continue.</p>
          <p><b>Share link</b> copies a URL that restores this exact map. Undo/redo with ⌘/Ctrl+Z.</p>`],
    ];
-   const ABOUT = ['How to cite', `<p>This GPCR tree mapper is developed by Albert J. Kooistra and Chris de Graaf, in the
-      <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen.</p>
+   const ABOUT = ['How to cite', `<p>This GPCR tree mapper is developed by Albert J. Kooistra in the
+      <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).</p>
       <p>The tree is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a> and the original tree by
       <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>. It was updated using refined sequence alignments focusing on the 7TM bundle; names and reference sequences follow the latest UniProt.</p>
+      <p>Annotation and the built-in datasets come from <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>, <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>, <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>, <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a>, <a href="https://www.proteinatlas.org/" target="_blank" rel="noopener">Human Protein Atlas</a> and <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>.</p>
       <p>The publication is in preparation. Please cite:<br><b>Kooistra AJ, de Graaf C. GPCR Tree Mapper. Accessed [date].</b></p>`];
    let step = 0, pages = STEPS;
    function showModal(list, i) {

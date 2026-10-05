@@ -148,12 +148,14 @@ GPCRome.render = (function () {
    }
 
    /* Glyph box for a label. dx/dy shift the text anchor so the glyphs are centred on (cx, cy). */
-   function textBox(text, fontSize) {
-      const key = fontSize + '\0' + text;
+   function textBox(text, fontSize, weight, style) {
+      const key = fontSize + '\0' + weight + '\0' + style + '\0' + text;
       const cached = metricCache.get(key);
       if (cached) return cached;
       const halo = fontSize * 0.16;
       probe.setAttribute('font-size', fontSize);
+      probe.setAttribute('font-weight', weight || 'normal');
+      probe.setAttribute('font-style', style || 'normal');
       probe.textContent = text || ' ';
       const bb = probe.getBBox();
       const box = bb.width > 0 ? {
@@ -322,17 +324,18 @@ GPCRome.render = (function () {
       content = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
    }
 
-   function leaderEnds(L) {
+   function leaderEnds(L, mode) {
       const left = L.cx - L.w / 2, right = L.cx + L.w / 2, top = L.cy - L.h / 2, bot = L.cy + L.h / 2;
       const qx = Math.max(left, Math.min(L.px, right));
       const qy = Math.max(top, Math.min(L.py, bot));
       const dx = qx - L.px, dy = qy - L.py;
       const dist = Math.hypot(dx, dy);
-      if (dist < L.ownR + 7) return null;
+      const always = mode === 'on';
+      if (dist < L.ownR + (always ? 1.6 : 7)) return null;
       const ux = dx / dist, uy = dy / dist;
       const x1 = L.px + ux * (L.ownR + 0.7), y1 = L.py + uy * (L.ownR + 0.7);
       const x2 = qx - ux, y2 = qy - uy;
-      if (Math.hypot(x2 - x1, y2 - y1) < 4) return null;
+      if (Math.hypot(x2 - x1, y2 - y1) < (always ? 1.2 : 4)) return null;
       return { x1, y1, x2, y2 };
    }
 
@@ -371,7 +374,7 @@ GPCRome.render = (function () {
          c.setAttribute('display', s.tree[reg.byId[c.dataset.id].cls].visible ? 'inline' : 'none');
       });
 
-      if (s.legend && domain) drawLegend(s, domain);
+      if (s.legend && domain) drawLegend(s, domain, marks);
       let blockers = [];
       if (layers.legend.childNodes.length) {
          try {
@@ -390,6 +393,8 @@ GPCRome.render = (function () {
          radiusById.set(r.id, rad);
       });
 
+      const weight = s.labelBold ? 'bold' : 'normal';
+      const fontStyle = s.labelItalic ? 'italic' : 'normal';
       const labels = [];
       reg.receptors.forEach(r => {
          if (!s.tree[r.cls].visible) return;
@@ -398,7 +403,7 @@ GPCRome.render = (function () {
          const show = flag === 'yes' || (flag !== 'no' && (s.labels === 'all' || (s.labels === 'mapped' && m)));
          if (!show) return;
          const text = (m && m.text) || reg.displayName(r, s.labelName);
-         const box = textBox(text, s.labelSize);
+         const box = textBox(text, s.labelSize, weight, fontStyle);
          const ang = (r.angle * Math.PI) / 180;
          const off = state.offsets[r.id];
          const pinned = !!(off && (Math.abs(off[0]) > 0.2 || Math.abs(off[1]) > 0.2));
@@ -413,8 +418,9 @@ GPCRome.render = (function () {
       layoutLabels(labels, obstacles, blockers, s.labelSize);
       includeLabelBounds(labels);
 
+      const lineMode = s.labelLine || 'auto';
       labels.forEach(L => {
-         const ends = leaderEnds(L);
+         const ends = lineMode === 'off' ? null : leaderEnds(L, lineMode);
          if (ends) {
             const g = el('g', { 'data-for': L.id }, layers.leaders);
             const line = { x1: ends.x1.toFixed(2), y1: ends.y1.toFixed(2), x2: ends.x2.toFixed(2), y2: ends.y2.toFixed(2), 'stroke-linecap': 'round' };
@@ -432,6 +438,7 @@ GPCRome.render = (function () {
          const attrs = {
             x: (L.cx + L.dx).toFixed(2), y: (L.cy + L.dy).toFixed(2),
             'text-anchor': 'middle', 'font-size': s.labelSize,
+            'font-weight': weight, 'font-style': fontStyle,
          };
          el('text', Object.assign({ fill: 'none', stroke: '#ffffff', 'stroke-width': s.labelSize * 0.28, 'stroke-linejoin': 'round', 'stroke-opacity': 0.9 }, attrs), g).textContent = L.text;
          el('text', Object.assign({ fill: s.labelColor }, attrs), g).textContent = L.text;
@@ -447,37 +454,136 @@ GPCRome.render = (function () {
       }
    }
 
-   function drawLegend(s, domain) {
+   const CLASS_LEGEND_MAX = 6;
+
+   function valueClasses(marks, s) {
+      const seen = new Set();
+      marks.forEach(m => {
+         if (!s.tree[m.r.cls].visible) return;
+         if (typeof m.value !== 'number' || !isFinite(m.value)) return;
+         if (s.valueScale === 'log' && !(m.value > 0)) return;
+         seen.add(Number(m.value.toPrecision(6)));
+      });
+      return [...seen].sort((a, b) => a - b);
+   }
+
+   function scaleT(s, domain) {
+      const log = s.valueScale === 'log';
+      const tf = log ? v => Math.log10(v) : v => v;
+      const span = tf(domain[1]) - tf(domain[0]);
+      return v => (span === 0 ? 0.5 : (tf(v) - tf(domain[0])) / span);
+   }
+
+   function clamp01(t) {
+      return Math.min(1, Math.max(0, t));
+   }
+
+   function scaledSize(s, t) {
+      const u = clamp01(t);
+      return s.sizeByValue ? s.sizeMin + u * (s.sizeMax - s.sizeMin) : s.size;
+   }
+
+   function scaledFill(s, t) {
+      const u = clamp01(t);
+      return s.colorByValue ? GPCRome.colors.sample(s.palette, u, s.reversePalette) : s.fill;
+   }
+
+   function legendMarker(g, s, cx, cy, size, fill) {
+      el('path', {
+         d: GPCRome.shapes.path(s.shape, size),
+         transform: `translate(${cx.toFixed(2)},${cy.toFixed(2)})`,
+         fill, 'fill-opacity': s.opacity,
+         stroke: s.stroke === 'none' || !(s.strokeWidth > 0) ? 'none' : s.stroke,
+         'stroke-width': s.strokeWidth,
+         'stroke-opacity': Math.min(1, Number(s.opacity) + 0.15),
+      }, g);
+   }
+
+   function legendTitle(g, s, x, y) {
+      if (!s.legendTitle) return y;
+      el('text', { x, y, 'font-size': 12, 'font-weight': 'bold', fill: '#222' }, g).textContent = s.legendTitle;
+      return y;
+   }
+
+   /* One marker per distinct value when a value scale has only a few classes. */
+   function drawClassLegend(s, values, tOf, x0) {
       const g = layers.legend;
-      const width = 180, x0 = W - width - 10;
-      let y = H - 20;
+      layers.gradient.textContent = '';
+      const gap = 7;
+      const items = values.map(v => {
+         const t = tOf(v);
+         return { v, size: scaledSize(s, t), fill: scaledFill(s, t) };
+      });
+      const maxSize = Math.max(...items.map(it => it.size), 4);
+      const rows = items.map(it => Math.max(it.size * 2, 13) + gap);
+      const blockH = rows.reduce((sum, h) => sum + h, 0);
+      const titleH = s.legendTitle ? 18 : 0;
+      let y = H - 16 - blockH - titleH;
+      legendTitle(g, s, x0, y + 12);
+      y += titleH;
+      const cx = x0 + maxSize;
+      items.forEach((it, i) => {
+         const cy = y + (rows[i] - gap) / 2;
+         legendMarker(g, s, cx, cy, it.size, it.fill);
+         el('text', { x: cx + it.size + 6, y: cy + 4, 'font-size': 11, fill: '#333' }, g).textContent = fmt(it.v);
+         y += rows[i];
+      });
+   }
+
+   /* Continuous colour bar, with min / mean / max sizes centred on the same scale. */
+   function drawScaleLegend(s, domain, tOf, x0, width) {
+      const g = layers.legend;
+      let bottom = H - 8;
+      let top = bottom;
+
       if (s.colorByValue) {
          layers.gradient.textContent = '';
          for (let i = 0; i <= 10; i++) {
             el('stop', { offset: i / 10, 'stop-color': GPCRome.colors.sample(s.palette, i / 10, s.reversePalette) }, layers.gradient);
          }
-         el('rect', { x: x0, y: y - 12, width, height: 12, fill: 'url(#gpcrome-legend-gradient)', stroke: '#555', 'stroke-width': 0.6, 'fill-opacity': s.opacity }, g);
-         el('text', { x: x0, y: y + 11, 'font-size': 11, fill: '#333' }, g).textContent = fmt(domain[0]);
-         el('text', { x: x0 + width, y: y + 11, 'font-size': 11, fill: '#333', 'text-anchor': 'end' }, g).textContent = fmt(domain[1]);
-         y -= 22;
+         const labelY = bottom;
+         const barH = 12;
+         const barY = labelY - 15;
+         el('rect', {
+            x: x0, y: barY, width, height: barH,
+            fill: 'url(#gpcrome-legend-gradient)', stroke: '#555', 'stroke-width': 0.6, 'fill-opacity': s.opacity,
+         }, g);
+         el('text', { x: x0, y: labelY, 'font-size': 11, fill: '#333' }, g).textContent = fmt(domain[0]);
+         el('text', { x: x0 + width, y: labelY, 'font-size': 11, fill: '#333', 'text-anchor': 'end' }, g).textContent = fmt(domain[1]);
+         bottom = barY - 8;
+         top = barY - 16;
       }
+
       if (s.sizeByValue) {
-         const sizes = [s.sizeMin, (s.sizeMin + s.sizeMax) / 2, s.sizeMax];
-         const vals = [domain[0], domain[2], domain[1]];
-         let x = x0 + s.sizeMin;
-         const cy = y - s.sizeMax;
-         sizes.forEach((r, i) => {
-            el('path', {
-               d: GPCRome.shapes.path(s.shape, r), transform: `translate(${x},${cy})`,
-               fill: s.colorByValue ? GPCRome.colors.sample(s.palette, i / 2, s.reversePalette) : s.fill,
-               'fill-opacity': s.opacity, stroke: s.stroke, 'stroke-width': s.strokeWidth,
-            }, g);
-            el('text', { x: x + r + 3, y: cy + 4, 'font-size': 10, fill: '#333' }, g).textContent = fmt(vals[i]);
-            x += r * 2 + 34;
+         const samples = [];
+         [domain[0], domain[2], domain[1]].forEach(v => {
+            if (samples.some(sm => sm.v === v)) return;
+            samples.push({ v, t: clamp01(tOf(v)) });
          });
-         y = cy - s.sizeMax - 6;
+         const maxR = Math.max(...samples.map(sm => scaledSize(s, sm.t)));
+         const cy = bottom - maxR;
+         const labelY = cy - maxR - 4;
+         samples.forEach(sm => {
+            const size = scaledSize(s, sm.t);
+            const cx = x0 + sm.t * width;
+            legendMarker(g, s, cx, cy, size, scaledFill(s, sm.t));
+            const anchor = sm.t <= 0.02 ? 'start' : sm.t >= 0.98 ? 'end' : 'middle';
+            el('text', {
+               x: cx, y: labelY, 'text-anchor': anchor, 'font-size': 10, fill: '#333',
+            }, g).textContent = fmt(sm.v);
+         });
+         top = labelY - 16;
       }
-      if (s.legendTitle) el('text', { x: x0, y: y, 'font-size': 12, 'font-weight': 'bold', fill: '#222' }, g).textContent = s.legendTitle;
+
+      legendTitle(g, s, x0, top);
+   }
+
+   function drawLegend(s, domain, marks) {
+      const width = 180, x0 = W - width - 10;
+      const tOf = scaleT(s, domain);
+      const classes = valueClasses(marks, s);
+      if (s.sizeByValue && classes.length > 0 && classes.length <= CLASS_LEGEND_MAX) drawClassLegend(s, classes, tOf, x0);
+      else drawScaleLegend(s, domain, tOf, x0, width);
    }
 
    /* ---------- view and interaction ---------- */

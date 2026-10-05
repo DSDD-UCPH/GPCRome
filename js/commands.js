@@ -5,6 +5,8 @@
  *   ADRB2 7.5                      mark with a value (also "ADRB2,7.5" or tab separated)
  *   ADRB* fill=red shape=star      wildcards and style properties
  *   class:secretin size=10 label   class/family/ligand selectors, bare words for colours, shapes and "label"
+ *   fill=red shape=star size=8     a style line applies to the receptors listed below it
+ *   ADRB2                          (until the next style line; style clear ends the group)
  *   set palette=magma labels=all   change global settings
  *   # comment
  */
@@ -20,7 +22,7 @@ GPCRome.commands = (function () {
       size: 'size', radius: 'size',
       shape: 'shape',
       stroke: 'stroke', border: 'stroke', outline: 'stroke',
-      opacity: 'opacity', alpha: 'opacity',
+      opacity: 'opacity', alpha: 'opacity', transparency: 'opacity',
       label: 'label',
       text: 'text', label_text: 'text', labeltext: 'text',
    };
@@ -89,10 +91,12 @@ GPCRome.commands = (function () {
          case 'value':
          case 'size':
          case 'opacity': {
-            const n = Number(v.replace(',', '.'));
+            const pct = field === 'opacity' && /%$/.test(v);
+            const n = Number(v.replace(',', '.').replace(/%$/, ''));
             if (!isFinite(n)) return `"${v}" is not a number (${field})`;
-            if (field === 'opacity' && (n < 0 || n > 1)) return `opacity must be between 0 and 1`;
-            return [n];
+            const num = pct ? n / 100 : n;
+            if (field === 'opacity' && (num < 0 || num > 1)) return `opacity must be between 0 and 1`;
+            return [num];
          }
          case 'stroke':
             if (v.toLowerCase() === 'none') return ['none'];
@@ -145,6 +149,15 @@ GPCRome.commands = (function () {
       } else if (name === 'valueMin' || name === 'valueMax') {
          if (v !== '' && v !== 'auto' && !isFinite(Number(v))) return `${name} must be a number or auto`;
          out[name] = v === 'auto' || v === '' ? '' : Number(v);
+      } else if (name === 'labelLine') {
+         const map = {
+            on: 'on', enable: 'on', enabled: 'on', show: 'on', yes: 'on', true: 'on',
+            auto: 'auto', automatic: 'auto',
+            off: 'off', disable: 'off', disabled: 'off', hide: 'off', no: 'off', none: 'off', false: 'off',
+         };
+         const m = map[v.toLowerCase()];
+         if (!m) return 'labelLine must be enable, auto or disable';
+         out[name] = m;
       } else if (ENUMS[name]) {
          const val = name === 'shape' ? normShape(v) : v;
          const allowed = ENUMS[name]();
@@ -193,6 +206,19 @@ GPCRome.commands = (function () {
       });
    }
 
+   /* A token that sets appearance, with no receptor attached. */
+   function isStyleToken(tok) {
+      if (!tok) return false;
+      const kv = tok.match(/^([a-z_]+)\s*[=:]/i);
+      if (kv) return !!FIELD_ALIASES[kv[1].toLowerCase()] && FIELD_ALIASES[kv[1].toLowerCase()] !== 'sel';
+      if (isFinite(Number(tok.replace(',', '.')))) return true;
+      const lower = tok.toLowerCase();
+      if (lower === 'label' || lower === 'labelled' || lower === 'labeled' || lower === 'nolabel') return true;
+      if (GPCRome.shapes.names.includes(normShape(tok))) return true;
+      if (GPCRome.colors.isColor(tok)) return true;
+      return false;
+   }
+
    function isHeader(cells, delimited) {
       const known = cells.map(c => FIELD_ALIASES[c.toLowerCase().replace(/\s+/g, '_')]);
       if (known[0] !== 'sel' || cells.length < 2) return false;
@@ -207,6 +233,25 @@ GPCRome.commands = (function () {
       const result = { rows: [], settings: {}, offsets: {}, errors: [] };
       const lines = String(text || '').replace(/\r\n?/g, '\n').split('\n');
       let columns = null;
+      /* Style lines apply to the receptors that follow. Consecutive style lines combine;
+         a style line after a receptor starts a new group. */
+      let group = null;
+      let groupUsed = false;
+
+      function setGroup(tokens, lineNo) {
+         const base = !group || groupUsed ? emptyRow() : Object.assign(emptyRow(), group);
+         parseTokens(tokens, base, result.errors, lineNo);
+         group = base;
+         groupUsed = false;
+      }
+
+      function inherit(row) {
+         if (!group) return;
+         ROW_FIELDS.forEach(f => {
+            if (f !== 'sel' && row[f] === '' && group[f] !== '') row[f] = group[f];
+         });
+         groupUsed = true;
+      }
 
       lines.forEach((rawLine, i) => {
          const lineNo = i + 1;
@@ -233,6 +278,25 @@ GPCRome.commands = (function () {
 
          const delim = detectDelimiter(line);
          const cells = split(line, delim);
+         const head = (cells[0] || '').toLowerCase();
+         if (head === 'style' || head === 'with') {
+            const rest = cells.slice(1);
+            if (!rest.length || (rest.length === 1 && /^(clear|reset|none)$/i.test(rest[0]))) {
+               group = null;
+               groupUsed = false;
+               return;
+            }
+            if (!rest.every(isStyleToken)) {
+               result.errors.push({ line: lineNo, message: 'a style line only sets colour, shape, size and similar properties; list the receptors on the following lines' });
+               return;
+            }
+            setGroup(rest, lineNo);
+            return;
+         }
+         if (!columns && cells.length && cells.every(isStyleToken)) {
+            setGroup(cells, lineNo);
+            return;
+         }
          if (!columns && result.rows.length === 0 && isHeader(cells, !!delim)) {
             columns = cells.map(c => FIELD_ALIASES[c.toLowerCase().replace(/\s+/g, '_')] || null);
             return;
@@ -252,7 +316,10 @@ GPCRome.commands = (function () {
             row.sel = cells[0];
             parseTokens(cells.slice(1), row, result.errors, lineNo);
          }
-         if (row.sel) result.rows.push(row);
+         if (row.sel) {
+            inherit(row);
+            result.rows.push(row);
+         }
       });
       return result;
    }

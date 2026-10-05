@@ -5,7 +5,7 @@
    <title>GPCRome mapper</title>
    <meta name="description" content="Interactive mapper of the human GPCR tree">
    <meta name="keywords" content="GPCR, GPCRs, GPCRome, GPCR tree, GPCR figure, GPCR mapper">
-   <meta name="author" content="Albert J. Kooistra">
+   <meta name="author" content="Albert J. Kooistra, Chris de Graaf">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@14.6.1/dist/handsontable.full.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -50,7 +50,7 @@
 
          <section class="panel" id="tab-data">
             <h3>Paste receptors</h3>
-            <textarea id="quick-input" spellcheck="false" placeholder="One receptor per line, any identifier:&#10;ADRB2&#10;P08908, 7.2&#10;drd2_human 5.1&#10;ADRB* fill=red shape=star label&#10;class:secretin size=10"></textarea>
+            <textarea id="quick-input" spellcheck="false" placeholder="A style, then the receptors it applies to:&#10;fill=red shape=star size=8 opacity=0.6&#10;ADRB2&#10;DRD2&#10;HTR2A&#10;&#10;fill=#3366cc diamond&#10;class:secretin"></textarea>
             <div class="button-row">
                <button id="apply-replace" class="primary" title="Replace the table with this input">Map</button>
                <button id="apply-append" title="Append this input to the table">Add to table</button>
@@ -61,7 +61,7 @@
             <div id="input-messages" class="messages"></div>
             <details class="help-box">
                <summary>Input format</summary>
-               <p>Each line: a receptor, then optionally a value and style properties.</p>
+               <p>Each line is a receptor, or a style that applies to the receptors listed under it.</p>
                <table class="syntax">
                   <tr><td><code>ADRB2</code></td><td>gene, UniProt accession or entry name, HGNC/ChEMBL ID, synonym</td></tr>
                   <tr><td><code>ADRB2 7.5</code></td><td>with a value (also <code>ADRB2,7.5</code> or tab separated)</td></tr>
@@ -70,8 +70,9 @@
                   <tr><td><code>class:B1</code></td><td>a class: A, B1, B2, C, F, T2, rogues, orphan</td></tr>
                   <tr><td><code>family:adenosine</code></td><td>a GPCRdb receptor family</td></tr>
                   <tr><td><code>ligand:peptide</code></td><td>a GPCRdb ligand type</td></tr>
-                  <tr><td><code>fill=red size=8</code></td><td>also <code>shape= stroke= opacity= label=yes text=</code></td></tr>
+                  <tr><td><code>fill=red size=8</code></td><td>also <code>shape= stroke= opacity= transparency= label=yes text=</code></td></tr>
                   <tr><td><code>red star label</code></td><td>bare colours, shapes and <code>label</code> work too</td></tr>
+                  <tr><td><code>fill=red star<br>ADRB2<br>DRD2</code></td><td>style line, then the receptors it applies to. The next style line starts a new group. <code>style clear</code> ends it. A property on a receptor line overrides the group.</td></tr>
                   <tr><td><code>set labels=all</code></td><td>change a global setting (see CSV export for all keys)</td></tr>
                </table>
                <p>Later lines override earlier ones, e.g. <code>all fill=#ccc</code> followed by <code>ADRB* fill=red</code>.</p>
@@ -114,7 +115,9 @@
             <p class="hint">Defaults for all markers. Values set per row in the table (fill, size, shape…) always take precedence.</p>
             <fieldset>
                <legend>Markers</legend>
-               <label>Shape <select data-setting="shape" data-options="shapes"></select></label>
+               <div class="row">Shape
+                  <div class="shape-picker" id="shape-picker" data-choice="shape" role="group" aria-label="Shape"></div>
+               </div>
 
                <div class="row">Colour
                   <div class="segmented" data-choice="colorByValue">
@@ -199,7 +202,20 @@
                      <summary>Font</summary>
                      <label>Font size <input type="number" data-setting="labelSize" min="2" max="40" step="0.5"></label>
                      <label>Colour <input type="color" data-setting="labelColor"></label>
+                     <div class="row">Style
+                        <span class="checks">
+                           <label class="check"><input type="checkbox" data-setting="labelBold"> Bold</label>
+                           <label class="check"><input type="checkbox" data-setting="labelItalic"> Italic</label>
+                        </span>
+                     </div>
                   </details>
+                  <div class="row">Line to leaf
+                     <div class="segmented" data-choice="labelLine" title="Line between the label and the receptor">
+                        <button type="button" data-value="on">Enable</button>
+                        <button type="button" data-value="auto">Auto</button>
+                        <button type="button" data-value="off">Disable</button>
+                     </div>
+                  </div>
                   <p class="hint">Drag a label on the map to move it; double-click it to reset.</p>
                </div>
             </fieldset>
@@ -238,10 +254,17 @@
          </section>
 
          <footer class="cite">
-            Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen.<br>
+            Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).<br>
             Tree based on <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a>
             and <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>
-            · Annotation: <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a> (<span id="data-date"></span>)
+            · Annotation: <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>,
+            <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>,
+            <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>,
+            <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>,
+            <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a>,
+            <a href="https://www.proteinatlas.org/" target="_blank" rel="noopener">Human Protein Atlas</a>,
+            <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>
+            (<span id="data-date"></span>)
             · <a href="#" id="about-link">How to cite</a>
          </footer>
       </aside>
@@ -271,7 +294,7 @@
          <button class="modal-close" title="Close">×</button>
          <div class="modal-brand">
             <img src="images/gpcrome-logo.png" alt="">
-            <div><strong>GPCRome</strong><span>Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen.</span></div>
+            <div><strong>GPCRome</strong><span>Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).</span></div>
          </div>
          <div id="modal-content"></div>
          <div class="modal-nav">
