@@ -188,13 +188,13 @@
 
    /* ---------- table (Handsontable) ---------- */
    const COLUMNS = [
-      { data: 'sel', title: 'Receptor', width: 92 },
-      { data: '_match', title: 'Match', width: 82, readOnly: true, renderer: matchRenderer },
-      { data: 'value', title: 'Value', width: 52 },
-      { data: 'fill', title: 'Fill', width: 72, renderer: colorRenderer },
-      { data: 'size', title: 'Size', width: 40 },
-      { data: 'shape', title: 'Shape', width: 74, type: 'dropdown', source: [''].concat(GPCRome.shapes.names) },
-      { data: 'label', title: 'Label', width: 46, type: 'dropdown', source: ['', 'yes', 'no'] },
+      { data: 'sel', title: 'Receptor', width: 80 },
+      { data: '_match', title: 'Match', width: 74, readOnly: true, renderer: matchRenderer },
+      { data: 'value', title: 'Value', width: 44 },
+      { data: 'fill', title: 'Fill', width: 62, renderer: colorRenderer },
+      { data: 'size', title: 'Size', width: 36 },
+      { data: 'shape', title: 'Shape', width: 64, type: 'dropdown', source: [''].concat(GPCRome.shapes.names) },
+      { data: 'label', title: 'Label', width: 40, type: 'dropdown', source: ['', 'yes', 'no'] },
       { data: 'stroke', title: 'Outline', width: 78, renderer: colorRenderer },
       { data: 'opacity', title: 'Opacity', width: 60 },
       { data: 'text', title: 'Label text', width: 90 },
@@ -240,7 +240,8 @@
       columns: COLUMNS.map(c => Object.assign({ renderer: validityRenderer }, c)),
       colHeaders: true,
       rowHeaders: true,
-      rowHeaderWidth: 34,
+      rowHeaderWidth: 30,
+      stretchH: 'all',
       height: 320,
       wordWrap: false,
       minSpareRows: 1,
@@ -621,9 +622,9 @@
       ['4 · Save and share', `<p><b>Download</b> the map as SVG (vector) or PNG, and your table plus settings as CSV – upload that CSV later to continue.</p>
          <p><b>Share link</b> copies a URL that restores this exact map. Undo/redo with ⌘/Ctrl+Z.</p>`],
    ];
-   const ABOUT = ['How to cite', `<p>This GPCR tree mapper is developed by Albert J. Kooistra in the
+   const ABOUT = ['About &amp; how to cite', `<p>This GPCR tree mapper is developed by Albert J. Kooistra in the
       <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).</p>
-      <p>The tree is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a> and the original tree by
+      <p>The tree is a maximum-likelihood phylogeny (<a href="https://iqtree.github.io/" target="_blank" rel="noopener">IQ-TREE</a>) of the GPCRdb structure-based 7TM alignment, with full-length trees for classes B1, B2, C and F. Its layout is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a> and the original tree by
       <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>. It was updated using refined sequence alignments focusing on the 7TM bundle; names and reference sequences follow the latest UniProt.</p>
       <p>Annotation and the built-in datasets come from <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>, <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>, <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>, <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a> and <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>.</p>
       <p>The publication is in preparation. Please cite:<br><b>de Graaf C, Kooistra AJ GPCR Tree Mapper. Accessed [date].</b></p>`];
@@ -644,7 +645,7 @@
    $('#modal-prev').addEventListener('click', () => showModal(pages, step - 1));
    $('.modal-close').addEventListener('click', () => { $('#modal').hidden = true; localStorage.setItem('gpcrome-tutorial-seen', '1'); });
    $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') $('#modal').hidden = true; });
-   $('#help').addEventListener('click', () => showModal(STEPS));
+   $('#help').addEventListener('click', () => showModal(STEPS.concat([ABOUT])));
    $('#about-link').addEventListener('click', e => { e.preventDefault(); showModal([ABOUT]); });
    $('#data-date').textContent = reg.updated;
 
