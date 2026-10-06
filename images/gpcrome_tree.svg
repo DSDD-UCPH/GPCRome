@@ -839,8 +839,8 @@
 <path d="M242.0,167.21L255.19,162.51" stroke-width="1.0" stroke-opacity="0.75"/>
 </g>
 <g id="class-olfactory" stroke="#8b5e3c">
-<path d="M274.85,414.33L227.03,417.42" stroke-width="2.0" stroke-opacity="1.0"/>
-<path d="M219.55,417.9L226.8,413.83L227.26,421.01Z" stroke="none" fill="#8b5e3c" fill-opacity="1.0"/>
+<path d="M267.71,421.32L227.03,417.42" stroke-width="2.0" stroke-opacity="1.0"/>
+<path d="M219.56,416.7L227.37,413.84L226.69,421.0Z" stroke="none" fill="#8b5e3c" fill-opacity="1.0"/>
 </g>
 </g>
 <text x="192.16" y="414.57" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="10" text-anchor="middle" fill="#8b5e3c">Olfactory</text>

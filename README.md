@@ -37,6 +37,8 @@ A CSV with a header row (`receptor,value,fill,size,shape,stroke,opacity,label,la
 `valueScale` (`linear`/`log`), `valueMin`, `valueMax`, `legend`, `legendTitle`, `labels` (`none`/`mapped`/`all`),
 `labelName` (`gene`/`entry`/`gpcrdb`), `labelSize`, `labelColor`, `unmapped` (`hidden`/`dots`), `treeWidth`,
 `treeOpacity`, `background` (`white`/`transparent`), `tree.<class>=on|off`, `tree.<class>.color=#hex`.
+Classes that are switched off are not drawn; if that leaves the classes still shown unconnected, only the branches
+that join them are drawn, in light grey.
 
 **Downloads**: SVG, PNG (2× / 4×), the full table plus settings as CSV (re-upload it to continue) and a CSV of all
 mapped receptors with the values and styles used for drawing. **Share link** stores the complete map in the URL.
@@ -91,14 +93,14 @@ python tools/build_tree.py        # after changing data/tree/: redraw both trees
 
 `update_datasets.py` caches raw responses in `data/cache/` (gitignored). Pass `--refresh` to download them again, or `--only sequence,drugs,expression,ligands` to rerun one part.
 
-The dataset menu can map the following; the olfactory tree has the same menu, but only the datasets that have values for olfactory receptors (about 150 have mRNA expression, 10 a structure, 2 ChEMBL ligands):
+The dataset menu can map the following; the olfactory tree has the same menu, but only the datasets that have values for olfactory receptors (about 380 have mRNA expression, 10 a structure, 2 ChEMBL ligands):
 
 | Dataset | What the value is |
 |---|---|
 | Structures | experimental structures and unique ligands in those structures (GPCRdb) |
 | Ligands | unique ChEMBL ligands and bioactivity rows, as integrated by GPCRdb, and Guide to Pharmacology interactions. **Shared with a reference** counts ligands in common with a receptor you pick |
 | Sequence | percent identity and BLOSUM62 similarity to a reference receptor, on the GPCRdb 7TM alignment and on the full sequence |
-| Expression | ProteomicsDB protein abundance (tissues and fluids) and Human Protein Atlas mRNA (TPM) hosted by ProteomicsDB. Pick a tissue, or the highest tissue |
+| Expression | ProteomicsDB protein abundance (tissues and fluids) and RNA-seq mRNA (TPM) pooled from the public experiments in ProteomicsDB, as on its protein pages. Pick a tissue, or the highest tissue |
 | Drugs | approved drugs and phase 1–3 candidates. GPCRdb combines DrugBank, ChEMBL and Guide to Pharmacology (DrugBank has no separate open target download). ChEMBL mechanisms, Guide to Pharmacology approved drugs and DrugCentral interactions are listed on their own |
 
 To add or rename a receptor or synonym, edit `data/receptors.tsv` / `data/synonyms.tsv` and run `build_data.py`.

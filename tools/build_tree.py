@@ -26,7 +26,7 @@ from pathlib import Path
 
 import numpy as np
 
-from tree_annotate import ARROW_ROOM, aim_arrow, place_labels
+from tree_annotate import ARROW_MAX, ARROW_ROOM, aim_arrow, place_labels
 from tree_compact import Squeezer, bend, verify
 from tree_layout import Layout
 from tree_topology import TREES, build_olfactory_topology, build_topology, tip_counts
@@ -55,6 +55,8 @@ NAMES = {'rhodopsin': 'RHODOPSIN', 'adhesion': 'ADHESION', 'secretin': 'SECRETIN
          'frizzled': 'FRIZZLED', 'tas2': 'TAS2', 'vomeronasal': 'VOMERONASAL', 'orphan': 'ORPHAN',
          'olfactory1': 'OLFACTORY 1', 'olfactory2': 'OLFACTORY 2'}
 OPACITY = 0.75
+ARROW_SLIDE = 10.0                      # the arrow to the olfactory receptors starts this far along the branch of its sister
+ARROW_SHORT = 28.0                      # the longest arrow to class A in the olfactory tree
 MARGIN = 8.0
 
 OLD_CENTRE = (276.34, 222.86)           # the centre of the previous drawing
@@ -202,9 +204,14 @@ def r(v):
     return round(float(v), 2)
 
 
-def tree_data(tree, lines, width, classes, home, shift, canvas, labels):
+def tree_data(tree, lines, width, classes, home, shift, canvas, labels, stubs):
     """The drawing as js/data/*.js wants it, and where every receptor ended up (x, y, direction, class).
-    `home(n)`: the class of a branch that has receptors of several classes."""
+    `home(n)`: the class of a branch that has receptors of several classes. `stubs`: for an arrow that starts
+    along the branch of its sister, the part of that branch before it (see draw).
+
+    Every branch carries its place in the tree (`n`, and `up`: the branch it hangs from, 0 being the root) and
+    every tip its class (`tip`), so that the page can draw the branches that connect the classes it shows."""
+    ident = {n: i for i, n in enumerate(tree.walk())}
     out = {
         'width': float(canvas[0]), 'height': float(canvas[1]), 'defaultOpacity': OPACITY,
         'classes': [{'id': cid, 'name': name, 'color': col} for cid, name, col in classes],
@@ -220,9 +227,15 @@ def tree_data(tree, lines, width, classes, home, shift, canvas, labels):
         pts = lines[n] + shift
         have = {t.cls for t in n.tips()}
         cls = n.cls if n.arrow else next(iter(have)) if len(have) == 1 and n.parent is not tree else home(n)
-        out['paths'][cls].append({
+        branch = {
             'd': 'M' + 'L'.join(f'{r(x)},{r(y)}' for x, y in pts), 'mode': 'stroke', 'width': width[n],
-            'opacity': 1.0 if n.arrow else OPACITY})
+            'opacity': 1.0 if n.arrow else OPACITY, 'n': ident[n], 'up': ident[n.parent]}
+        if not n.children:
+            branch['tip'] = n.cls
+        if n in stubs:
+            sister, way = stubs[n]
+            branch['stub'] = {'d': 'M' + 'L'.join(f'{r(x)},{r(y)}' for x, y in way + shift), 'width': width[sister], 'via': ident[sister]}
+        out['paths'][cls].append(branch)
         (x1, y1), (x2, y2) = pts[-2], pts[-1]
         if n.arrow:                                             # the arrow head
             ux, uy = np.array([x2 - x1, y2 - y1]) / math.hypot(x2 - x1, y2 - y1)
@@ -262,9 +275,9 @@ def placement(view):
     return json.loads(path.read_text()).get(view, {}) if path.exists() else {}
 
 
-def draw(tree, size, width, classes, home, hints, names, arrow_label, view):
+def draw(tree, size, width, classes, home, hints, names, arrow_label, view, arrow_max=ARROW_MAX, slide=0.0):
     """Lay the tree out and annotate it. Returns the data for the page, where every receptor is, the
-    positions of the nodes and the branches. `view`: 'gpcr' or 'olfactory', for the positions set by hand."""
+    positions of the nodes and the branches. `view`: 'gpcr' or 'olfactory', for the positions set by hand. The arrow is at most `arrow_max` long and starts `slide` along the branch of its sister."""
     arrow = next(t for t in tree.tips() if t.arrow)
     best = None
     for arrow_side in (1, -1):                  # the arrow leaves on the side with more room
@@ -273,7 +286,7 @@ def draw(tree, size, width, classes, home, hints, names, arrow_label, view):
         hub = pos[tree]
         tips = [lines[t][-1] for t in tree.tips() if not t.arrow]
         start = pos[arrow.parent] - hub
-        head, direction, room = aim_arrow(lines, arrow, math.degrees(math.atan2(start[1], start[0])) if arrow.parent is not tree else -90.0, tips)
+        head, direction, room = aim_arrow(lines, arrow, math.degrees(math.atan2(start[1], start[0])) if arrow.parent is not tree else -90.0, tips, arrow_max)
         if best is None or room > best[0]:
             best = (room, pos, lines, hub, head, direction)
         if arrow.parent is tree:                # nothing to choose
@@ -283,7 +296,15 @@ def draw(tree, size, width, classes, home, hints, names, arrow_label, view):
     if 'arrow' in by_hand:
         head = hub + np.array(by_hand['arrow'])
         lines[arrow] = np.array([lines[arrow][0], head])
-        direction = math.degrees(math.atan2(*(head - lines[arrow][0])[::-1]))
+    stubs = {}                                  # the part of the branch of its sister that the arrow leaves from
+    if slide:                                   # start the arrow on the branch of its sister instead of at the node
+        sister = max((c for c in arrow.parent.children if c is not arrow), key=lambda c: size[c])
+        way = lines[sister]
+        along = np.concatenate([[0.0], np.cumsum(np.linalg.norm(np.diff(way, axis=0), axis=1))])
+        lines[arrow] = np.array([[np.interp(slide, along, way[:, k]) for k in (0, 1)], lines[arrow][-1]])
+        stubs[arrow] = (sister, np.vstack([way[along < slide], lines[arrow][0]]))
+        head = lines[arrow][-1]
+    direction = math.degrees(math.atan2(*(head - lines[arrow][0])[::-1]))
 
     specs = [{'id': 'arrow', 'cls': arrow.cls, 'text': arrow_label, 'near': [head], 'prefer': direction}]
     by_class = {cid: [lines[t][-1] for t in tree.tips() if t.cls == cid and not t.arrow] for cid, _, _ in classes}
@@ -303,7 +324,7 @@ def draw(tree, size, width, classes, home, hints, names, arrow_label, view):
     (x0, y0), (x1, y1) = points.min(0), points.max(0)
     shift = np.array([MARGIN - x0, MARGIN - y0])
     out, placed = tree_data(tree, lines, width, classes, home, shift,
-                            (math.ceil(x1 - x0 + 2 * MARGIN), math.ceil(y1 - y0 + 2 * MARGIN)), labels)
+                            (math.ceil(x1 - x0 + 2 * MARGIN), math.ceil(y1 - y0 + 2 * MARGIN)), labels, stubs)
     out['hub'] = [r(v) for v in hub + shift]                    # what tools/place.py measures positions from
     out['arrow'] = {'cls': arrow.cls, 'start': [r(v) for v in lines[arrow][0] + shift], 'tip': [r(v) for v in lines[arrow][-1] + shift]}
     touching, gap, nearest = verify(tree, {n: pts + shift for n, pts in lines.items()}, width,
@@ -343,7 +364,7 @@ def build_gpcr():
     out, placed, pos = draw(
         tree, size, width, CLASSES,
         lambda n: 'rhodopsin' if n in in_a and n.parent is not tree else 'orphan',
-        lambda: layout_hints(tree, nona, aside, fan, size, old), NAMES, ['Olfactory', 'receptors'], 'gpcr')
+        lambda: layout_hints(tree, nona, aside, fan, size, old), NAMES, ['Olfactory', 'receptors'], 'gpcr', slide=ARROW_SLIDE)
     print(f'  {fidelity(tree, pos, old)}', file=sys.stderr)
 
     missing = [row['gene'] for row in rows if row['gene'] not in placed]
@@ -368,7 +389,7 @@ def build_olfactory():
     steps = [(200, 5.0), (80, 4.0), (30, 3.0), (10, 2.0)]
     out, placed, _ = draw(
         tree, size, edge_widths(size, [(arrow, steps), (olf, steps)], lambda n, w: 2.0 if n.arrow else w), OLFACTORY_CLASSES,
-        lambda n: 'rhodopsin', lambda: fan_hints(tree, arrow, olf, size), NAMES, ['Class A'], 'olfactory')
+        lambda n: 'rhodopsin', lambda: fan_hints(tree, arrow, olf, size), NAMES, ['Class A'], 'olfactory', arrow_max=ARROW_SHORT)
 
     fields = ['gene', 'name', 'class', 'uniprot', 'uniprot_entry', 'hgnc', 'chembl', 'x', 'y', 'angle']
     with open(ROOT / 'data' / 'olfactory.tsv', 'w', newline='') as f:

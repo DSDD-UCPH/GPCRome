@@ -464,7 +464,7 @@
       const gtopUrl = `https://www.guidetopharmacology.org/GRAC/DatabaseSearchForward?searchString=${encodeURIComponent(r.id)}&searchCategories=all&species=Human&type=all&comments=includeComments&order=rank&submit=Search+Database`;
       const hgncUrl = r.hgnc[0] ? `https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/${r.hgnc[0]}` : '';
       const proteinUrl = r.uniprot[0] ? `https://www.proteomicsdb.org/proteomicsdb/#protein/proteinDetails/${r.uniprot[0]}/summary` : '';
-      const hpaUrl = `https://www.proteinatlas.org/search/${encodeURIComponent(r.id)}`;
+      const expressionUrl = r.uniprot[0] ? `https://www.proteomicsdb.org/proteomicsdb/#protein/proteinDetails/${r.uniprot[0]}/expression` : '';
       const drugcentralUrl = r.uniprot[0] ? `https://drugcentral.org/target/${r.uniprot[0]}` : '';
       const links = [
          gpcrdbUrl && ['GPCRdb', gpcrdbUrl],
@@ -494,7 +494,7 @@
          r.data && r.data.gpcrdb_max_phase > 0 && ['Highest phase (GPCRdb)', textOrLink(String(r.data.gpcrdb_max_phase), gpcrdbUrl, 'Open in GPCRdb')],
          r.data && r.data.drugcentral_drugs > 0 && ['DrugCentral', textOrLink(`${r.data.drugcentral_drugs} drugs (${r.data.drugcentral_moa} with a mechanism)`, drugcentralUrl, 'Open in DrugCentral')],
          expressionLine(r, 'protein', 'Protein expression', proteinUrl, 'Open in ProteomicsDB'),
-         expressionLine(r, 'mrna', 'mRNA expression', hpaUrl, 'Open in the Human Protein Atlas'),
+         expressionLine(r, 'mrna', 'mRNA expression', expressionUrl, 'Open in ProteomicsDB'),
       ].filter(Boolean);
       let mapped = '<p class="muted">Not in your map.</p>';
       if (m) {
@@ -625,8 +625,8 @@
       <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).</p>
       <p>The tree is based on the modified GPCR tree presented by <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a> and the original tree by
       <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>. It was updated using refined sequence alignments focusing on the 7TM bundle; names and reference sequences follow the latest UniProt.</p>
-      <p>Annotation and the built-in datasets come from <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>, <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>, <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>, <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a>, <a href="https://www.proteinatlas.org/" target="_blank" rel="noopener">Human Protein Atlas</a> and <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>.</p>
-      <p>The publication is in preparation. Please cite:<br><b>Kooistra AJ, de Graaf C. GPCR Tree Mapper. Accessed [date].</b></p>`];
+      <p>Annotation and the built-in datasets come from <a href="https://gpcrdb.org" target="_blank" rel="noopener">GPCRdb</a>, <a href="https://www.uniprot.org/" target="_blank" rel="noopener">UniProt</a>, <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>, <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>, <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a> and <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>.</p>
+      <p>The publication is in preparation. Please cite:<br><b>de Graaf C, Kooistra AJ GPCR Tree Mapper. Accessed [date].</b></p>`];
    let step = 0, pages = STEPS;
    function showModal(list, i) {
       pages = list; step = i || 0;

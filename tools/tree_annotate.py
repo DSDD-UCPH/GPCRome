@@ -19,9 +19,9 @@ def unit(angle):
     return np.array([math.cos(math.radians(angle)), math.sin(math.radians(angle))])
 
 
-def aim_arrow(lines, arrow, away, tips):
+def aim_arrow(lines, arrow, away, tips, longest=ARROW_MAX):
     """Turn the arrow (`lines[arrow]`, a straight branch) to point outwards: towards `away` (degrees), or as
-    near it as there is room, and make it as long as there is room for, between ARROW_MIN and ARROW_MAX. It keeps
+    near it as there is room, and make it as long as there is room for, between ARROW_MIN and `longest`. It keeps
     clear of branches and receptors, and at an angle from the branches that meet at its node. Returns where
     its head ends up, its direction and how much room it had (its length and the open way beyond it, less a price for turning)."""
     start = lines[arrow][0]
@@ -33,7 +33,7 @@ def aim_arrow(lines, arrow, away, tips):
 
     def clear(u, length, extra=0.0):
         probe = np.concatenate([start + u * 4, start + u * (length + ARROW_HEAD + extra)])[None]
-        return not ((len(near) and segment_segments(probe, near, within=ARROW_MAX + 20).min() < D_EDGE_EDGE + 3)
+        return not ((len(near) and segment_segments(probe, near, within=longest + 20).min() < D_EDGE_EDGE + 3)
                     or (len(tips) and point_segments(np.asarray(tips), probe).min() < D_TIP_EDGE + 3))
 
     best = None
@@ -41,7 +41,7 @@ def aim_arrow(lines, arrow, away, tips):
         u = unit(away + turn)
         if any(math.degrees(math.acos(np.clip(u @ v, -1, 1))) < 28 for v in outgoing):
             continue
-        length = next((l for l in np.arange(ARROW_MAX, ARROW_MIN - 1, -2.0) if clear(u, l, FREE)), None)
+        length = next((l for l in np.arange(longest, ARROW_MIN - 1, -2.0) if clear(u, l, FREE)), None)
         if length is None:
             continue
         open_ = max(e for e in np.arange(FREE, 60.0, 4.0) if clear(u, length, e))      # how far the way stays open

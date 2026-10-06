@@ -9,7 +9,7 @@ responses are cached under data/cache so a rerun only fetches what is missing):
   Sequence identity and similarity   GPCRdb 7TM and full-length alignments,
                                      percent identity and BLOSUM62 similarity
   Protein expression                 ProteomicsDB protein expression by tissue
-  mRNA expression                    ProteomicsDB / Human Protein Atlas RNA-seq (TPM)
+  mRNA expression                    ProteomicsDB RNA-seq (TPM)
   Drugs and clinical phase           GPCRdb /services/drugs (DrugBank, ChEMBL and
                                      Guide to Pharmacology), ChEMBL mechanisms,
                                      DrugCentral drug-target interactions
@@ -668,28 +668,31 @@ def protein_expression(accession):
     return {name: round(sum(vals) / len(vals), 3) for name, vals in totals.items()}
 
 
-def hpa_tissues():
-    """Anatomical tissues in the Human Protein Atlas RNA-seq experiment hosted by ProteomicsDB."""
-    url = (f'{PROTEOMICS}/api_v2/api.xsodata/OmicsSample?$format=json&$top=500'
-           '&$select=OmicsSampleId,TissueName&$filter=OmicsExperimentId%20eq%200')
-    samples = fetch_json(url)['d']['results']
-    tissues = {}
-    for sample in samples:
-        name = (sample.get('TissueName') or '').strip()
-        # Cell-line symbols (MCF7, hTCEpi) are not lowercase anatomical names.
-        if not name or name != name.lower() or not name[0].isalpha():
-            continue
-        tissues.setdefault(name, []).append(sample['OmicsSampleId'])
-    return tissues
+def proteomicsdb_id(accession):
+    """ProteomicsDB's internal protein id for a UniProt accession, or None when it does not know the protein."""
+    try:
+        raw = fetch(f'{PROTEOMICS}/getProteinId.xsjs?protein_id={accession}').decode().strip()
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return None
+        raise
+    return raw if raw.isdigit() else None
 
 
-def mrna_expression(ensembl, measurement_ids):
-    clauses = ' or '.join(f'MeasurementId eq {i}' for i in measurement_ids)
-    filt = urllib.parse.quote(f"ProbeAccession eq '{ensembl}' and ({clauses})")
-    url = (f'{PROTEOMICS}/api_v2/api.xsodata/OmicsExpression?$format=json&$top=500'
-           f'&$select=MeasurementId,Value&$filter={filt}')
-    rows = fetch_json(url, timeout=90).get('d', {}).get('results', [])
-    return {row['MeasurementId']: float(row['Value']) for row in rows if row.get('Value') not in (None, '')}
+def mrna_expression(accession):
+    """RNA-seq TPM by tissue, as the ProteomicsDB protein page shows it (all public RNA-seq experiments)."""
+    pid = proteomicsdb_id(accession)
+    if not pid:
+        return {}
+    url = (f'{PROTEOMICS}/getExpressionWrapper.xsjs?omics=Transcriptomics&protein_id={pid}'
+           '&quantification=RNASeq&tissue_category=tissue&scope=1&group_by_tissue=1&calculation=TPM')
+    rows = fetch_json(url, timeout=90)
+    out = {}
+    for row in rows:
+        name = (row.get('TISSUE_NAME') or '').strip()
+        if name and row.get('NORMALIZED_INTENSITY') not in (None, ''):
+            out[name] = round(float(row['NORMALIZED_INTENSITY']), 3)
+    return out
 
 
 def build_expression(tree, ensembl, refresh, workers):
@@ -729,46 +732,40 @@ def build_expression(tree, ensembl, refresh, workers):
         if merged:
             protein_values[rec['gene']] = [merged.get(name) for name in tissues]
 
-    print(f'  mRNA: Human Protein Atlas tissues via ProteomicsDB')
-    tissue_samples = hpa_tissues()
-    tissue_names = sorted(tissue_samples)
-    id_to_tissue = {sample_id: name for name, ids in tissue_samples.items() for sample_id in ids}
-    measurement_ids = sorted(id_to_tissue)
-    print(f'  {len(tissue_names)} tissues, {len(measurement_ids)} samples')
     mrna_cache_path = CACHE / 'mrna_expression.json'
-    mrna_cache = {} if refresh else (load_cached(mrna_cache_path) or {}).get('by_ensembl', {})
-    todo = sorted({ens for ens in ensembl.values() if ens not in mrna_cache})
+    mrna_cache = {} if refresh else (load_cached(mrna_cache_path) or {}).get('by_accession', {})
+    todo = sorted({acc for rec in tree for acc in rec['accessions'] if acc not in mrna_cache})
+    print(f'  mRNA: {len(todo)} accessions to fetch, {len(mrna_cache)} cached')
 
-    def fetch_mrna(ens):
+    def fetch_mrna(acc):
         try:
-            return ens, mrna_expression(ens, measurement_ids), None
+            return acc, mrna_expression(acc), None
         except Exception as exc:
-            return ens, None, str(exc)
+            return acc, None, str(exc)
 
     if todo:
         done = 0
         with ThreadPoolExecutor(max_workers=workers) as pool:
-            for ens, values, err in pool.map(fetch_mrna, todo):
+            for acc, values, err in pool.map(fetch_mrna, todo):
                 done += 1
                 if err:
-                    failed.append((ens, err))
+                    failed.append((acc, err))
                 else:
-                    # Store by tissue name. Several samples of one tissue are averaged.
-                    buckets = defaultdict(list)
-                    for sample_id, value in values.items():
-                        buckets[id_to_tissue[sample_id]].append(value)
-                    mrna_cache[ens] = {name: round(sum(vals) / len(vals), 2) for name, vals in buckets.items()}
+                    mrna_cache[acc] = values
                 if done % 40 == 0 or done == len(todo):
                     print(f'  mRNA {done}/{len(todo)}')
-                    write_json(mrna_cache_path, {'v': CACHE_VERSION, 'by_ensembl': mrna_cache})
-        write_json(mrna_cache_path, {'v': CACHE_VERSION, 'by_ensembl': mrna_cache})
+                    write_json(mrna_cache_path, {'v': CACHE_VERSION, 'by_accession': mrna_cache})
+        write_json(mrna_cache_path, {'v': CACHE_VERSION, 'by_accession': mrna_cache})
 
+    tissue_names = sorted({name for values in mrna_cache.values() for name in values})
     mrna_values = {}
     for rec in tree:
-        ens = ensembl.get(rec['gene'])
-        values = mrna_cache.get(ens) if ens else None
-        if values:
-            mrna_values[rec['gene']] = [values.get(name) for name in tissue_names]
+        merged = {}
+        for acc in rec['accessions']:
+            for name, value in mrna_cache.get(acc, {}).items():
+                merged.setdefault(name, value)
+        if merged:
+            mrna_values[rec['gene']] = [merged.get(name) for name in tissue_names]
     print(f'  protein for {len(protein_values)} receptors across {len(tissues)} tissues; '
           f'mRNA for {len(mrna_values)} receptors; {len(failed)} failed')
     return {
@@ -836,7 +833,7 @@ def main():
         'chembl_ligands': 'Unique ChEMBL ligand names and bioactivity rows as integrated by GPCRdb.',
         'drugs': 'GPCRdb drugs combine DrugBank, ChEMBL and Guide to Pharmacology. DrugBank has no separate open target download.',
         'similarity': 'Percent identity, and percent of columns with BLOSUM62 > 0, on the GPCRdb alignment. Columns where both sequences are gapped are ignored.',
-        'expression': 'Protein values are ProteomicsDB normalized intensities for tissues and fluids. mRNA is Human Protein Atlas RNA-seq (TPM) hosted by ProteomicsDB.',
+        'expression': 'Protein values are ProteomicsDB normalized intensities for tissues and fluids. mRNA is RNA-seq (TPM) by tissue from the public RNA-seq experiments pooled by ProteomicsDB, as on its protein pages.',
     }
     write_json(path, doc)
     print(f'DONE datasets -> data/{spec["out"]} ({len(failed)} failures)')

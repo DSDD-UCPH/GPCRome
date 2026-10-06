@@ -9,6 +9,7 @@ GPCRome.render = (function () {
    const W = TREE.width * SCALE, H = TREE.height * SCALE;
    const FULL = { x: -PAD, y: -PAD, w: W + 2 * PAD, h: H + 2 * PAD };
    const FONT = 'Helvetica, Arial, sans-serif';
+   const CONNECTOR_COLOR = 'lightgray';     // the branches that join the classes on show when their own class is hidden
 
    const reg = GPCRome.registry;
    let svg, layers = {}, view = Object.assign({}, FULL);
@@ -97,6 +98,7 @@ GPCRome.render = (function () {
       layers.gradient = el('linearGradient', { id: 'gpcrome-legend-gradient', x1: '0', x2: '1', y1: '0', y2: '0' }, defs);
       layers.bg = el('rect', { x: FULL.x, y: FULL.y, width: FULL.w, height: FULL.h, fill: '#ffffff', class: 'bg' }, svg);
       layers.tree = el('g', { class: 'tree', transform: `scale(${SCALE})`, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', fill: 'none' }, svg);
+      layers.connectors = el('g', { class: 'connectors', stroke: CONNECTOR_COLOR }, layers.tree);
       layers.classes = {};
       TREE.classes.forEach(c => {
          const g = el('g', { 'data-cls': c.id, stroke: c.color }, layers.tree);
@@ -139,7 +141,50 @@ GPCRome.render = (function () {
       return '#' + [16, 8, 0].map(sh => Math.round(((v >> sh) & 255) * 0.72).toString(16).padStart(2, '0')).join('');
    }
 
-   function drawTree(s, offsets) {
+   /*
+    * The tree as a graph, for the branches that connect the classes on show. Every branch knows the one it hangs
+    * from (up; 0 is the root), the class it is drawn with (group) and, for a tip, its own class; below counts the
+    * tips of every class under a branch. A class is drawn with all of its branches, but the branches that join it
+    * to the others usually belong to a class of their own (the orphans and the stems), which may be hidden.
+    */
+   const graph = (() => {
+      const nodes = [], total = {};
+      TREE.classes.forEach(c => TREE.paths[c.id].forEach(p => {
+         if (p.n !== undefined) nodes[p.n] = { up: p.up, group: c.id, d: p.d, w: p.width, stub: p.stub, below: p.tip ? { [p.tip]: 1 } : {} };
+      }));
+      for (let i = nodes.length - 1; i >= 1; i--) {         // children come after their parent
+         const n = nodes[i], into = n.up ? nodes[n.up].below : total;
+         Object.keys(n.below).forEach(c => { into[c] = (into[c] || 0) + n.below[c]; });
+      }
+      return { byId: nodes, list: nodes.filter(Boolean), total };
+   })();
+
+   /*
+    * The branches that lie between the classes on show and are not drawn with one of them: the minimal subtree
+    * that connects all the tips shown, less what the visible classes draw themselves. Nothing else of the
+    * hidden classes is drawn. Returns [{ d, w }] in tree units.
+    */
+   function connectors(s) {
+      const on = TREE.classes.filter(c => s.tree[c.id].visible).map(c => c.id);
+      if (on.length === TREE.classes.length) return [];
+      const shown = n => on.reduce((sum, c) => sum + (n.below[c] || 0), 0);
+      const all = shown({ below: graph.total });
+      const group = new Set(on);
+      const out = [];
+      graph.list.forEach(n => {
+         const k = shown(n);
+         if (!(k > 0 && k < all)) return;                   // tips shown on both sides of the branch
+         if (!group.has(n.group)) out.push({ d: n.d, w: n.w });
+         // an arrow that leaves the branch of its sister part of the way along: that part of the branch joins it
+         if (n.stub && !group.has(graph.byId[n.stub.via].group)) out.push({ d: n.stub.d, w: n.stub.width });
+      });
+      return out;
+   }
+
+   function drawTree(s, offsets, links) {
+      layers.connectors.textContent = '';
+      layers.connectors.setAttribute('opacity', s.treeOpacity);
+      links.forEach(l => el('path', { d: l.d, 'stroke-width': l.w * s.treeWidth }, layers.connectors));
       TREE.classes.forEach(c => {
          const g = layers.classes[c.id], t = s.tree[c.id];
          g.setAttribute('display', t.visible ? 'inline' : 'none');
@@ -177,15 +222,17 @@ GPCRome.render = (function () {
       return box;
    }
 
-   /* The drawn branches of the tree as segments [x1, y1, x2, y2, width] in drawing units, per class. */
+   /* A branch ('M x,y L x,y …', in tree units) as segments [x1, y1, x2, y2, width] in drawing units. */
+   function segmentsOf(d, width) {
+      const pts = d.slice(1).split('L').map(q => q.split(',').map(Number));
+      return pts.slice(1).map((q, i) => [pts[i][0] * SCALE, pts[i][1] * SCALE, q[0] * SCALE, q[1] * SCALE, width]);
+   }
+
+   /* The drawn branches of the tree as segments, per class. */
    const branchesOf = (() => {
       const out = {};
       TREE.classes.forEach(c => {
-         out[c.id] = [];
-         TREE.paths[c.id].filter(p => p.mode === 'stroke').forEach(p => {
-            const pts = p.d.slice(1).split('L').map(q => q.split(',').map(Number));
-            pts.slice(1).forEach((q, i) => out[c.id].push([pts[i][0] * SCALE, pts[i][1] * SCALE, q[0] * SCALE, q[1] * SCALE, p.width]));
-         });
+         out[c.id] = TREE.paths[c.id].filter(p => p.mode === 'stroke').flatMap(p => segmentsOf(p.d, p.width));
       });
       return out;
    })();
@@ -215,7 +262,8 @@ GPCRome.render = (function () {
       const s = state.settings;
       const { marks, domain } = compute(state);
       layers.bg.setAttribute('fill', s.background === 'white' ? '#ffffff' : 'none');
-      drawTree(s, state.offsets);
+      const links = connectors(s);
+      drawTree(s, state.offsets, links);
 
       [layers.unmapped, layers.markers, layers.leaders, layers.labels, layers.legend].forEach(g => { g.textContent = ''; });
 
@@ -297,7 +345,9 @@ GPCRome.render = (function () {
          });
       });
       const lineMode = s.labelLine || 'auto';
-      const branches = s.treeOpacity > 0.15 ? TREE.classes.filter(c => s.tree[c.id].visible).flatMap(c => branchesOf[c.id]) : [];
+      const branches = s.treeOpacity > 0.15
+         ? TREE.classes.filter(c => s.tree[c.id].visible).flatMap(c => branchesOf[c.id]).concat(links.flatMap(l => segmentsOf(l.d, l.w)))
+         : [];
       GPCRome.labels.layout(labels, {
          obstacles, blockers, branches, bounds: FULL, fontSize: s.labelSize,
          leaderMin: lineMode === 'off' ? Infinity : lineMode === 'on' ? 1.6 : 7,
@@ -427,7 +477,7 @@ GPCRome.render = (function () {
          }
          const labelY = bottom;
          const barH = 12;
-         const barY = labelY - 15;
+         const barY = labelY - 11 - barH;                 // the 11px labels reach about 8px above their baseline
          el('rect', {
             x: x0, y: barY, width, height: barH,
             fill: 'url(#gpcrome-legend-gradient)', stroke: '#555', 'stroke-width': 0.6, 'fill-opacity': s.opacity,

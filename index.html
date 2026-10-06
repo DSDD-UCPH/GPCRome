@@ -5,7 +5,7 @@
    <title>GPCRome mapper</title>
    <meta name="description" content="Interactive mapper of the human GPCR tree">
    <meta name="keywords" content="GPCR, GPCRs, GPCRome, GPCR tree, GPCR figure, GPCR mapper">
-   <meta name="author" content="Albert J. Kooistra, Chris de Graaf">
+   <meta name="author" content="Chris de Graaf, Albert J. Kooistra">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@14.6.1/dist/handsontable.full.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -246,7 +246,7 @@
          </section>
 
          <section class="panel" id="tab-tree" hidden>
-            <p class="hint">Toggle and recolour the branches of each class of the tree shown (switch between the non-olfactory and the olfactory tree at the top). Hidden classes also hide their receptors.</p>
+            <p class="hint">Toggle and recolour the branches of each class of the tree shown (switch between the non-olfactory and the olfactory tree at the top). Hidden classes also hide their receptors. When the classes shown are no longer connected, only the branches that join them stay visible, in light grey.</p>
             <div id="class-list"></div>
             <label class="check"><input type="checkbox" data-setting="classLabels"> Class names on the tree</label>
             <p class="hint">Drag a class name to move it; double-click it to put it back.</p>
@@ -263,7 +263,7 @@
          </section>
 
          <footer class="cite">
-            Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).<br>
+            Developed by the <a href="https://dsdd.one/" target="_blank" rel="noopener">Data Science for Drug Design</a> research group at the University of Copenhagen, in collaboration with Chris de Graaf (<a href="https://structuretx.com/" target="_blank" rel="noopener">Structure Therapeutics</a>).<br><br>
             Tree: maximum-likelihood phylogeny of the GPCRdb structure-based 7TM alignment (<a href="https://iqtree.github.io/" target="_blank" rel="noopener">IQ-TREE</a>), with full-length trees for classes B1, B2, C and F;
             layout after <a href="https://www.nature.com/articles/nrd3859" target="_blank" rel="noopener">Stevens, Katritch <i>et al.</i></a>
             and <a href="https://molpharm.aspetjournals.org/content/63/6/1256" target="_blank" rel="noopener">Fredriksson <i>et al.</i></a>
@@ -272,7 +272,6 @@
             <a href="https://www.ebi.ac.uk/chembl/" target="_blank" rel="noopener">ChEMBL</a>,
             <a href="https://www.guidetopharmacology.org/" target="_blank" rel="noopener">Guide to Pharmacology</a>,
             <a href="https://www.proteomicsdb.org/" target="_blank" rel="noopener">ProteomicsDB</a>,
-            <a href="https://www.proteinatlas.org/" target="_blank" rel="noopener">Human Protein Atlas</a>,
             <a href="https://drugcentral.org/" target="_blank" rel="noopener">DrugCentral</a>
             (<span id="data-date"></span>)
             · <a href="#" id="about-link">How to cite</a>
